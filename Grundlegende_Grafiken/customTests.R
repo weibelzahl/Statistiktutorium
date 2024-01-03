@@ -1,4 +1,4 @@
-# Put custom tests in this file.
+
 omnitest <- function(correctExpr=NULL, correctVal=NULL, strict=FALSE, eval_for_class=as.logical(NA)){
   e <- get("e", parent.frame())
   # Trivial case
@@ -71,4 +71,3 @@ omnitest <- function(correctExpr=NULL, correctVal=NULL, strict=FALSE, eval_for_c
     return(FALSE)
   }
 }
-
