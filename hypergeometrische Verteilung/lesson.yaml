@@ -1,0 +1,278 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: hypergeometrische Verteilung
+  Author: PFH
+  Type: Standard
+  Organization: PFH Private Hochschule Göttingen
+  Version: 0.1
+
+# Begrüßung  
+- Class: text
+  Output: "In diesem Kapitel lernen Sie die hypergeometrische Verteilung kennen."
+
+- Class: text
+  Output: "Wir beginnen am Besten gleich mit einer Aufgabe: Ein Unternehmen hat insgesamt 50 Mitarbeiter*innen. Davon sind m=10 Frauen."
+  
+- Class: cmd_question
+  Output: "Erstellen Sie eine neue Variable m mit dem Wert 10."
+  CorrectAnswer: 'm <- 10'
+  AnswerTests: any_of_exprs('m<-10','m=10')
+  Hint: "Einfache Zuweisung mit dem Zuweisungsoperator: m <- 10"
+   
+- Class: cmd_question
+  Output: "Wie viele Männer arbeiten in dem Unternehmen?"
+  CorrectAnswer: 40
+  AnswerTests: omnitest(correctVal=40)
+  Hint: "50 Mitarbeiter*innen insgesamt, davon 10 Frauen. Was kann man hier falsch machen? 40 Männer."
+
+- Class: cmd_question
+  Output: "Wir benennen die Anzahl der Männer mit n, das wird sich später als nützlich erweisen. Also n=40. Erstellen Sie eine neue Variable n mit dem Wert 40."
+  CorrectAnswer: 'n <- 40'
+  AnswerTests: any_of_exprs('n<-40','n=40')
+  Hint: "Einfache Zuweisung mit dem Zuweisungsoperator: n <- 40"
+  
+- Class: text
+  Output: "Insgesamt gibt es im Unternehmen m+n=50 Mitarbeiter*innen."
+
+- Class: cmd_question
+  Output: "Für eine Befragung wollen Sie aus den 50 Mitarbeiter*innen eine Stichprobe von k=20 Mitarbeiter*innen ziehen. Erstellen Sie eine dritte neue Variable k mit dem Wert 20."
+  CorrectAnswer: 'k <- 20'
+  AnswerTests: any_of_exprs('k<-20','k=20')
+  Hint: "Einfache Zuweisung mit dem Zuweisungsoperator: k <- 20"
+  
+- Class: text
+  Output: "Es soll also eine Stichprobe von k=20 Mitarbeiter*innen gezogen werden. Für die Ergebnisse der Befragung ist es allerdings wichtig, dass mindestens x=2 Frauen in der Stichprobe enthalten sind."
+
+- Class: cmd_question
+  Output: "Erstellen Sie eine neue Variable x mit dem Wert 2."
+  CorrectAnswer: 'x <- 2'
+  AnswerTests: any_of_exprs('x<-2','x=2')
+  Hint: "Einfache Zuweisung mit dem Zuweisungsoperator: x <- 2"
+
+- Class: text
+  Output: "Wie groß ist die Wahrscheinlichkeit, dass genau zwei Frauen in der Stichprobe enthalten sind? Um diese Art der Fragestellung geht es in diesem Kapitel."
+  
+- Class: mult_question
+  Output: 'Sie kennen bereits die Binomialverteilung. Bei der Binomialverteilung ging es darum, die Wahrscheinlichkeit von k Treffern bei n Versuchen und einer Trefferwahrscheinlichkeit von p zu berechnen. Das scheint doch ganz brauchbar für unsere Fragestellung mit den Mitarbeiter*innen. Wir haben die Anzahl der Versuche (20), die Anzahl der gewünschten Treffer (zwei Frauen) und die Trefferwahrscheinlichkeit (10/50). Warum darf man die Binomialverteilung hier trotzdem nicht verwenden?' 
+  AnswerChoices: 'die Trefferwahrscheinlichkeit ändert sich mit jedem Zug;die Größe der Population ändert sich mit jedem Zug;die Binomialverteilung gilt nur bei Fußballtreffern und ist nicht auf die Ziehung von Stichproben anwendbar;das untersuchte Merkmal ist nicht dichotom'
+  CorrectAnswer: 'die Trefferwahrscheinlichkeit ändert sich mit jedem Zug'
+  AnswerTests: omnitest(correctVal='die Trefferwahrscheinlichkeit ändert sich mit jedem Zug')
+  Hint: "Das Problem: zunächst ist die Trefferwahrscheinlichkeit tatsächlich 10/50. Wenn im ersten Zug eine Frau gezogen würde, ist die Trefferwahrscheinlichkeit im zweiten Zug nur noch 9/49." 
+
+- Class: text
+  Output: "Das untersuchte Merkmal ist dichotom: Männer vs. Frauen. Die Population bleibt natürlich auch immer gleich groß. Nur leider verändert sich die Trefferwahrscheinlichkeit ständig."
+
+# Trefferwahrscheinlichkeit im ersten Zug
+- Class: cmd_question
+  Output: "Wir können ja mal probeweise einige Trefferwahrscheinlichkeiten ausrechnen. Die Trefferwahrscheinlichkeit im ersten Zug hatten wir bereits berechnet. Wie groß ist die Wahrscheinlichkeit im ersten Zug aus allen Mitarbeiter*innen zufällig eine Frau auszuwählen?"
+  CorrectAnswer: 10/50
+  AnswerTests: omnitest(correctVal=10/50)
+  Hint: "50 Mitarbeiter*innen insgesamt, davon 10 Frauen. Sie erinnern sich sicher an die Laplace-Wahrscheinlichkeit: Anzahl der günstigen Ergebnisse geteilt durch die Anzahl möglicher Ergebnisse. Also 10/50=0.2"
+
+# erster Fall: Frau ausgewählt 
+- Class: cmd_question
+  Output: "Für den zweiten Zug müssen wir zwei Fälle unterscheiden. Nehmen wir an, im ersten Zug hätten wir eine Frau ausgewählt. Wie groß ist die (bedingte) Wahrscheinlichkeit, im zweiten Zug aus allen verbleibenden Mitarbeiter*innen zufällig wiederum eine Frau auszuwählen, wenn im ersten Zug bereits eine Frau ausgewählt wurde? Geben Sie das Ergebnis als Bruch an."
+  CorrectAnswer: 9/49
+  AnswerTests: omnitest(correctVal=9/49)
+  Hint: "Von den 50 Mitarbeiter*innen insgesamt bleiben noch 49 übrig, wir ziehen schließlich ohne Zurücklegen. Davon sind noch 9 Frauen. Die Laplace-Wahrscheinlichkeit beträgt dann: Anzahl der günstigen Ergebnisse geteilt durch die Anzahl möglicher Ergebnisse. Also 9/49."
+
+# zweiter Fall: Mann ausgewählt 
+- Class: cmd_question
+  Output: "Die Trefferwahrscheinlichkeit ist also von 20% auf ungefähr 18,4% gesunken, nachdem wir eine Frau ausgewählt hatten. Nehmen wir an, im ersten Zug hätten wir stattdessen einen Mann ausgewählt. Wie groß ist die (bedingte) Wahrscheinlichkeit, im zweiten Zug aus allen verbleibenden Mitarbeiter*innen zufällig wiederum eine Frau auszuwählen, wenn im ersten Zug ein Mann ausgewählt wurde? Geben Sie das Ergebnis wieder als Bruch an."
+  CorrectAnswer: 10/49
+  AnswerTests: omnitest(correctVal=10/49)
+  Hint: "Von den 50 Mitarbeiter*innen insgesamt bleiben noch 49 übrig, wir ziehen schließlich ohne Zurücklegen. Davon sind noch 10 Frauen. Die Laplace-Wahrscheinlichkeit beträgt dann: Anzahl der günstigen Ergebnisse geteilt durch die Anzahl möglicher Ergebnisse. Also 10/49."
+  
+# Veränderung der Trefferwahrscheinlichkeit
+- Class: text
+  Output: "Die Trefferwahrscheinlichkeit im zweiten Fall ist also von 20% auf etwa 20,4% gestiegen. Auf Grund der relativ kleinen Population von 50 Mitarbeitern wirkt sich jeder Zug auf die Trefferwahrscheinlichkeit aus. In der Binomialverteilung hatten wir allerdings vorausgesetzt, dass die Trefferwahrscheinlichkeit immer gleich bleibt. Darum können wir unsere Aufgabe nicht mit der Binomialverteilung lösen. Wie können wir dann vorgehen?"
+
+- Class: text
+  Output: "Nun, wir könnten, ähnlich wie bei der Binomialverteilung, einen großen Wahrscheinlichkeitsbaum mit 20 Zügen nacheinander zeichnen, dann die Fälle heraussuchen, die genau zwei Frauen enthalten und deren Wahrscheinlichkeiten zusammenzählen."
+
+- Class: text
+  Output: "Dieses Vorgehen ist nicht nur etwas umständlich zu beschreiben, es ist auch umständlich in der Durchführung. Zum Glück gibt es eine Berechnungsformel, die die Sache vereinfacht."
+
+# Formel  
+- Class: figure
+  Output: "In Ihrer Plotanzeige sollte jetzt die Formel für die hypergeometrische Verteilung zu sehen sein. Die Formel sieht wieder einmal erst recht unübersichtlich aus, die Bestandteile kennen Sie aber bereits."
+  Figure: formula.R
+  FigureType: new 
+
+- Class: text
+  Output: "k steht für die zu ziehende Stichprobe (in der Binomialverteilung: die Anzahl der Versuche n)"
+- Class: cmd_question
+  Output: "Wie groß ist in der Beispielaufgabe der Befragung im Unternehmen die zu ziehende Stichprobe?"
+  CorrectAnswer: 20
+  AnswerTests: omnitest(correctVal=20)
+  Hint: "Es sollen 20 Mitarbeiter befragt werden."
+  
+- Class: text
+  Output: "m steht für die Anzahl der Merkmalsträger"
+
+- Class: cmd_question
+  Output: "Wie groß ist in der Beispielaufgabe die Anzahl der Merkmalsträger?"
+  CorrectAnswer: 10
+  AnswerTests: omnitest(correctVal=10)
+  Hint: "Mit Merkmalsträger sind hier die Frauen gemeint. Im Unternehmen arbeiten 10 Frauen."
+
+- Class: mult_question
+  Output: 'm+n steht hier für ...' 
+  AnswerChoices: 'die Trefferwahrscheinlichkeit;die Größe der Population (Mitarbeiter*innen gesamt);die Größe der Stichprobe;die Anzahl der Treffer;die Anzahl der interessierenden Merkmalsträger in der Population (Frauen)'
+  CorrectAnswer: 'die Größe der Population (Mitarbeiter*innen gesamt)'
+  AnswerTests: omnitest(correctVal='die Größe der Population (Mitarbeiter*innen gesamt)')
+  Hint: "m+n steht für die Population." 
+
+- Class: cmd_question
+  Output: "Wie groß ist in der Beispielaufgabe m+n?"
+  CorrectAnswer: 50
+  AnswerTests: omnitest(correctVal=50)
+  Hint: "Die Population ist in diesem Fall die Anzahl der Mitarbeiter insgesamt, also 50."
+    
+- Class: text
+  Output: "Bleibt noch x: Die Anzahl der Merkmalsträger in der zu ziehenden Stichprobe (in der Binomialverteilung haben wir das die Anzahl Treffer genannt)."
+
+- Class: cmd_question
+  Output: "Wie groß ist in der Beispielaufgabe die Anzahl der Merkmalsträger in der zu ziehenden Stichprobe?"
+  CorrectAnswer: 2
+  AnswerTests: omnitest(correctVal=2)
+  Hint: "In der Stichprobe sollen zwei Frauen enthalten sein."
+  
+- Class: text
+  Output: "Insgesamt liest sich die Formel nun also so: Die Wahrscheinlichkeit, dass in einer Stichprobe der Größe k aus einer Population mit m Merkmalsträgern und n Nicht-Merkmalsträgern genau x Merkmalsträger enthalten sind, berechnet sich aus dem Verhältnis dreier Auswahlen."
+
+- Class: text
+  Output: "Erstens, die Anzahl von Kombinationen, x Merkmalsträger aus den insgesamt m Merkmalsträgern auszuwählen (in der Formel: m über x)."
+
+- Class: text
+  Output: "In der Stichprobe sollen aber nicht nur x Merkmalsträger, sondern auch k-x Nicht-Merkmalsträger enthalten sein. Daher setzt sich die Wahrscheinlichkeit, zweitens, auch aus der Anzahl von Kombinationen zusammen, aus den n Nicht-Merkmalsträgern in der Population k-x Nicht-Merkmalsträgern für die Stichprobe auszuwählen (in der Formel: n über k-x)."
+
+- Class: text
+  Output: "Drittens, die Anzahl von Kombinationen, aus allen n+m Personen k Personen auszuwählen (in der Formel: n+m über k)."
+
+- Class: cmd_question
+  Output: "Jetzt können wir die Wahrscheinlichkeit ausrechnen, dass in der Stichprobe für die Umfrage genau zwei Frauen enthalten sind. Der Befehl in R für 'n über k' (manche sagen auch 'k aus n') lautet: choose(n, k). Berechnen Sie die Wahrscheinlichkeit, dass bei einer Stichprobe von k=20 Mitarbeitern aus insgesamt m=10 Frauen und n=40 Männern genau x=2 Frauen enthalten sind. Die Variablen x, m, n und k sind ja bereits mit den richtigen Werten belegt."
+  CorrectAnswer: dhyper(2, 10, 40, 20)
+  AnswerTests: omnitest(correctVal=dhyper(2, 10, 40, 20))
+  Hint: "Geben Sie den Befehl ein: choose(m, x) * choose(n, k-x) / choose(m+n, k)"
+  
+- Class: text
+  Output: "Wie immer in R, muss man sich diese Formel natürlich nicht merken, sondern es gibt einen Befehl, der genau diese Formel anwendet. Der Befehl lautet: dhyper(x, m, n, k)"
+
+- Class: text
+  Output: "Wir kennen das schon von der Binomialverteilung: das d steht für die Dichtefunktion (density). Das hyper steht für die hypergeometrische Verteilung. Die Parameter x, m, n und k stehen für die oben genannten Werte."
+
+- Class: mult_question
+  Output: 'Nur zur Wiederholung: x steht hier für ...' 
+  AnswerChoices: 'die Anzahl der Merkmalsträger in der Stichprobe;die Anzahl der Merkmalsträger in der Population;die Anzahl der Nicht-Merkmalsträger in der Population;die Größe der Stichprobe'
+  CorrectAnswer: 'die Anzahl der Merkmalsträger in der Stichprobe'
+  AnswerTests: omnitest(correctVal='die Anzahl der Merkmalsträger in der Stichprobe')
+  Hint: "x steht für die Anzahl der Merkmalsträger in der Stichprobe." 
+
+- Class: mult_question
+  Output: 'm steht hier für ...' 
+  AnswerChoices: 'die Anzahl der Merkmalsträger in der Stichprobe;die Anzahl der Merkmalsträger in der Population;die Anzahl der Nicht-Merkmalsträger in der Population;die Größe der Stichprobe'
+  CorrectAnswer: 'die Anzahl der Merkmalsträger in der Population'
+  AnswerTests: omnitest(correctVal='die Anzahl der Merkmalsträger in der Population')
+  Hint: "m steht für die Anzahl der Merkmalsträger in der Population. Eselsbrücke: m wie Merkmalsträger." 
+
+- Class: mult_question
+  Output: 'n steht hier für ...' 
+  AnswerChoices: 'die Anzahl der Merkmalsträger in der Stichprobe;die Anzahl der Merkmalsträger in der Population;die Anzahl der Nicht-Merkmalsträger in der Population;die Größe der Stichprobe'
+  CorrectAnswer: 'die Anzahl der Nicht-Merkmalsträger in der Population'
+  AnswerTests: omnitest(correctVal='die Anzahl der Nicht-Merkmalsträger in der Population')
+  Hint: "n steht für die Anzahl der Nicht-Merkmalsträger in der Population. Eselsbrücke: n wie Nicht-Merkmalsträger." 
+
+- Class: mult_question
+  Output: 'k steht hier für ...' 
+  AnswerChoices: 'die Anzahl der Merkmalsträger in der Stichprobe;die Anzahl der Merkmalsträger in der Population;die Anzahl der Nicht-Merkmalsträger in der Population;die Größe der Stichprobe'
+  CorrectAnswer: 'die Größe der Stichprobe'
+  AnswerTests: omnitest(correctVal='die Größe der Stichprobe')
+  Hint: "k steht für die Größe der Stichprobe." 
+
+- Class: cmd_question
+  Output: "Berechnen Sie nun noch einmal zur Kontrolle mit Hilfe des Befehls dhyper() die Wahrscheinlichkeit, dass in der Stichprobe für die Umfrage genau zwei Frauen enthalten sind. Am einfachsten geht das wieder mit den Variablen x, m, n und k."
+  CorrectAnswer: dhyper(2, 10, 40, 20)
+  AnswerTests: omnitest(correctVal=dhyper(2, 10, 40, 20))
+  Hint: "Geben Sie den Befehl ein: dhyper(x, m, n, k)"
+
+- Class: text
+  Output: "Die Wahrscheinlichkeit, dass genau zwei Frauen in der Stichprobe enthalten sind liegt also bei knapp 11%. Die eigentliche Fragestellung lautete aber: Wie groß ist die Wahrscheinlichkeit, dass mindestens (!) zwei Frauen in der Stichprobe enthalten sind."
+
+- Class: text
+  Output: "Auch das kennen Sie schon von der Binomialverteilung. Neben der mit d gekennzeichneten Dichtefunktion (dbinom bzw. dhyper) gibt es auch die Verteilungsfunktion pbinom() und eben phyper(). Der Befehl phyper(q, m, n, k) gibt die kumulierte Wahrscheinlichkeit für alle x<=q in der Dichtefunktion."
+
+- Class: cmd_question
+  Output: "Berechnen Sie nun mit Hilfe des Befehl phyper() die Wahrscheinlichkeit, dass in der Stichprobe für die Umfrage höchstens eine Frau enthalten ist (also entweder eine oder gar keine Frau)."
+  CorrectAnswer: phyper(1, 10, 40, 20)
+  AnswerTests: omnitest(correctVal=phyper(1, 10, 40, 20))
+  Hint: "Geben Sie den Befehl ein: phyper(1, m, n, k)"
+
+- Class: cmd_question
+  Output: "Wir wissen, dass die Fläche unter der gesamten Verteilung p=1 beträgt. Wir haben soeben die Wahrscheinlichkeit für höchstens eine Frau in der Stichprobe berechnet. Wie groß ist dann die Wahrscheinlichkeit für mindestens zwei Frauen in der Stichprobe?"
+  CorrectAnswer: 1 - phyper(1, 10, 40, 20)
+  AnswerTests: omnitest(correctVal=1 - phyper(1, 10, 40, 20))
+  Hint: "Geben Sie den Befehl ein: 1 - phyper(1, m, n, k)"
+  
+- Class: text
+  Output: "Mit fast 97% stehen die Chancen also gut, dass wir mindestens zwei Frauen in der Stichprobe haben werden."
+
+# Formel  
+- Class: figure
+  Output: "Das Aussehen der hypergeometrischen Verteilung erinnert sehr an das Aussehen der Binomialverteilung. In Ihrer Plotanzeige sollte jetzt ein Diagramm der hypergeometrischen Verteilung zu sehen sein."
+  Figure: dichtefunktion_hyper.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: 'Wie viele Frauen sind am wahrscheinlichsten in der Stichprobe enthalten?' 
+  AnswerChoices: '0 Frauen;eine Frau;4 Frauen;10 Frauen'
+  CorrectAnswer: '4 Frauen'
+  AnswerTests: omnitest(correctVal='4 Frauen')
+  Hint: "Das Diagramm zeigt die größte Wahrscheinlichkeit für genau x=4 Merkmalsträger." 
+
+- Class: cmd_question
+  Output: "Wie groß ist die Wahrscheinlichkeit, dass in der Stichprobe genau 20 Frauen enthalten sind?"
+  CorrectAnswer: 0
+  AnswerTests: omnitest(correctVal=0)
+  Hint: "Im Unternehmen arbeiten nur 10 Frauen, daher kann die Stichprobe maximal 10 Frauen enthalten. Die Wahrscheinlichkeit für 20 Frauen in der Stichprobe beträgt 0."
+
+- Class: text
+  Output: "Wann kommt nun die hypergeometrische Verteilung zum Einsatz und wann die Binomialverteilung? Die Binomialverteilung nimmt an, dass die Trefferwahrscheinlichkeit konstant bleibt. Das ist z. B. bei mehreren Rateversuchen in einem Test der Fall oder beim Ziehen mit Zurücklegen. Ist die Population sehr viel größer als die Stichprobe, wirkt sich die Veränderung der Trefferwahrscheinlichkeit kaum aus und man kann auch bei Stichproben ohne Zurücklegen die leichter handhabbare Binomialverteilung verwenden."
+
+- Class: text
+  Output: "Ist die Population allerdings kleiner als der 20-fache Stichprobenumfang (n/N>0,05), sollte die hypergeometrische Verteilung zum Einsatz kommen."
+
+- Class: cmd_question
+  Output: "Das trifft beispielsweise beim Lotto zu. Für einen Sechser im Lotto, müssen genau die angekreuzten 6 Kugeln und keine der 49-6=43 anderen Kugeln gezogen werden. Formal geschrieben: x=6 Kugeln die gezogen werden sollen; m=6 richtige Kugeln im Behälter (Merkmalsträger); n=43 Kugeln die nicht gezogen werden sollen (Nicht-Merkmalsträger); k=6 Kugeln werden gezogen (Stichprobe). Berechnen Sie die Wahrscheinlichkeit genau 6 Richtige zu haben."
+  CorrectAnswer: dhyper(6, 6, 43, 6)
+  AnswerTests: omnitest(correctVal=dhyper(6, 6, 43, 6))
+  Hint: "Der Befehl lautet dhyper(x, m, n, k). Die Werte der Parameter sind in der Frage gegeben."
+
+- Class: text
+  Output: "Sie haben es geahnt: die Wahrscheinlichkeit ist sehr sehr klein. Nur 0,0000071%."
+  
+- Class: text
+  Output: "Im psychologischen Kontext könnte die hypergeometrische Verteilung beispielsweise zum Einsatz kommen, wenn Sie aus einer Stichprobe auf eine relativ kleine Population schließen wollen. In einer Umfrage bei 100 der insgesamt 2000 Mitarbeiter*innen gaben 33 Mitarbeiter*innen an, sich mehr Arbeitszeitflexibilität zu wünschen. Die Unternehmensführung wäre bereit entsprechende Maßnahmen zu ergreifen, wenn mindestens 25% der Belegschaft interessiert sind."
+
+  
+- Class: text
+  Output: "Mit Hilfe der hypergeometrischen Verteilung können wir nun leicht ausrechnen, wie wahrscheinlich es gewesen wäre 33 Mitarbeiter*innen oder sogar noch mehr in der Stichprobe zu haben, wenn nur 25% der Belegschaft Interesse hätten."
+
+- Class: cmd_question
+  Output: "Berechnen Sie die Wahrscheinlichkeit q=32 oder weniger Mitarbeiter*innen mit Interesse in der Stichprobe von k=100 Mitarbeiter*innen zu erhalten, wenn in der Belegschaft von insgesamt 2000 Mitarbeiter*innen m=500 Interesse hätten. Benutzen Sie den Befehl phyper(q, m, n, k)."
+  CorrectAnswer: phyper(32, 500, 1500, 100)
+  AnswerTests: omnitest(correctVal=phyper(32, 500, 1500, 100))
+  Hint: "Der Befehl lautet phyper(q, m, n , k). Alle Werte außer n sind in der Frage gegeben. Die Anzahl der Nicht-Merkmalsträger ist n=2000-m=1500. Somit ergibt sich: phyper(32, 500, 1500, 100)"
+
+- Class: cmd_question
+  Output: "Berechnen Sie nun die Gegenwahrscheinlichkeit, also, die Wahrscheinlichkeit mehr als 32 Mitarbeiter die Interesse haben in der Stichprobe zu finden."
+  CorrectAnswer: 1-phyper(32, 500, 1500, 100)
+  AnswerTests: omnitest(correctVal=1-phyper(32, 500, 1500, 100))
+  Hint: "Für die Gegenwahrscheinlichkeit ziehen Sie die gegebene Wahrscheinlichkeit von 1 ab: 1-phyper(32, 500, 1500, 100)"
+
+- Class: text
+  Output: "Da diese Wahrscheinlichkeit nur etwa 4% beträgt, können wir recht sicher sein, dass das Interesse in der Belegschaft größer sein wird, als die zu Grunde gelegten 25%."
+  
+  # Zusammenfassung des Kapitels:
+- Class: text
+  Output: "In diesem Kapitel haben Sie die hypergeometrische Verteilung kennengelernt. Diese Verteilung ist hilfreich, wenn man bei relativ kleinen Populationen die Wahrscheinlichkeit für das Ziehen ohne Zurücklegen berechnen möchte. Der Befehl für die Dichtefunktion lautet dhyper(x, m, n, k). Der Befehl für die Verteilungsfunktion lautet phyper(q, m, n, k)."

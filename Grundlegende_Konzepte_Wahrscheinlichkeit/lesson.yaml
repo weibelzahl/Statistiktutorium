@@ -1,0 +1,168 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: Grundlegende Konzepte der Wahrscheinlichkeitsrechnung
+  Author: PFH
+  Type: Standard
+  Organization: PFH Private Hochschule Göttingen
+  Version: 0.1
+  
+  
+# Begrüßung  
+- Class: text
+  Output: "In den weiteren Kapiteln geht es um Wahrscheinlichkeitsrechung und Wahrscheinlichkeitsverteilungen."
+
+- Class: text
+  Output: "Als erstes beschäftigen wir uns mit den Begriffen Zufallsvorgang, Ergebnis und Ereignis."
+
+# Zufallsvorgang
+- Class: text
+  Output: "Ein Zufallsvorgang ist ein Vorgang, dessen mögliche Resultate im Voraus festliegen, wobei jedoch ungewiss ist, welches Resultat bei der Durchführung im Einzelnen eintreten wird (Holling & Gediga, 2013)."
+  
+- Class: text
+  Output: "Ein typisches Beispiel ist das Werfen eines Würfels."
+
+- Class: cmd_question
+  Output: "Wie viele mögliche Resultate können beim Werfen eines Würfels auftreten?"
+  CorrectAnswer: 6
+  AnswerTests: any_of_exprs('6', 'sechs')
+  Hint: "Wie viele Seiten hat ein Würfel? So viele mögliche Resultate gibt es. Tippen Sie einfach die entsprechende Zahl ein."
+
+# Ergebnisraum
+- Class: text
+  Output: "Die möglichen Resultate des Zufallvorgangs nennt man auch Ergebnisse. Entsprechend nennt man die Menge aller möglichen Ergebnisse auch Ergebnisraum."
+
+- Class: mult_question
+  Output: "Wie lautet der Ergebnisraum beim Werfen eines Würfels?"
+  AnswerChoices:  "{1, 2, 3, 4, 5, 6};{Kopf, Zahl};{};{Würfel}"
+  CorrectAnswer:  "{1, 2, 3, 4, 5, 6}"
+  AnswerTests: omnitest(correctVal="{1, 2, 3, 4, 5, 6}")
+  Hint: "Der Ergebnisraum beinhaltet alle sechs möglichen Ergebnisse eines Wurfs."
+
+- Class: text
+  Output: "Richtig, die Größe des Ergebnisraumes beim Werfen eines Würfels ist also 6."
+  
+- Class: cmd_question
+  Output: "Wie groß ist der Ergebnisraum, wenn der Würfel zweimal geworfen wird?"
+  CorrectAnswer: 36
+  AnswerTests: any_of_exprs('36', 'sechsunddreißig', '6*6')
+  Hint: "Zu den möglichen Ergebnissen zählen z.B. '1-1' oder '5-2'. Wie viele Kombinationen gibt es insgesamt?"
+  
+- Class: text
+  Output: "Wir kennen nun die möglichen Ergebnisse. Das Ergebnis einer einzelnen Durchführung des Zufallsvorgangs ist jedoch ungewiss. Das gilt auch beim Würfeln."
+
+- Class: mult_question
+  Output: "Sie haben fünf Mal gewürfelt. Es sind nacheinander die Zahlen 6, 5, 4, 3 und 2 gefallen. Was wird beim nächsten Wurf passieren?" 
+  AnswerChoices:  Es fällt die Zahl 1; Alle sechs Zahlen sind gleich wahrscheinlich; Es können alle sechs Zahlen fallen, aber die Zahl 1 fällt mit der größten Wahrscheinlichkeit 
+  CorrectAnswer:   Alle sechs Zahlen sind gleich wahrscheinlich
+  AnswerTests: omnitest(correctVal='Alle sechs Zahlen sind gleich wahrscheinlich')
+  Hint: "Das Ergebnis eines Zufallsvorgangs ist ungewiss. Alle sechs Zahlen sind gleich wahrscheinlich."
+  
+- Class: text
+  Output: "Alle sechs Ergebnisse sind beim Würfeln gleich wahrscheinlich. Es spielt keine Rolle was vorher geschehen ist. Die Wahrscheinlichkeit bleibt immer gleich. Die Ergebnisse sind unabhängig."
+
+# Ereignis
+- Class: text
+  Output: "Teilmengen von Ergebnissen können nun zu Ereignissen zusammengefasst werden."
+
+# Ereignis  
+- Class: mult_question
+  Output: 'Ist die Menge aller ungeraden Zahlen beim Würfeln, also {1, 3, 5} ein Ereignis?' 
+  AnswerChoices: Ja;Nein 
+  CorrectAnswer: Ja
+  AnswerTests: omnitest(correctVal='Ja')
+  Hint: "Ja, es handelt sich um eine Teilmenge der möglichen Ergebnisse."
+
+# Elementarereignis  
+- Class: mult_question
+  Output: 'Ist die Zahl 2 beim Würfeln ein Ereignis?' 
+  AnswerChoices: Ja;Nein 
+  CorrectAnswer: Ja
+  AnswerTests: omnitest(correctVal='Ja')
+  Hint: "Ja, es handelt sich um eine Teilmenge der möglichen Ergebnisse. Teilmengen können auch die Größe 1 haben. In diesem Fall ist das Ergebnis auch ein Ereignis."
+
+- Class: text
+  Output: "Wenn das Ereignis genau ein Ergebnis umfasst, spricht man auch von einem Elementarereignis."
+
+# sicheres Ereignis  
+- Class: mult_question
+  Output: 'Ist die Menge der Zahlen von 1 bis 6, also {1, 2, 3, 4, 5, 6}, beim Würfeln ein Ereignis?' 
+  AnswerChoices: Ja;Nein 
+  CorrectAnswer: Ja
+  AnswerTests: omnitest(correctVal='Ja')
+  Hint: "Ja, es handelt sich um eine Teilmenge der möglichen Ergebnisse. Die Teilmenge umfasst hier alle möglichen Ergebnisse."
+
+- Class: text
+  Output: "Wenn das Ereignis, wie in diesem Fall alle Ergebnisse umfasst, spricht man auch von einem sicheren Ereignis, weil es auf jeden Fall eintreffen wird."
+
+# leere Menge, unmögliches Ereignis 
+- Class: mult_question
+  Output: 'Ist die leere Menge, also {}, beim Würfeln ein Ereignis?' 
+  AnswerChoices: Ja;Nein 
+  CorrectAnswer: Ja
+  AnswerTests: omnitest(correctVal='Ja')
+  Hint: "Ja, auch hier handelt sich um eine Teilmenge der möglichen Ergebnisse, auch wenn die Menge keine Elemente hat."
+
+- Class: text
+  Output: "Wenn das Ereignis eine leere Menge ist, spricht man von einem unmöglichen Ereignis."
+ 
+# Zusammenfassung von Ereignisse 
+- Class: mult_question
+  Output: 'Welcher der folgenden Begriffe ist KEIN stochastischer Fachbegriff?' 
+  AnswerChoices: sicheres Ereignis;unmögliches Ereignis;Ergebnis;Wahrscheinlichkeit;Episode  
+  CorrectAnswer: Episode
+  AnswerTests: omnitest(correctVal='Episode')
+  Hint: "Alle richtigen Fachbegriffe wurden oben genannt. Finden Sie heraus, welcher nicht genannt wurde."
+
+# Laplace-Wahrscheinlichkeit
+- Class: text
+  Output: "Es gibt verschiedene Auffassungen davon, was der Begriff Wahrscheinlichkeit bedeutet. Wir halten uns hier an die klassische Auffassung, die sogenannte Laplace-Wahrscheinlichkeit."
+
+- Class: text
+  Output: "Nach Pierre-Simon Laplace berechnet sich die Wahrscheinlichkeit eines Ereignisses aus dem Verhältnis der Anzahl günstiger Ergebnisse zur Anzahl möglicher Ergebnisse."
+  
+- Class: text
+  Output: "Formal lässt sich das schreiben als: P(Ereignis) = (Anzahl günstiger Ergebnisse) / (Anzahl möglicher Ergebnisse). Das P steht für probabilitas (lat.) bzw. probability (engl.) und wird regelmäßig für die Notation von Wahrscheinlichkeiten verwendet."
+
+- Class: cmd_question
+  Output: "Wie viele günstige Ergebnisse gibt es für das Ereignis 'eine gerade Zahl' beim Werfen eines Würfels?"
+  CorrectAnswer: 3
+  AnswerTests: any_of_exprs('3', 'drei')
+  Hint: "Wie viele gerade Zahlen gibt es auf einem Würfel?"
+
+- Class: cmd_question
+  Output: "Wie viele mögliche Ergebnisse gibt es für das Ereignis 'eine gerade Zahl' beim Werfen eines Würfels (das hatten wir schon)?"
+  CorrectAnswer: 6
+  AnswerTests: any_of_exprs('6', 'sechs')
+  Hint: "Mit anderen Worten: Wie groß ist der Ergebnisraum beim einmaligen Werfen eines Würfels?"
+
+- Class: mult_question
+  Output: 'Damit können wir nun die Wahrscheinlichkeit des Ereignisses ausrechnen. Wie hoch ist P(eine gerade Zahl) beim einmaligen Werfen eines Würfels?' 
+  AnswerChoices: 1/6;6/1;1;6;1/2  
+  CorrectAnswer: 1/2
+  AnswerTests: omnitest(correctVal='1/2')
+  Hint: "P(Ereignis) = (Anzahl günstiger Ergebnisse) / (Anzahl möglicher Ergebnisse). Die Anzahl günstiger Ergebnisse beträgt 3. Die Anzahl möglicher Ergebnisse beträgt 6. Achtung, der Bruch lässt sich kürzen."
+
+- Class: mult_question
+  Output: 'Wie hoch ist die Wahrscheinlichkeit beim zweimaligen Werfen eines Würfels erst die Zahl 1 und dann die Zahl 2 zu erhalten? Überlegen Sie wiederum, wie viele günstige und wie viele mögliche Ergebnisse es gibt.' 
+  AnswerChoices: 1/36;36/1;1;36;1/2;2/1  
+  CorrectAnswer: 1/36
+  AnswerTests: omnitest(correctVal='1/36')
+  Hint: "P(Ereignis) = (Anzahl günstiger Ergebnisse) / (Anzahl möglicher Ergebnisse). Die Anzahl günstiger Ergebnisse beträgt 1. Die Anzahl möglicher Ergebnisse beträgt 36."
+
+- Class: mult_question
+  Output: 'Okay, jetzt wird es etwas schwieriger. Wie hoch ist die Wahrscheinlichkeit beim zweimaligen Werfen die Augensumme 2 zu erhalten? Überlegen Sie wiederum, wie viele günstige und wie viele mögliche Ergebnisse es gibt.' 
+  AnswerChoices: 1/36;36/1;1;36;1/2;2/1  
+  CorrectAnswer: 1/36
+  AnswerTests: omnitest(correctVal='1/36')
+  Hint: "P(Ereignis) = (Anzahl günstiger Ergebnisse) / (Anzahl möglicher Ergebnisse). Die Augensumme 2 kann nur bei einem einzigen Ergebnis entstehen, nämlich 1-1. Die Anzahl günstiger Ergebnisse beträgt also 1. Die Anzahl möglicher Ergebnisse beträgt immer noch 36."
+
+- Class: mult_question
+  Output: 'Wie hoch ist die Wahrscheinlichkeit beim zweimaligen Werfen die Augensumme 3 zu erhalten? Überlegen Sie wiederum, wie viele günstige und wie viele mögliche Ergebnisse es gibt.' 
+  AnswerChoices: 1/18;36/2;2;36;1/2;2/9
+  CorrectAnswer: 1/18
+  AnswerTests: omnitest(correctVal='1/18')
+  Hint: "P(Ereignis) = (Anzahl günstiger Ergebnisse) / (Anzahl möglicher Ergebnisse). Die Augensumme 3 kann bei zwei Ergebnissen entstehen, männlich bei '1-2' und bei '2-1'. Andere Kombinationen gibt es nicht. Die Anzahl günstiger Ergebnisse beträgt also 2. Die Anzahl möglicher Ergebnisse beträgt immer noch 36. Achtung, der Bruch lässt sich kürzen." 
+
+# Zusammenfassung des Kapitels:
+- Class: text
+  Output: "In diesem Kapitel haben Sie einige grundlegende Konzepte der Wahrscheinlichkeitsrechnung kennen gelernt: Zufallsvorgang, Ergebnis, Ereignis und Wahrscheinlichkeit. Sie haben dieses Kapitel nun erfolgreich abgeschlossen."

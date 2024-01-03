@@ -1,0 +1,225 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: Stichprobenverteilung
+  Author: PFH
+  Type: Standard
+  Organization: PFH Private Hochschule Göttingen
+  Version: 0.1
+
+# Begrüßung  
+- Class: text
+  Output: "In diesem Kapitel lernen Sie, was es mit dem zentralen Grenzwertsatz auf sich hat und warum dieser für die Statistik von großer Bedeutung ist."
+
+- Class: text
+  Output: "Als erstes müssen Sie wissen, was eine Stichprobenverteilung ist. Dazu machen wir ein Beispiel."
+
+# Formel  
+- Class: figure
+  Output: "Das Körpergewicht von Männern ist ungefähr normalverteilt. In Göttingen leben etwa 50.000 erwachsene Männer. Nehmen wir an, das durchschnittliche Gewicht dieser Population läge bei 85kg. Die Standardabweichung sei 10kg. Wir haben einen solchen Datensatz simuliert. Die Verteilung der Population würde dann ungefähr so wie in der Plotanzeige dargestellt aussehen."
+  Figure: gewicht.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: 'Aus dieser Population ziehen wir nun eine Stichprobe von 50 Männern. Was können wir über den Mittelwert dieser Stichprobe sagen?' 
+  AnswerChoices: 'der Mittelwert muss bei genau 85kg liegen;der Mittelwert muss mehr als 85kg betragen;der Mittelwert muss weniger als 85kg betragen;der Mittelwert wird ungefähr 85kg betragen, kann aber höher oder niedriger liegen'
+  CorrectAnswer: 'der Mittelwert wird ungefähr 85kg betragen, kann aber höher oder niedriger liegen'
+  AnswerTests: omnitest(correctVal='der Mittelwert wird ungefähr 85kg betragen, kann aber höher oder niedriger liegen')
+  Hint: "Bei einer Zufallsstichprobe weiß man nie genau, was das Ergebnis ist. Wir würden aber erwarten, dass das Ergebnis in der Nähe von 85 liegt." 
+
+- Class: mult_question
+  Output: 'Wir erwarten einen Mittelwert in der Nähe von 85kg. Könnte der Mittelwert auch 120kg betragen?' 
+  AnswerChoices: 'ja, theoretisch möglich;nein, Abweichungen von mehr als drei Standardabweichungen sind unmöglich'
+  CorrectAnswer: 'ja, theoretisch möglich'
+  AnswerTests: omnitest(correctVal='ja, theoretisch möglich')
+  Hint: "Egal, wie unwahrscheinlich es ist, könnte der Mittelwert nicht doch 120kg betragen, wenn zufällig fast nur Übergewichtige ausgewählt wurden?" 
+
+- Class: text
+  Output: "Eine einzelne Stichprobe kann also auch mal relativ weit vom Populationsmittelwert abweichen. Dennoch kann uns eine Stichprobe eine Schätzung des Populationsmittelwertes liefern. Um dies zu verdeutlichen, ziehen wir aus unserer Population nun nicht nur eine Stichprobe, sondern 1000 Stichproben."
+
+- Class: mult_question
+  Output: 'Was in der Realität ziemlich mühsam wäre, können wir hier in R in Sekundenschnelle simulieren. Wir ziehen 1000 Zufallsstichproben aus der Population. Von jeder dieser Stichprobe notieren wir den Mittelwert. Was wäre wohl der Mittelwert dieser 1000 Mittelwerte?' 
+  AnswerChoices: 'ungefähr 85kg;85/1000kg;85000kg'
+  CorrectAnswer: 'ungefähr 85kg'
+  AnswerTests: omnitest(correctVal='ungefähr 85kg')
+  Hint: "Wir hatten gesehen, dass eine einzelne Stichprobe weit abweichen kann. Bei sehr vielen Stichproben sollte sich der Fehler aber ausmitteln. Der Mittelwert der Mittelwerte wird also in der Nähe des Populationsmittelwertes liegen." 
+
+# 8
+- Class: figure
+  Output: "In der Variable gewicht.means sind die Mittelwerte der 1000 Stichproben abgespeichert."
+  Figure: simulation.R
+  FigureType: new 
+
+- Class: cmd_question
+  Output: "Berechnen Sie den Mittelwert der Variable gewicht.means, um zu überprüfen, dass Ihre Erwartung richtig ist."
+  CorrectAnswer: mean(gewicht.means)
+  AnswerTests: omnitest(correctVal=mean(gewicht.means))
+  Hint: "In R berechnen Sie den Mittelwert mit dem Befehl mean()."
+
+#10  
+- Class: figure
+  Output: "In der Plotanzeige haben wir zwei Histogramme gegenübergestellt: Links das Histogramm der Population, das Sie schon kennen. Rechts sehen Sie das Histogramm der Stichprobenmittelwerte."
+  Figure: compare_histograms.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: 'Dass der Mittelwert der Mittelwerte den Populationsmittelwert abbildet, hatten wir bereits geklärt. Aber wie steht es mit der Streuung? Vergleichen Sie die Histogramme und wählen Sie, welche Aussage richtig ist.' 
+  AnswerChoices: 'die Streuung in der Population ist größer als die der Stichproben;die Streuung in der Population ist kleiner als die der Stichproben;die Streuung in der Population und die der Stichproben ist genau gleich'
+  CorrectAnswer: 'die Streuung in der Population ist größer als die der Stichproben'
+  AnswerTests: omnitest(correctVal='die Streuung in der Population ist größer als die der Stichproben')
+  Hint: "Vergleichen Sie die Breite der Verteilungen in den beiden Histogrammen. Achten Sie dabei auf die Skalierung der x-Achse. Welche Verteilung ist breiter?" 
+  
+- Class: mult_question
+  Output: 'Die Streuung der Stichprobenmittelwerte ist deutlich kleiner als die Streuung in der Population. Woran könnte das liegen?' 
+  AnswerChoices: 'in der Stichprobe gleichen sich die Abweichungen nach oben und unten gegenseitig aus;mit größerer Varianz verringert sich die Streuung;Mittelwerte sind autokorreliert'
+  CorrectAnswer: 'in der Stichprobe gleichen sich die Abweichungen nach oben und unten gegenseitig aus'
+  AnswerTests: omnitest(correctVal='in der Stichprobe gleichen sich die Abweichungen nach oben und unten gegenseitig aus')
+  Hint: "Der Zufall sorgt dafür, dass Abweichungen in einer Richtung meist auch durch Abweichungen in der anderen Richtung ausgeglichen werden." 
+
+- Class: text
+  Output: "Die Wahrscheinlichkeitsverteilung aller möglichen Stichprobenmittelwerte einer Population heißt auch Stichprobenverteilung des Mittelwertes. Diese hat einige bemerkenswerte Eigenschaften. Die Verteilung der 1000 Stichprobenmittelwerte sieht einer Normalverteilung verdächtig ähnlich. Nun, das ist wenig verwunderlich, schließlich ist auch die Population normalverteilt. Was passiert, wenn die Population eine andere Form hat?"
+
+- Class: figure
+  Output: "Auch das können wir hier leicht simulieren. Nehmen wir an, das Gewicht der Männer wäre nicht normalverteilt, sondern gleichverteilt. Es gäbe also 1200 Männer die 65kg wiegen, weitere 1200 Männer die 66kg wiegen, usw. Die Verteilung sähe dann aus, wie in der Plotanzeige dargestellt."
+  Figure: gewicht_gleichverteilung.R
+  FigureType: new 
+
+- Class: cmd_question
+  Output: "Berechnen Sie den Mittelwert der Variable gewicht.gleichverteilung."
+  CorrectAnswer: mean(gewicht.gleichverteilung)
+  AnswerTests: omnitest(correctVal=mean(gewicht.gleichverteilung))
+  Hint: "In R berechnen Sie den Mittelwert mit dem Befehl mean()."
+  
+- Class: mult_question
+  Output: 'Der Mittelwert dieser neuen Population ist also wieder 85kg. Wenn wir nun wieder 1000 Stichproben aus dieser neuen Population ziehen und wieder jeweils den Mittelwert bilden, wie hoch wird der Mittelwert der Stichprobenmittelwerte sein.' 
+  AnswerChoices: 'ungefähr 85kg;85/1000kg;85000kg'
+  CorrectAnswer: 'ungefähr 85kg'
+  AnswerTests: omnitest(correctVal='ungefähr 85kg')
+  Hint: "Wie zuvor auch: Wir hatten gesehen, dass eine einzelne Stichprobe weit abweichen kann. Bei sehr vielen Stichproben sollte sich der Fehler aber ausmitteln. Der Mittelwert der Mittelwerte wird also wieder in der Nähe des Populationsmittelwertes liegen." 
+  
+- Class: figure
+  Output: "In der Variable gewicht.gleichverteilung.means sind die Mittelwerte der 1000 Stichproben aus der neuen Population abgespeichert."
+  Figure: simulation2.R
+  FigureType: new 
+
+- Class: cmd_question
+  Output: "Berechnen Sie den Mittelwert der Variable gewicht.gleichverteilung.means, um zu überprüfen, dass Ihre Erwartung richtig ist."
+  CorrectAnswer: mean(gewicht.gleichverteilung.means)
+  AnswerTests: omnitest(correctVal=mean(gewicht.gleichverteilung.means))
+  Hint: "In R berechnen Sie den Mittelwert mit dem Befehl mean()."
+
+- Class: text
+  Output: "Der Mittelwert der Stichproben ist also tatsächlich wieder ungefähr 85kg. Dies ist eine interessante Eigenschaft der Stichprobenverteilung des Mittelwertes: Der Mittelwert der Stichprobenverteilung entspricht dem Mittelwert der Population."
+
+#20  
+- Class: mult_question
+  Output: 'Was erwarten Sie, wie die Verteilung der Mittelwerte aussieht? Raten Sie!' 
+  AnswerChoices: 'Normalverteilung;Gleichverteilung;Binomial-Verteilung'
+  CorrectAnswer: 'Normalverteilung'
+  AnswerTests: omnitest(correctVal='Normalverteilung')
+  Hint: "Sie können dies noch nicht wissen, aber die Stichprobenverteilung ist wiederum normalverteilt!" 
+
+- Class: figure
+  Output: "In der Plotanzeige haben wir wieder zwei Histogramme gegenübergestellt: Links das Histogramm der neuen gleichverteilten Population, das Sie schon kennen. Rechts sehen Sie das Histogramm der Stichprobenmittelwerte."
+  Figure: compare_histograms_uniform.R
+  FigureType: new 
+
+- Class: figure
+  Output: "Ist das nicht überraschend? Obwohl die Population eine Gleichverteilung aufweist, ist die Stichprobenverteilung des Mittelwertes ungefähr normalverteilt. Die Normalverteilung ist hier in blau eingezeichnet."
+  Figure: histogram_normalcurve.R
+  FigureType: new 
+
+- Class: text
+  Output: "Es lässt sich zeigen, dass es fast egal ist, welche Verteilung die Population hat, die Stichprobenverteilung des Mittelwertes ist immer ungefähr normalverteilt."
+
+- Class: text
+  Output: "Dies ist die zweite interessante Eigenschaft der Stichprobenverteilung: Je größer die Stichprobe, desto ähnlicher ist die Stichprobenverteilung einer Normalverteilung. Darum spielt die Normalverteilung so eine wichtige Rolle in der Statistik."
+  
+- Class: mult_question
+  Output: 'Zurück zu der ursprünglichen Population von Männern, mit einem mittleren Gewicht von 85kg und einer Standardabweichung von 10. In der Simulation hatten wir Stichproben von jeweils 50 Personen gezogen. Was wäre, wenn wir stattdessen jeweils Stichproben von jeweils 100 Personen ziehen würden?' 
+  AnswerChoices: 'der Mittelwert der Stichprobenverteilung würde sinken;der Mittelwert der Stichprobenverteilung würde steigen;die Varianz der Stichprobenverteilung würde sinken;die Varianz der Stichprobenverteilung würde steigen'
+  CorrectAnswer: 'die Varianz der Stichprobenverteilung würde sinken'
+  AnswerTests: omnitest(correctVal='die Varianz der Stichprobenverteilung würde sinken')
+  Hint: "Je größer die Stichprobe, desto unwahrscheinlicher sind extreme Abweichungen des Mittelwertes." 
+
+- Class: figure
+  Output: "In der Plotanzeige sind die beiden Stichprobenverteilungen gegenübergestellt."
+  Figure: compare_sample_sizes.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: 'Links die Stichprobenverteilung mit einer Stichprobengröße von n=50. Rechts die Stichprobenverteilung mit einer Stichprobenverteilung mit n=100. Welche Verteilung hat die geringere Varianz?'
+  AnswerChoices: 'die linke Stichprobenverteilung mit n=50;die rechte Stichprobenverteilung mit n=100'
+  CorrectAnswer: 'die rechte Stichprobenverteilung mit n=100'
+  AnswerTests: omnitest(correctVal='die rechte Stichprobenverteilung mit n=100')
+  Hint: "Welche Verteilung ist schmaler? Links oder rechts?" 
+
+- Class: figure
+  Output: "Mit steigender Stichprobengröße verringert sich die Varianz der Stichprobenverteilung."
+  Figure: stichprobenverteilungen.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: 'Die Standardabweichung der Stichprobenverteilung wird auch Standardfehler genannt. Wie im Diagramm dargestellt entspricht der Standardfehler (SE wie standard error) der Standardabweichung (sigma) geteilt durch die Wurzel der Stichprobengröße (n). Welche Aussage ist daher richtig?'
+  AnswerChoices: 'die Standardabweichung der Population ist immer größer als der Standardfehler;die Standardabweichung der Population ist immer kleiner als der Standardfehler'
+  CorrectAnswer: 'die Standardabweichung der Population ist immer größer als der Standardfehler'
+  AnswerTests: omnitest(correctVal='die Standardabweichung der Population ist immer größer als der Standardfehler')
+  Hint: "Für die Berechnung des Standardfehlers wird die Standardabweichung durch die Wurzel von n, also einen positiven Wert, geteilt." 
+
+#30  
+- Class: text
+  Output: "Eigentlich ist das gar nicht so verwunderlich: Eine große Stichprobe liefert natürlich eine genauere Schätzung als eine kleine Stichprobe. Auch eine große Stichprobe kann, da es sich um eine Zufallsauswahl handelt, mal daneben liegen, aber die große Stichprobe liefert mit größerer Wahrscheinlichkeit einen Mittelwert, der in der Nähe des Populationsmittelwertes liegt."
+  
+- Class: text
+  Output: "Dies ist die dritte interessante Eigenschaft der Stichprobenverteilung des Mittelwertes: die Streuung der Stichprobenverteilung kann aus der Streuung der Population berechnet werden."
+
+- Class: mult_question
+  Output: 'Was muss man tun, um den Standardfehler zu halbieren?'
+  AnswerChoices: 'die Stichprobengröße halbieren;die Stichprobengröße verdoppeln;die Stichprobengröße vervierfachen'
+  CorrectAnswer: 'die Stichprobengröße vervierfachen'
+  AnswerTests: omnitest(correctVal='die Stichprobengröße vervierfachen')
+  Hint: "In der Formel wird durch die Wurzel aus n geteilt." 
+  
+- Class: text
+  Output: "Diese drei Eigenschaften zusammengenommen, werden auch zentraler Grenzwertsatz genannt: Die Stichprobenverteilung des Mittelwertes einer Zufallsstichprobe aus einer Population mit endlicher Varianz ist ungefähr normalverteilt, unabhängig von der Verteilung der Population."
+  
+- Class: mult_question
+  Output: 'Wenn von Stichprobenverteilung oder dem Standardfehler die Rede ist, dann ist fast immer die Stichprobenverteilung des Mittelwertes gemeint. Stichprobenverteilungen kann man aber auch von anderen statistischen Kennwerten erstellen. Nehmen wir beispielsweise den Median. Was war gleich wieder der Median?'
+  AnswerChoices: 'das arithmetische Mittel;der häufigste Wert;das 50% Quantil'
+  CorrectAnswer: 'das 50% Quantil'
+  AnswerTests: omnitest(correctVal='das 50% Quantil')
+  Hint: "Der Median teilt die der Größe nach geordneten Werte in zwei Hälften." 
+
+- Class: figure
+  Output: "Um die Form der Stichprobenverteilung des Median zu erkunden, gehen wir genauso vor wie bei der Stichprobenverteilung des Mittelwertes. Wir ziehen wieder 1000 Stichproben aus der Population und berechnen jeweils den Median dieser Stichprobe (diesmal nicht den Mittelwert). In der Plotanzeige sehen Sie, wie sich diese Medianwerte verteilen."
+  Figure: median_samples.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: 'Nur nochmal zum Verständnis: Was bedeutet der Balken auf den der Pfeil deutet?'
+  AnswerChoices: 'von den 1000 Stichproben hatten 26 einen Median zwischen 81 und 82;der Median von 82 Stichproben ist 26;der Mittelwert von 26 Medianen ist 82'
+  CorrectAnswer: 'von den 1000 Stichproben hatten 26 einen Median zwischen 81 und 82'
+  AnswerTests: omnitest(correctVal='von den 1000 Stichproben hatten 26 einen Median zwischen 81 und 82')
+  Hint: "Das Histogram zeigt die Verteilung der 1000 Mediane, die sich aus den 1000 Stichproben ergeben haben." 
+
+- Class: mult_question
+  Output: 'Welche Form hat die Verteilung der Mediane?' 
+  AnswerChoices: 'Normalverteilung;Gleichverteilung;Binomial-Verteilung'
+  CorrectAnswer: 'Normalverteilung'
+  AnswerTests: omnitest(correctVal='Normalverteilung')
+  Hint: "Die Stichprobenverteilung des Medians hat die gleiche Verteilungsform wie die Stichprobenverteilung des Mittelwertes!" 
+
+- Class: figure
+  Output: "Auch die Stichprobenverteilung des Medians ist normalverteilt. Allerdings ist die Schätzung etwas ungenauer. Der Mittelwert der Verteilung entspricht wiederum dem Median der Population, aber die Streuung der Verteilung also der Standardfehler des Medians berechnet sich etwas anders, wie in der Formel zu sehen ist."
+  Figure: median_samples_formula.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: 'Wie verhalten sich Standardfehler des Mittelwertes und Standardfehler des Medians zueinander?' 
+  AnswerChoices: 'der Standardfehler des Medians ist etwas größer;der Standardfehler des Medians ist etwas kleiner;beide sind gleich'
+  CorrectAnswer: 'der Standardfehler des Medians ist etwas größer'
+  AnswerTests: omnitest(correctVal='der Standardfehler des Medians ist etwas größer')
+  Hint: "Aus der Formel geht hervor, dass der Standardfehler zusätzlich mit der Wurzel aus pi halbe multipliziert wird. Die Wurzel aus pi halbe ist etwa 1,235." 
+  
+# Zusammenfassung des Kapitels:
+- Class: text
+  Output: "In diesem Kapitel haben Sie die Stichprobenverteilung kennengelernt, also die Verteilung aller möglicher Stichproben aus einer Population. Das besondere: unabhängig von der Verteilung der Population ist die Stichprobenverteilung des Mittelwertes immer ungefähr normalverteilt. Das kann man sich zu nutze machen, um z. B. abzuschätzen, wie genau die Schätzung auf Grund einer Stichprobe ist."

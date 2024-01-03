@@ -1,0 +1,199 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: Grundlagen
+  Author: Nick Carchedi
+  Type: Standard
+  Organization: JHU Biostat; PFH
+  Version: 2.2.1
+
+- Class: text
+  Output: Willkommen in R! Dieser Kurs soll Ihnen dabei helfen die ersten Schritte in R zu unternehmen. Mit R steht Ihnen ein unglaublich mächtiges und vielseitiges Werkzeug zur Verfügung. Die ungewohnte Art der Eingabe und das Erlernen der richtigen Syntax erleben viele Einsteiger zunächst als Hürde, aber sehr bald werden auch Sie mit diesem Werkzeug umzugehen wissen und es zu schätzen lernen.
+
+- Class: text
+  Output: Dieser Kurs wurde für Studierende der PFH Private Hochschule Göttingen (www.pfh.de ) zusammengestellt. Er beruht auf dem swirl-Kurs R_Programming, dessen Inhalte übersetzt und an die Bedürfnisse der Studierenden des Moduls Statistik 1 angepasst wurden. Wie der Originalkurs steht natürlich auch dieser Kurs unter der freien Lizenz GPL 3.0 und Sie dürfen diesen Kurs gerne im Rahmen dieser Lizenz verändern und weitergeben.
+  
+- Class: text
+  Output: In dieser ersten Übung werden wir uns die Grundlagen der R-Programmierung genauer ansehen.
+
+- Class: text
+  Output: Sollten Sie zu irgendeinem Zeitpunkt mehr Informationen zu einem bestimmten Thema 
+    rund um R wünschen, geben Sie den Befehl help.start() ein. Es öffnet sich dann eine Auswahl
+    von Hilfen (je nach Ihren Einstellungen entweder innerhalb von RStudio oder in Ihrem Web-Browser).
+    Mit einer einfachen Suche im Web werden Sie auch oft die Antwort auf Ihre Fragen finden.
+
+- Class: cmd_question
+  Output: R kann als interaktiver Taschenrechner verwendet werden. Geben Sie 5 + 7 ein und drücken Sie die Eingabetaste.
+  CorrectAnswer: 5 + 7
+  AnswerTests: omnitest(correctExpr='5 + 7')
+  Hint: Geben Sie 5 + 7 ein und drücken Sie dann die Eingabetaste.
+
+- Class: text
+  Output: R druckt einfach das Ergebnis 12 aus. R ist aber natürlich eine Programmiersprache. 
+    Einer der Hauptgründe, warum wir eine Programmiersprache verwenden und ein Grund R einem 
+    Taschenrechner vorzuziehen, liegt darin Abläufe zu automatisieren oder Wiederholungen zu vermeiden.
+
+- Class: text
+  Output: Wir könnten zum Beispiel das Ergebnis der Berechnung wiederverwenden. Statt jedes mal 
+    wieder 5 + 7 einzutippen, wenn wir das Ergebnis brauchen, können wir einfach eine neue Variable erstellen, die das Ergebnis speichert.
+
+- Class: text
+  Output: 'Um in R einer Variablen einen Wert zuzuweisen, verwendet man den Zuweisungsoperator, also einfach das Zeichen ''keiner als'' und dann ein ''minus''-Zeichen. Das sieht so aus: <-'
+
+- Class: text
+  Output: Stellen Sie sich den Zuweisungsoperator einfach als Pfeil vor. Sie weisen den Wert auf der rechten Seite der Variablen auf der linken Seite zu.
+
+- Class: cmd_question
+  Output: Um nun das Ergebnis von 5 + 7 einer neuen Variable namens x zuzuweisen, tippen Sie x <- 5 + 7. Sprich 'x erhält den Wert 5 plus 7'. Probieren Sie das aus.
+  CorrectAnswer: x <- 5 + 7
+  AnswerTests: any_of_exprs('x <- 5 + 7', 'x <- 7 + 5')
+  Hint: Tippen Sie x <- 5 + 7 ein. Es ist wichtig, dass Sie vor und nach dem Zuweisungsoperator ein Leerzeichen lassen. Zwischen den Zeichen `<` und `-` darf kein Leerzeichen stehen.
+
+- Class: text
+  Output: Haben Sie bemerkt, dass R diesmal das Ergebnis 12 nicht ausgegeben hat? Bei einer Zuweisung nimmt R an, dass Sie das Ergebnis nicht sofort sehen wollen, sondern das Ergebnis lieber anderweitig verwenden wollen.
+
+- Class: cmd_question
+  Output: Um dennoch den Inhalt der Variable x zu sehen, tippen Sie einfach x und drücken dann die Eingabetaste.
+  CorrectAnswer: x
+  AnswerTests: omnitest(correctExpr='x')
+  Hint: Tippen Sie x und drücken dann die Eingabetaste. Dann wird der Wert von x automatisch ausgegeben.
+
+- Class: cmd_question
+  Output: Das üben wir gleich mal. Speichern Sie das Ergebnis von x - 3 in einer neuen Variable y.
+  CorrectAnswer: y <- x - 3
+  AnswerTests: omnitest(correctExpr='y <- x - 3')
+  Hint: Tippen Sie y <- x - 3 und drücken dann die Eingabetaste. Es ist egal ob Sie x - 3 oder x-3 eingeben, aber die Leerzeichen vor und nach dem Zuweisungsoperator haben sich sehr bewährt.
+
+- Class: cmd_question
+  Output: Welchen Wert hat y? Tippen Sie y und drücken Sie dann die Eingabetaste, um das herauszufinden.
+  CorrectAnswer: 'y'
+  AnswerTests: omnitest(correctExpr='y')
+  Hint: Tippen Sie y und drücken Sie dann die Eingabetaste.
+
+- Class: text
+  Output: 'Als nächstes legen wir uns eine kleine Sammlung von Zahlen an. In R nennt man das einen Vektor (englisch: vector). Alle Objekte die Daten enthalten, nennen wir eine Datenstruktur (englisch: data structure). Die einfachste Datenstruktur in R sind numerische Vektoren. Genau genommen ist sogar eine einzelne Zahl bereits ein Vektor mit der Länge 1.'
+  
+- Class: cmd_question
+  Output: 'Einen Vektor kann man einfach mit der Funktion c() anlegen. Das c steht für das englische ''concatenate'' oder ''combine''. Um nun einen Vektor mit den Zahlen 1.1, 9, and 3.14 anzulegen, tippen Sie c(1.1, 9, 3.14). Achtung: In R werden die Nachkommastellen wie im Englischen üblich mit einem Punkt getrennt und nicht wie im Deutschen mit einem Komma. Stattdessen werden die Argumente mit Kommas voneinander unterschieden. Versuchen Sie nun den Vektor zu erstellen und speichern Sie das Ergebnis in einer neuen Variable mit dem Namen z.'
+  CorrectAnswer: z <- c(1.1, 9, 3.14)
+  AnswerTests: omnitest(correctExpr='z <- c(1.1, 9, 3.14)')
+  Hint: Mit z <- c(1.1, 9, 3.14) weisen Sie den Vektor (1.1, 9, 3.14) der Variable z zu. Die Leerzeichen nach den Kommas sind wiederum nicht unbedingt notwendig, erhöhen aber die Lesbarkeit.
+
+- Class: cmd_question
+  Output: Wenn Sie mehr über eine bestimmte Funktion wissen wollen, können Sie in den eingebauten Hilfeseiten mit dem Befehl `?` suchen. Wenn Sie beispielsweise mehr über die Funktion c() wissen wollen, tippen Sie ?c ohne die Klammern, die normalerweise nach der Funktion stehen. Probieren Sie das mal aus.
+  CorrectAnswer: ?c
+  AnswerTests: omnitest(correctExpr='?c')
+  Hint: Tippen Sie ?c ein und drücken dann die Eingabetaste. Dieser Befehl öffnet die Hilfeseite der Funktion.
+
+- Class: cmd_question
+  Output: Zurück zu unserem Vektor. Tippen Sie z ein, um den Inhalt der Variable zu sehen.
+  CorrectAnswer: z
+  AnswerTests: omnitest(correctExpr='z')
+  Hint: Tippen Sie z und drücken Sie dann die Eingabetaste, um den Inhalt der Variable zu sehen.
+
+- Class: text
+  Output: Beachten Sie, dass die Werte in der Ausgabe nun nicht mehr durch Kommas getrennt sind.
+  
+- Class: cmd_question
+  Output: Mehrere Vektoren können auch zu einem neuen Vektor zusammengefügt werden. Erstellen Sie einen neuen Vektor, der aus z, 555 und dann wieder z besteht. Weisen Sie diesen neuen Vektor nicht einer Variable zu, so dass Sie das Ergebnis sofort sehen können.
+  CorrectAnswer: c(z, 555, z)
+  AnswerTests: omnitest(correctExpr='c(z, 555, z)')
+  Hint: Tippen Sie c(z, 555, z) ein. Erstellen Sie keine neue Variable. Wir wollen einfach nur das Ergebnis sehen.
+
+- Class: cmd_question
+  Output: 'Numerische Vektoren können auch in arithmetischen Ausdrücken verwendet werden. Tippen Sie den folgenden Befehl, um zu sehen wie das funktioniert: z * 2 + 100.'
+  CorrectAnswer: z * 2 + 100
+  AnswerTests: omnitest(correctExpr='z * 2 + 100')
+  Hint: Geben Sie z * 2 + 100 ein, ohne das Ergebnis einer Variable zuzuweisen. Das Zeichen `*` wird für die Multiplikation verwendet.
+
+- Class: text
+  Output: Als erstes hat R jedes der drei Elemente in z mit 2 multipliziert. Dann wurde zu jedem Element noch 100 addiert. So ergeben sich die Zahlen in der Ausgabe.
+
+- Class: text
+  Output: 'Es gibt noch mehr arithmetische Operatoren: `+`, `-`, `/` und `^` (wobei x^2
+    für ''x zum Quadrat'' steht). Die Quadtratwurzel wird mit der Funktion sqrt() (das ist die Abkürzung für square-root) berechnet. Der Betrag einer Zahl ergibt sich mit abs().'
+
+- Class: cmd_question
+  Output: Berechnen Sie die Wurzel aus z - 1 und weisen Sie das Ergebnis einer neuen Variable mit dem Namen my_sqrt zu.
+  CorrectAnswer: my_sqrt <- sqrt(z - 1)
+  AnswerTests: omnitest(correctExpr='my_sqrt <- sqrt(z - 1)')
+  Hint: Weisen Sie das Ergebnis von sqrt(z - 1) der Variable my_sqrt zu.
+
+- Class: mult_question
+  Output: 'Bevor wir uns das Ergebnis ansehen: welchen Inhalt hat die Variable my_sqrt wohl?'
+  CorrectAnswer: ein Vektor der Länge 3
+  AnswerChoices: ein Vektor der Länge 3; eine einzelne Zahl (also ein Vektor der Länge 1); ein Vektor der Länge 0 (also ein leerer Vektor)
+  AnswerTests: omnitest(correctVal='ein Vektor der Länge 3')
+  Hint: 'Erinnern Sie sich noch wie R mit vorherigen Vektoroperationen umgegangen ist? Ein Element nach dem anderen.'
+
+- Class: cmd_question
+  Output: Lassen Sie den Inhalt von my_sqrt nun ausgeben.
+  CorrectAnswer: my_sqrt
+  AnswerTests: omnitest(correctExpr='my_sqrt')
+  Hint: Geben Sie einfach my_sqrt ein und drücken Sie dann die Eingabetaste.
+
+- Class: text
+  Output: Wie Sie vielleicht vermutet haben, hat R zunächst von jedem Element 1 abgezogen und dann die Wurzel aus jedem Element gezogen. Es bleibt ein Vektor mit der gleichen Länge wie das Original übrig.
+
+- Class: cmd_question
+  Output: Erstellen Sie nun eine neue Variable my_div. Diese soll den Wert von z geteilt durch my_sqrt bekommen.
+  CorrectAnswer: my_div <- z / my_sqrt
+  AnswerTests: omnitest(correctExpr='my_div <- z / my_sqrt')
+  Hint: Tippen Sie my_div <- z / my_sqrt ein. Die Leerzeichen vor und nach dem `/`-Zeichen sind wiederum nicht erforderlich. Diese machen den Befehl aber besser lesbar. Letztlich geht es hier aber nur um persönliche Vorlieben.
+
+- Class: mult_question
+  Output: Welche der folgenden Aussagen ist korrekt?
+  CorrectAnswer: Das erste Element von my_div entspricht dem ersten Element von z geteilt durch das erste Element von my_sqrt, usw.
+  AnswerChoices: Das erste Element von my_div entspricht dem ersten Element von z geteilt durch das erste Element von my_sqrt, usw.; my_div enthält eine einzelne Zahl (also einen Vektor der Länge 1); my_div ist nicht definiert
+  AnswerTests: omnitest(correctVal='Das erste Element von my_div entspricht dem ersten Element von z geteilt durch das erste Element von my_sqrt, usw.')
+  Hint: Erinnern Sie sich wie R mit Vektoren bei `+` und `*` umgegangen ist?
+
+- Class: cmd_question
+  Output: Lassen Sie nun den Inhalt von my_div ausgeben.
+  CorrectAnswer: my_div
+  AnswerTests: omnitest(correctExpr='my_div')
+  Hint: Tippen Sie my_div und drücken Sie dann die Eingabetaste, um den Inhalt der Variable zu sehen.
+
+- Class: text
+  Output: Wenn R zwei Vektoren mit der gleichen Länge bekommt, werden die jeweiligen Operationen (`+`, `-`, `*`, etc.) Element für Element abgearbeitet. Haben die Vektoren allerdings unterschiedliche Längen, wird der kürzere Vektor 'recycled', also solange wiederverwendet, bis er die gleiche Länge wie der längere Vektor hat.
+
+- Class: text
+  Output: Als wir z * 2 + 100 berechnet haben, war z ein Vektor mit der Länge 3. Genau genommen sind auch 2 und 100 Vektoren, aber mit der Länge 1.
+
+- Class: text
+  Output: 'Im Hintergrund hat R also auch hier den ''Recycling''-Trick angewandt und aus 2 einen Vektor von Zweien gemacht sowie aus 100 einen Vektor von Hundertern. Anders gesagt, was R wirklich berechnet wenn man den Befehl z * 2 + 100 eingibt, ist das folgende: z * c(2, 2, 2) + c(100, 100, 100).'
+
+- Class: cmd_question
+  Output: Schauen wir uns ein weiteres Beispiel von Vektor-'Recycling' an. Versuchen Sie c(1, 2, 3, 4) und c(0, 10) zu addieren. Sie brauchen das Ergebnis nicht in einer Variablen abspeichern.
+  CorrectAnswer: c(1, 2, 3, 4) + c(0, 10)
+  AnswerTests: omnitest(correctExpr='c(1, 2, 3, 4) + c(0, 10)')
+  Hint: Geben Sie c(1, 2, 3, 4) + c(0, 10) ein, um zu sehen, wie Vektoren unterschiedlicher Länge addiert werden. Weisen Sie das Ergebnis nicht einer Variablen zu.
+
+- Class: text
+  Output: Falls beim Wiederverwerten der kürzere Vektor nicht vollständig auf die Länge des anderen Vektors vervielfacht werden kann, wird der ''Recycling''-Trick dennoch angewandt. R gibt dann allerdings eine Warnung aus, dass eventuell etwas nicht stimmen könnte.
+
+- Class: cmd_question
+  Output: Probieren Sie zum Beispiel c(1, 2, 3, 4) + c(0, 10, 100).
+  CorrectAnswer: c(1, 2, 3, 4) + c(0, 10, 100)
+  AnswerTests: omnitest(correctExpr='c(1, 2, 3, 4) + c(0, 10, 100)')
+  Hint: Tippen Sie c(1, 2, 3, 4) + c(0, 10, 100) ein, um zu sehen wie R damit umgeht, wenn die Länge des einen Vektors kein ganzzahliges Vielfaches des anderen ist. Weisen Sie das Ergebnis nicht einer Variablen zu.
+
+- Class: text
+  Output: Zum Schluss dieser Lektion haben wir noch einige Tricks zum Zeitsparen für Sie.
+
+- Class: text
+  Output: Vorhin haben Sie zum Beispiel z * 2 + 100 berechnet. Nehmen wir an, Sie hätten einen Fehler gemacht. Eigentlich wollen Sie statt 100 den Wert 1000 addieren. Nun könnten Sie den ganzen Befehl noch einmal eintippen oder ...
+
+- Class: cmd_question
+  Output: 'In den meisten Entwicklungsumgebungen für R (z. B. R-Studio) kann man mit dem Pfeil nach oben die vorherigen Befehle erreichen. Probieren Sie das mal aus: Drücken Sie die Pfeil nach oben Taste, bis Sie den Befehl (z * 2 + 100) sehen. Ändern Sie dann 100 zu 1000 und drücken Sie die Eingabetaste. Sollte das nicht funktionieren, geben Sie den Befehl direkt ein.'
+  CorrectAnswer: z * 2 + 1000
+  AnswerTests: omnitest(correctExpr='z * 2 + 1000')
+  Hint: Falls in Ihrer Entwicklungsumgebung die Pfeiltaste nicht unterstützt wird, geben Sie den Befehl direkt ein.
+
+- Class: text
+  Output: 'Und zum Schluss: Stellen Sie sich vor, Sie wollen gerne den Inhalt einer Variablen sehen, die Sie bereits erstellt haben. Leider können Sie sich nicht mehr erinnern, ob die Variable my_div oder myDiv hieß. Nun könnten Sie einfach beide Namen durchprobieren oder ...'
+
+- Class: cmd_question
+  Output: Sie können auch die ersten beiden Buchstaben der Variablen eingeben und dann die Tabulatortaste drücken (ggf. mehrfach). In den meisten Entwicklungsumgebungen wird Ihnen dann eine Liste aller Variablen, die mit 'my' beginnen angezeigt. Diese Funktion heißt Autovervollständigung und ist äußerst praktisch, wenn Sie sehr viele Variablen in ihrer Arbeitsumgebung erstellt haben. Probieren Sie das mal aus. Sollte die Funktion nicht zur Verfügung stehen, tippen Sie my_div und drücken Sie dann die Eingabetaste.
+  CorrectAnswer: my_div
+  AnswerTests: omnitest(correctExpr='my_div')
+  Hint: Sollte diese Funktion nicht zur Verfügung stehen, tippen Sie my_div und drücken Sie dann die Eingabetaste.

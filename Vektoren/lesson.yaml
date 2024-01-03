@@ -1,0 +1,190 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: Vektoren
+  Author: Nick Carchedi
+  Type: Standard
+  Organization: JHU Biostat; Translation by PFH
+  Version: 2.2.1
+
+- Class: text
+  Output: Die einfachste und am häufigsten verwendete Datenstruktur in R sind Vektoren.
+
+- Class: text
+  Output: 'Es gibt zwei Arten von Vektoren: atomare Vektoren (englisch: atomic vectors) und Listen. Ein atomarer Vektor enthält nur genau einen Datentyp, während eine Liste verschiedene Datentypen enthalten kann. Schauen wir uns zunächst die atomaren Vektoren an bevor wir zu den Listen kommen.'
+
+- Class: text
+  Output: "In den bisherigen Übungen haben wir stets mit numerischen Vektoren gearbeitet. Das ist eine Form von atomaren Vektoren. Es gibt aber noch weitere Formen: logische (logical), Zeichen (character), Ganzzahlen (integer) und zusammengesetzte Zahlen (complex). In dieser Übung geht vor allem um logische Vektoren und Vektoren aus Zeichen."
+
+- Class: text
+  Output: Logische Vektoren können die Werte TRUE, FALSE und NA (das steht für 'not available', also fehlender Wert). Diese Werte entstehen durch die Auswertung von logischen Bedingungen. Das probieren wir gleich mal aus.
+
+- Class: cmd_question
+  Output: Als erstes erstellen Sie bitte einen numerischen Vektor mit dem Namen num_vect. Dieser soll die Werte 0.5, 55, -10 und 6 enthalten.
+  CorrectAnswer: num_vect <- c(0.5, 55, -10, 6)
+  AnswerTests: omnitest(correctExpr='num_vect <- c(0.5, 55, -10, 6)')
+  Hint: "Vektoren erstellt man mit der Funktion c(). Wenn Sie sich nicht erinnern können wie man diese Funktion verwendet, öffnen Sie doch einfach die passende Hilfeseite mit dem Befehl '?c'. Vergessen Sie nicht, das Ergebnis der Variablen num_vect zuzuweisen."
+
+- Class: cmd_question
+  Output: "Als nächstes erstellen Sie bitte eine Variable mit dem Namen tf. Diese soll das Ergebnis des Ausdrucks num_vect < 1 erhalten, was so viel bedeutet wie 'num_vec ist kleiner als 1'."
+  CorrectAnswer: tf <- num_vect < 1
+  AnswerTests: omnitest(correctExpr='tf <- num_vect < 1')
+  Hint: Geben Sie tf <- num_vect < 1 ein, um das Ergebnis von num_vect < 1 der Variablen tf zuzuweisen. Anführungszeichen oder Klammern sind nicht notwendig.
+
+- Class: mult_question
+  Output: "Überlegen Sie: Welche Form hat tf jetzt?"
+  CorrectAnswer: ein Vektor mit vier logischen Werten
+  AnswerChoices: ein Vektor mit vier logischen Werten; ein einzelner logischer Wert
+  AnswerTests: omnitest(correctVal='ein Vektor mit vier logischen Werten')
+  Hint: 'Erinnern Sie sich noch an die Aufgabe, als wir mit Vektoren gerechnet haben? Wir haben gesehen, dass R die Operationen immer "Element für Element" durchführt.' 
+
+- Class: cmd_question
+  Output: Lassen Sie nun den Wert der Variablen tf ausgeben.
+  CorrectAnswer: tf
+  AnswerTests: omnitest(correctExpr='tf')
+  Hint: Geben Sie einfach tf ein und drücken Sie dann die Eingabetaste.
+
+- Class: text
+  Output: "Der Ausdruck num_vect < 1 wird auch als Bedingung bezeichnet. Die Variable tf hat vier Elemente, weil num_vec ebenfalls vier Elemente hat. Aus tf können wir nun ablesen, ob das jeweils entsprechende Element in num_vec die Bedingung 'ist kleiner als 1' erfüllt oder nicht."
+
+- Class: text
+  Output: Das erste Element in num_vec ist 0.5, also kleiner als 1, daher hat das erste Element in tf den Wert TRUE. Das zweite Element in num_vec ist 55, also größer als 1. Daraus ergibt sich, dass das zweite Element von tf also FALSE sein muss. Das gleiche Verfahren lässt sich auf das dritte und das vierte Element übertragen.
+
+- Class: cmd_question
+  Output: Noch ein Beispiel. Geben Sie num_vect >= 6 ein, ohne das Ergebnis einer neuen Variablen zuzuweisen.
+  CorrectAnswer: num_vect >= 6
+  AnswerTests: omnitest(correctExpr='num_vect >= 6')
+  Hint: Erstellen Sie keine neue Variable, hier geht es nur um das Ergebnis des Ausdrucks num_vect >= 6. Achten Sie darauf, dass zwischen den Zeichen `>` und `=` kein Leerzeichen stehen darf. Stellen Sie sich die beiden Zeichen als eine Einheit vor, die natürlich für 'größer oder gleich' steht.
+  
+- Class: text
+  Output: Diesmal wollen wir also wissen, ob jedes einzelne Element größer ODER gleich 6 ist. Weil natürlich nur die Elemente 55 und 6 größer oder gleich 6 sind, haben das zweite und das vierte Element den Wert TRUE erhalten. Das erste und das dritte Element haben den Wert FALSE.
+
+- Class: text
+  Output: "Die Zeichen `<` und `>=` in den obigen Beispielen sind sogenannte 'logische Operatoren'. Davon gibt es noch mehr: `>`, `<=`, `==` (genau gleich) und `!=` (ungleich)."
+
+- Class: text
+  Output: "Achtung: ein beliebter Fehler ist es, nur ein Gleichheitszeichen zu verwenden, wenn auf Gleichheit geprüft werden soll. Richtig sind doppelte Gleichheitszeichen: `==`" 
+
+- Class: text
+  Output: "Wenn wir zwei solcher logischen Ausdrücke vorliegen haben, nennen wir sie A und B, können wir außerdem fragen:"
+
+- Class: text
+  Output: "Ist mindestens einer der beiden Ausdrücke wahr? A | B (logisches ODER bzw. Disjunktion)."
+
+- Class: text
+  Output: "Sind beide Ausdrücke wahr? A & B (logisches UND bzw. Konjunktion)."
+  
+- Class: text
+  Output: "Zu guter Letzt steht !A für die Negation und ist genau dann wahr wenn A den Wert FALSE hat und umgekehrt."
+  
+- Class: text
+  Output: Diese Operatoren lernt man am Besten anhand von Beispielen. Fangen wir doch gleich mal an.
+
+- Class: text
+  Output: "Versuchen Sie herauszufinden, wie das Ergebnis der folgenden Ausdrücke lautet. Wenn Sie wollen können Sie sich Notizen machen, um die Zwischenergebnisse festzuhalten. Falls Sie die Aufgabe nicht lösen können, ist das halb so schlimm. Raten Sie einfach, die Chancen stehen 50:50."
+
+- Class: mult_question
+  Output: (3 > 5) & (4 == 4)
+  CorrectAnswer: 'FALSE'
+  AnswerChoices: TRUE; FALSE
+  AnswerTests: omnitest(correctVal='FALSE')
+  Hint: Teilen Sie den Ausdruck in zwei Bestandteile auf. Das Zeichen `&` in der Mitte sagt aus, dass sowohl der Teil davor als auch der Teil danach TRUE sein müssen. Finden Sie heraus, ob das der Fall ist. Wenn ja, dann ist auch der gesamte Ausdruck TRUE, andernfalls ist er FALSE.
+
+- Class: mult_question
+  Output: (TRUE == TRUE) | (TRUE == FALSE)
+  CorrectAnswer: 'TRUE'
+  AnswerChoices: TRUE; FALSE
+  AnswerTests: omnitest(correctVal='TRUE')
+  Hint: Teilen Sie den Ausdruck in zwei Bestandteile auf. Das Zeichen `|` in der Mitte sagt aus, dass mindestens einer der beiden Teile TRUE sein muss. Finden Sie heraus, ob das der Fall ist. Wenn ja, dann ist auch der gesamte Ausdruck TRUE, andernfalls ist er FALSE.
+  
+- Class: mult_question
+  Output: ((111 >= 111) | !(TRUE)) & ((4 + 1) == 5)
+  CorrectAnswer: 'TRUE'
+  AnswerChoices: TRUE; FALSE
+  AnswerTests: omnitest(correctVal='TRUE')
+  Hint: Nicht ganz einfach! Das Zeichen `!` bedeutet Negation, so dass alles was danach steht umgekehrt wird. Außerdem muss man die Reihenfolge der Bearbeitung beachten. Ausdrücke in Klammern werden immer zuerst ausgewertet. Gehen Sie dann von innen nach außen vor.
+
+- Class: text
+  Output: Wenn Sie diese Beispiele knifflig fanden, ist das kein Grund zur Beunruhigung. Genau so war es gedacht. Um in R mit logischen Operatoren zu arbeiten, braucht man ein wenig Übung, aber die Mühe lohnt sich. In späteren Lektionen (z. B. Teilmengen von Vektoren) werden Sie davon profitieren.
+
+- Class: text
+  Output: Die zweite Form von Vektoren bestehend aus Zeichen ist ebenfalls sehr beliebt in R. Man verwendet doppelte Anführungszeichen, um zu kennzeichnen, dass es sich um einzelne Zeichen oder Zeichenketten handelt und nicht um Namen von Werten oder Funktionen.
+
+- Class: cmd_question
+  Output: 'Erstellen Sie einen Vektor aus Zeichen mit den Wörtern "Mein", "Name" und "ist". Schließen Sie jedes einzelne Wort in Anführungszeichen ein, damit R versteht, dass es sich um Zeichenketten handelt. Speichern Sie den entstehenden Vektor in einer Variable mit dem Namen my_char.'
+  CorrectAnswer: my_char <- c("Mein", "Name", "ist")
+  AnswerTests: omnitest(correctExpr='my_char <- c("Mein", "Name", "ist")')
+  Hint: Geben Sie my_char <- c("Mein", "Name", "ist") ein, um die neue Variable my_char zu erstellen. Diese erhält einen Vektor mit der Länge 3 zugewiesen. Achten Sie darauf, dass die Kommas zu Trennung der Wörter außerhalb der Anführungszeichen liegen. Andernfalls denkt R, die Kommas seien Teil der Zeichenkette.
+
+- Class: cmd_question
+  Output: Geben Sie nun den Inhalt der Variable my_char aus.
+  CorrectAnswer: my_char
+  AnswerTests: omnitest(correctExpr='my_char')
+  Hint: Geben Sie einfach my_char ein und drücken Sie die Eingabetaste.
+
+- Class: text
+  Output: Die Variable my_char ist also ein Vektor von Zeichenketten der Länge 3. Nun wollen wir die Elemente von my_char zu einer einzelnen Zeichenkette (man könnte auch sagen zu einem Vektor mit der Länge 1) zusammenfügen. Das geht mit der Funktion paste().
+
+- Class: cmd_question
+  Output: Geben Sie paste(my_char, collapse = " ") ein. Achten Sie darauf, dass zwischen den beiden Anführungszeichen ein Leerzeichen steht. Sie werden gleich verstehen, warum das wichtig ist.
+  CorrectAnswer: paste(my_char, collapse = " ")
+  AnswerTests: omnitest(correctExpr='paste(my_char, collapse = " ")')
+  Hint: Mit paste(my_char, collapse = " ") werden die Wörter im Vektor zu einem (unvollständigen) Satz zusammengefügt. Zwischen den Anführungszeichen muss ein Leerzeichen stehen, damit zwischen den Wörtern jeweils ein Abstand entsteht. 
+
+- Class: text
+  Output: Das Argument `collapse` in der Funktion paste() teilt R mit, dass beim Zusammenfügen zwischen den Elementen ein Leerzeichen eingefügt werden soll.
+
+- Class: text
+  Output: Aber irgendetwas fehlt noch. Ah, genau! Ihr Name natürlich!
+
+- Class: cmd_question
+  Output: 'Um Ihren Namen zur Variablen my_char hinzuzufügen verwenden Sie wiederum die Funktion c(): c(my_char, "Ihr_Name"). Ersetzen Sie Ihr_Name mit Ihrem Vornamen. Probieren Sie das und speichern Sie das Ergebnis in der Variable my_name.'
+  CorrectAnswer: my_name <- c(my_char, "Swirl")
+  AnswerTests: var_is_a("character", "my_name"); expr_uses_func("c"); expr_creates_var("my_name");
+    val_has_length(4)
+  Hint: 'Um Ihren Vornamen an das Ende von my_char zu hängen, verwenden Sie die Funktion c(). Weisen Sie das Ergebnis einer neuen Variablen mit dem Namen my_name zu. Wenn Ihr Vorname also "Swirl" wäre, würde der Befehl lauten: my_name <- c(my_char, "Swirl").'
+
+- Class: cmd_question
+  Output: Sehen Sie sich nun den Inhalt der Variablen my_name an.
+  CorrectAnswer: my_name
+  AnswerTests: omnitest(correctExpr='my_name')
+  Hint: Tippen Sie my_name ein und drücken Sie die Eingabetaste, um den Wert der Variablen zu sehen.
+
+- Class: cmd_question
+  Output: 'Jetzt können Sie mit der Funktion paste() die einzelnen Elemente zu einem Satz zusammenfügen. Auch hier brauchen wir wieder das Argument collapse = " "!'
+  CorrectAnswer: paste(my_name, collapse = " ")
+  AnswerTests: omnitest(correctExpr='paste(my_name, collapse = " ")')
+  Hint: Geben Sie paste(my_name, collapse = " ") ein, um die vier Wörter mit Leerzeichen zu einem Satz zu verknüpfen.
+
+- Class: text
+  Output: In diesem Beispiel haben wir die Funktion paste() verwendet, um die Elemente eines Vektors zu einem einzelnen Element zusammenzuführen. Mit paste() kann man aber auch mehrere Vektoren zusammenfügen.
+
+- Class: cmd_question
+  Output: Fangen wir ganz einfach an. Sie können zwei Vektoren der Länge 1 (also zwei Wörter) zusammenfügen. Geben Sie paste("Hello", "world!", sep = " ") ein. Das Argument `sep` legt fest, dass die Elemente mit einem Leerzeichen getrennt werden sollen.
+  CorrectAnswer: paste("Hello", "world!", sep = " ")
+  AnswerTests: omnitest(correctExpr='paste("Hello", "world!", sep = " ")')
+  Hint: Mit paste("Hello", "world!", sep = " ") werden die Wörter "Hello" und
+    "world!" zu einer Zeichenkette verbunden, mit einem Leerzeichen in der Mitte. Achten Sie darauf, dass zwischen den Anführungszeichen im Argument `sep` ein Leerzeichen steht.
+
+- Class: cmd_question
+  Output: Jetzt ein etwas komplexeres Beispiel. Sie können auch zwei Vektoren der Länge 3 zusammenfügen. Verwenden Sie die Funktion paste(), um den Integer-Vektor 1:3 mit dem Zeichen-Vektor c("X", "Y", "Z") zu verknüpfen. Verwenden Sie diesmal das Argument sep = "", so dass kein Leerzeichen zwischen den Elementen eingefügt wird.
+  CorrectAnswer: paste(1:3, c("X", "Y", "Z"), sep = "")
+  AnswerTests: any_of_exprs('paste(1:3, c("X", "Y", "Z"), sep = "")', 'paste(c(1:3), c("X", "Y", "Z"), sep = "")')
+  Hint: Geben Sie paste(1:3, c("X", "Y", "Z"), sep = "") ein, um zu sehen was passiert, wenn man zwei gleich lange Vektoren mit paste() zusammenfügt.
+
+- Class: text
+  Output: 'Was denken Sie, was passiert, wenn die Vektoren unterschiedliche Länge haben? (Hinweis: Das Prinzip haben wir schon vorher behandelt)'
+
+- Class: cmd_question
+  Output: Vektor Recycling! Probieren Sie mal paste(LETTERS, 1:4, sep = "-"). LETTERS ist eine vordefinierte Variable - ein Vektor mit den 26 Buchstaben des (englischen) Alphabets.
+  CorrectAnswer: paste(LETTERS, 1:4, sep = "-")
+  AnswerTests: omnitest(correctExpr='paste(LETTERS, 1:4, sep = "-")')
+  Hint: Geben Sie paste(LETTERS, 1:4, sep = "-") ein, um zu sehen, wie das 'recycling' des Vektors 1:4 funktioniert. Beachten Sie, dass wir diesmal als Trennzeichen `-` angegeben haben.
+
+- Class: text
+  Output: Weil der Vektor LETTERS länger ist als der numerische Vektor 1:4, wird letzterer einfach wiederverwertet, also wiederholt, bis die Länge von LETTERS erreicht ist.
+
+- Class: text
+  Output: Nebenbei wurde übrigens der numerische Vektor in Zeichen umgewandelt.
+
+- Class: text
+  Output: Wie diese "erzwungene Umwandlung" funktioniert, schauen wir uns in einer späteren Übung an. Eigentlich geht es nur darum, dass aus den Zahlen 1, 2, 3 und 4 die Zeichen "1", "2", "3" und "4" geworden sind.

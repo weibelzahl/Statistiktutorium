@@ -1,0 +1,13 @@
+# draw standard normal and area of +-2 sd
+cord.x <- c(-2,seq(-2,2,0.01),2) 
+cord.y <- c(0,dnorm(seq(-2,2,0.01)),0) 
+curve(dnorm(x), from = -4, to = 4, col="blue", ylab = "Wahrscheinlichkeitsdichte", main="Standardnormalverteilung", lwd=2)
+polygon(cord.x,cord.y,col='lightgrey', density=4)
+cord.x <- c(2,seq(2,4,0.01),4) 
+cord.y <- c(0,dnorm(seq(2,4,0.01)),0) 
+polygon(cord.x,cord.y,col='red', density=8)
+curve(dnorm(x), from = -4, to = 4, col="blue", add=TRUE, lwd=2)
+arrows(-2, 0.04, 2, 0.04, code = 3)
+text(0, 0.1, "95%")
+arrows(2.3, 0.03, 3, 0.07, code = 1)
+text(3, 0.1, "2,5%")

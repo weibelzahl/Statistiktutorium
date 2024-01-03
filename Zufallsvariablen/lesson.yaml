@@ -1,0 +1,153 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: Zufallsvariablen
+  Author: PFH
+  Type: Standard
+  Organization: PFH Private Hochschule Göttingen
+  Version: 0.1
+  
+  
+# Begrüßung  
+- Class: text
+  Output: "In diesem Kapitel lernen Sie was eine Zufallsvariable ist."
+
+- Class: mult_question
+  Output: 'Diese Frage hatten wir schon in den beiden vorherigen Kapiteln: Wie hoch ist die Wahrscheinlichkeit beim zweimaligen Werfen eines Würfels die Augensumme 3 zu erhalten? Überlegen Sie, wie viele günstige und wie viele mögliche Ergebnisse es gibt.' 
+  AnswerChoices: 1/18;36/2;2;36;1/2;2/9
+  CorrectAnswer: 1/18
+  AnswerTests: omnitest(correctVal='1/18')
+  Hint: "Inzwischen sollten Sie die richtige Antwort eigentlich längst kennen. P(Ereignis) = (Anzahl günstiger Ergebnisse) / (Anzahl möglicher Ergebnisse). Die Augensumme 3 kann bei zwei Ergebnissen entstehen, nämlich bei '1-2' und bei '2-1'. Andere Kombinationen gibt es nicht. Die Anzahl günstiger Ergebnisse beträgt also 2. Die Anzahl möglicher Ergebnisse beträgt immer noch 36. Achtung, der Bruch lässt sich kürzen." 
+
+- Class: cmd_question
+  Output: "Wie hoch ist die Wahrscheinlichkeit beim zweimaligen Werfen eines Würfels die Augensumme 2 zu erhalten?"
+  CorrectAnswer: 1/36
+  AnswerTests: omnitest(correctVal=1/36)
+  Hint: "Die Augensumme 2 kann bei genau einem Ergebnissen entstehen, nämlich bei '1-1'. Andere Kombinationen gibt es nicht. Die Anzahl günstiger Ergebnisse beträgt also 1. Die Anzahl möglicher Ergebnisse beträgt immer noch 36."
+  
+- Class: cmd_question
+  Output: "Was ist die höchste Augensumme, die beim zweimaligen Werfen eines Würfels entstehen kann?"
+  CorrectAnswer: 12
+  AnswerTests: omnitest(correctVal=12)
+  Hint: "Die höchste Augensumme ist natürlich 6 + 6."
+
+- Class: cmd_question
+  Output: "Wie hoch ist die Wahrscheinlichkeit beim zweimaligen Werfen eines Würfels die Augensumme 12 zu erhalten?"
+  CorrectAnswer: 1/36
+  AnswerTests: omnitest(correctVal=1/36)
+  Hint: "Die Augensumme 12 kann bei genau einem Ergebnissen entstehen, nämlich bei '6-6'. Andere Kombinationen gibt es nicht. Die Anzahl günstiger Ergebnisse beträgt also 1. Die Anzahl möglicher Ergebnisse beträgt immer noch 36."
+
+- Class: text
+  Output: "Die kleinste Augensumme beträgt 2, die höchste Augensumme beträgt 12. Für jede Augensumme zwischen 2 und 12 können wir die Wahrscheinlichkeit berechnen. Für kleine und große sind die Wahrscheinlichkeiten leicht berechnet, wie wir gesehen haben."
+
+- Class: text
+  Output: "Für die Augensummen dazwischen funktioniert die Berechnung nach dem gleichen Prinzip, nur ist es etwas aufwändiger, die unterschiedlichen Kombinationen zusammen zu suchen."
+  
+- Class: figure
+  Output: "Wir haben mal für Sie ausgerechnet, wie viele günstige Ergebnisse es für welche Augensumme gibt. Wie Sie aus dem Histogramm entnehmen können, gibt es zum Beispiel fünf Ergebnisse bei denen sich die Augensumme 6 ergibt: 1+5, 2+4, 3+3, 4+2 und 5+1."
+  Figure: histogram.R
+  FigureType: new
+  
+
+- Class: cmd_question
+  Output: "Mit dieser Vorgabe ist es jetzt recht einfach, die Wahrscheinlichkeit der Augensumme 6 zu berechnen. Wie hoch ist diese Wahrscheinlichkeit?"
+  CorrectAnswer: 5/36
+  AnswerTests: omnitest(correctVal=5/36)
+  Hint: "Nun wir hatten gerade festgestellt, dass es fünf günstige Ergebnisse gibt. Es gibt immer noch 36 mögliche Ergebnisse."
+
+- Class: figure
+  Output: "Sie sollten jetzt ein Balkendiagramm sehen können, in dem die Wahrscheinlichkeiten aller möglichen Augensummen abgetragen sind."
+  Figure: barplot.R
+  FigureType: new
+
+- Class: cmd_question
+  Output: "Ohne nachzurechnen: Wie groß ist die Summe aller dieser Wahrscheinlichkeiten?"
+  CorrectAnswer: 1
+  AnswerTests: omnitest(correctVal=1)
+  Hint: "Die Summe der Wahrscheinlichkeiten aller Ereignisse ist immer 1."
+
+- Class: text
+  Output: "Damit haben wir bereits eine einfache Zufallsvariable erzeugt. Der neue Wahrscheinlichkeitsraum 'Augensumme' entsteht aus dem Ur-Wahrscheinlichkeitsraum durch eine messbare Abbildung. Die Abbildung heißt messbar, weil jedem Ergebnis im ursprünglichen Wahrscheinlichkeitsraum ein Ereignis im neuen Wahrscheinlichkeitsraum zugeordnet ist. Das klingt etwas kompliziert, ist aber gar nicht so schwer zu verstehen, wie wir an dem Beispiel gesehen haben."
+  
+- Class: text
+  Output: "Solche Zufallsvariablen werden meist mit einem Großbuchstaben bezeichnet, oft einfach 'X' oder 'Y'."
+
+- Class: mult_question
+  Output: 'Wofür steht dann wohl der Ausdruck P(X=5)?' 
+  AnswerChoices: Die Wahrscheinlichkeit, dass die Zufallsvariable X den Wert 5 annimmt;Die Wahrscheinlichkeit fünf x in Folge zu erhalten;Die Wahrscheinlichkeit, dass die Zufallsvariable P den Wert 5 annimmt;Die Wahrscheinlichkeit der Zahl 5
+  CorrectAnswer: Die Wahrscheinlichkeit, dass die Zufallsvariable X den Wert 5 annimmt
+  AnswerTests: omnitest(correctVal="Die Wahrscheinlichkeit, dass die Zufallsvariable X den Wert 5 annimmt")
+  Hint: "'X' steht für eine Zufallsvariable. 'P' steht für Wahrscheinlichkeit. Die Zufallsvariable soll den Wert 5 annehmen." 
+
+- Class: mult_question
+  Output: 'Jetzt wissen Sie sicher auch, wofür der Ausdruck P(X<2) steht?' 
+  AnswerChoices: Die Wahrscheinlichkeit, dass die Zufallsvariable X einen Wert kleiner 2 annimmt;Die Wahrscheinlichkeit, dass die Zufallsvariable X einen Wert größer 2 annimmt;Die Wahrscheinlichkeit, dass X größer 2 ist
+  CorrectAnswer: Die Wahrscheinlichkeit, dass die Zufallsvariable X einen Wert kleiner 2 annimmt
+  AnswerTests: omnitest(correctVal="Die Wahrscheinlichkeit, dass die Zufallsvariable X einen Wert kleiner 2 annimmt")
+  Hint: "'X' steht für eine Zufallsvariable. 'P' steht für Wahrscheinlichkeit. Die Zufallsvariable soll einen Wert kleiner 2 annehmen." 
+
+- Class: text
+  Output: "Tatsächlich werden wir Ausdrücke wie diese in der Statistik immer wieder brauchen. Bei der Interpretation von empirischen Ergebnissen ist es regelmäßig von Interesse, wie wahrscheinlich ein bestimmtes Ereignis einer Zufallsvariablen war (z. B. Y=9). Noch häufiger interessiert uns, wie wahrscheinlich es war, dieses oder ein noch extremeres Ereignis (z. B. X>1.96) zu erhalten."
+  
+# stetige Zufallsvariablen
+- Class: text
+  Output: "Wir gehen noch einen Schritt weiter: In unserem Beispiel kann die Zufallsvariable nur einige wenige Werte annehmen. Die Augensumme kann nur ganzzahlig sein. Aber was ist mit der Zufallsvariable Tageshöchsttemperatur? Wenn wir nur genau genug messen, kann diese Zufallsvariable (fast) beliebige Werte annehmen."
+
+- Class: mult_question
+  Output: 'Ein weiteres Beispiel ist der exakte Winkel bei dem ein Glücksrad zum Stehen kommt. Welche Werte kann der Winkel (gemessen in Grad) annehmen?' 
+  AnswerChoices: "]0, 360];{90, 180};0 Grad Celsius"
+  CorrectAnswer: "]0, 360]"
+  AnswerTests: omnitest(correctVal=']0, 360]')
+  Hint: "Das Intervall zwischen 0 und 360 Grad."   
+
+- Class: mult_question
+  Output: 'Um welche Art von Zufallsvariable handelt es sich also beim Winkel der Drehung eines Glücksrades?' 
+  AnswerChoices: "diskrete Zufallsvariable;stetige Zufallsvariable;diskreditierte Zufallsvariable;steile Zufallsvariable;statische Zufallsvariable"
+  CorrectAnswer: "stetige Zufallsvariable"
+  AnswerTests: omnitest(correctVal="stetige Zufallsvariable")
+  Hint: "Es gibt nur stetige und diskrete Zufallsvariablen. Die anderen Bezeichnungen sind frei erfunden."   
+  
+- Class: mult_question
+  Output: 'Um welche Art von Zufallsvariable handelt es sich also bei der Anzahl von Arbeitsunfällen, die sich in einem Betrieb innerhalb eines Monats ereignen?' 
+  AnswerChoices: "diskrete Zufallsvariable;stetige Zufallsvariable;diskreditierte Zufallsvariable;steile Zufallsvariable;statische Zufallsvariable"
+  CorrectAnswer: "diskrete Zufallsvariable"
+  AnswerTests: omnitest(correctVal="diskrete Zufallsvariable")
+  Hint: "Es gibt nur stetige und diskrete Zufallsvariablen. Die anderen Bezeichnungen sind frei erfunden."   
+
+- Class: text
+  Output: "Zurück zum Glücksrad: Es ist unmöglich einem Winkel eine konkrete Wahrscheinlichkeit zuzuordnen. Das wird schnell klar, wenn wir versuchen diese auszurechnen."
+  
+- Class: cmd_question
+  Output: "Wir hatten gesehen, dass der Winkel zwischen 0 und 360 Grad liegen kann. Wir könnten also das Glücksrad in 360 Kuchenstücke aufteilen. Wie groß ist die Wahrscheinlichkeit, dass das Glücksrad im ersten Segment (also zwischen 0 und 1 Grad) zum Stehen kommt? (Geben Sie das Ergebnis als Bruch ein)"
+  CorrectAnswer: 1/360
+  AnswerTests: omnitest(correctVal=1/360)
+  Hint: "Gehen Sie nach der altbekannten Formel vor: Anzahl der günstigen Ergebnisse geteilt durch die Anzahl der möglichen Ergebnisse. Es gibt ein günstiges Ergebnis (das erste Segment) und 360 mögliche Ergebnisse. Tippen Sie: 1/360"
+
+- Class: cmd_question
+  Output: "Wie groß ist die Wahrscheinlichkeit, dass das Glücksrad im 91. Segment (also zwischen 90 und 91 Grad) zum Stehen kommt? (Geben Sie das Ergebnis als Bruch ein)"
+  CorrectAnswer: 1/360
+  AnswerTests: omnitest(correctVal=1/360)
+  Hint: "Genauso wie bei der vorherigen Frage: Anzahl der günstigen Ergebnisse geteilt durch die Anzahl der möglichen Ergebnisse. Es gibt ein günstiges Ergebnis (das 91. Segment) und 360 mögliche Ergebnisse. Tippen Sie: 1/360"
+
+- Class: mult_question
+  Output: 'Wenn wir den Winkel aber noch genauer messen, ergeben sich nicht nur volle Gradzahlen, sondern z.B. auch 90,5. Wenn wir die Breite der ohnehin schon sehr schmalen Kuchenstücke halbieren, was passiert mit der Wahrscheinlichkeit für jedes Segment?' 
+  AnswerChoices: "sie halbiert sich ebenfalls;sie verdoppelt sich;sie bleibt gleich"
+  CorrectAnswer: "sie halbiert sich ebenfalls"
+  AnswerTests: omnitest(correctVal="sie halbiert sich ebenfalls")
+  Hint: "Wenn es doppelt so viele Segmente gibt, halbiert sich die Wahrscheinlichkeit für jedes Segment."   
+
+- Class: text
+  Output: "So wird schnell klar, dass es keinen Sinn ergibt, einer Gradzahl eine einzelne Wahrscheinlichkeit zuzuordnen. Stattdessen spricht man nur noch von Wahrscheinlichkeitsdichten."
+  
+- Class: text
+  Output: "Statt der Wahrscheinlichkeitsdichte an einer bestimmten Stelle der Verteilung interessiert uns meist ein Intervall, z. B. wie wahrscheinlich war es, höchstens drei Treffer bei 10 Versuchen zu landen. Bei diskreten Verteilungen entspricht das der Summe der Wahrscheinlichkeiten der Ereignisse in diesem Intervall. Bei stetigen Verteilungen entspricht das der Fläche unter der Verteilungskurve."
+
+- Class: text
+  Output: "Sie werden in diesem Kurs mehrere diskrete und stetige Wahrscheinlichkeitsverteilungen kennenlernen und dann jeweils die Wahrscheinlichkeit bestimmter Intervalle bestimmen."
+  
+- Class: text
+  Output: "Fassen wir zusammen: Eine Zufallsvariable ist eine Zuordnungsvorschrift, die jedem möglichen Ergebnis eines Zufallsexperiments eine Größe zuordnet. Zufallsvariablen können diskret oder stetig sein."
+  
+# Zusammenfassung des Kapitels:
+- Class: text
+  Output: "In diesem Kapitel haben Sie Zufallsvariablen kennen gelernt. In den folgenden Kapiteln, werden wir aus diesen verschiedene Wahrscheinlichkeitsverteilungen ableiten, die sich bei der Analyse von Stichproben als nützlich erwiesen haben."
+

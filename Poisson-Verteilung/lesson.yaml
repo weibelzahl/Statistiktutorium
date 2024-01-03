@@ -1,0 +1,156 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: Poisson-Verteilung
+  Author: PFH
+  Type: Standard
+  Organization: PFH Private Hochschule Göttingen
+  Version: 0.1
+
+# Begrüßung  
+- Class: text
+  Output: "In diesem Kapitel lernen Sie die Poisson-Verteilung kennen."
+
+- Class: text
+  Output: "Wir beginnen wieder mit einer Aufgabe. In einem Unternehmen sind im vergangenen Jahr 26 Arbeitsunfälle passiert, also 0,5 Unfälle pro Woche. Ein Arbeitspsychologe konzipiert ein Training zur Arbeitssicherheit und alle Mitarbeiter*innen werden geschult. In den folgenden sechs Wochen passiert kein einziger Unfall. Hat das mit dem Training zu tun oder hätte es auch ohne Training so wenige Unfälle geben können?"
+  
+- Class: text
+  Output: "Auch bei dieser Fragestellung könnte man zunächst an die Binomialverteilung denken."
+  
+- Class: mult_question
+  Output: 'Erinnern Sie sich noch daran, was die Binomialverteilung beschreibt?' 
+  AnswerChoices: 'die Anzahl der Erfolge in einer Serie von gleichartigen unabhängigen Versuchen mit jeweils zwei möglichen Ergebnissen;die Anzahl der Erfolge beim Ziehen aus einer kleinen Stichprobe;die Anzahl der Erfolge in einer Serie von abhängigen Versuchen bei stetiger bidirektionaler Wahrscheinlichkeitsverteilung'
+  CorrectAnswer: 'die Anzahl der Erfolge in einer Serie von gleichartigen unabhängigen Versuchen mit jeweils zwei möglichen Ergebnissen'
+  AnswerTests: omnitest(correctVal='die Anzahl der Erfolge in einer Serie von gleichartigen unabhängigen Versuchen mit jeweils zwei möglichen Ergebnissen')
+  Hint: "Denken Sie an das Beispiel einer Serie von Elfmeterschüssen bei gleichbleibender Trefferwahrscheinlichkeit." 
+  
+- Class: mult_question
+  Output: 'Wie lautet der Befehl für die Dichtefunktion der Binomialverteilung?' 
+  AnswerChoices: 'dbinom(x, size, prob);pbinom(q, size, prob);qbinom(p, size, prob)'
+  CorrectAnswer: 'dbinom(x, size, prob)'
+  AnswerTests: omnitest(correctVal='dbinom(x, size, prob)')
+  Hint: "Bei den Wahrscheinlichkeitsverteilungen steht das d am Anfang des Befehl immer für die Dichte (density). pbinom() ist die Verteilungsfunktion. qbinom() ist die Quantilfunktion." 
+
+- Class: text
+  Output: "Wir könnten nun ableiten: die Trefferwahrscheinlichkeit, also die Wahrscheinlichkeit eines Arbeitsunfalls beträgt prob=0.5. Die sechs Wochen entsprechen size=6 Versuchen und es sind x=0 Arbeitsunfälle aufgetreten."
+
+- Class: cmd_question
+  Output: "Berechnen Sie mit Hilfe der Binomialverteilung die Wahrscheinlichkeit, bei sechs Versuchen und einer Trefferwahrscheinlichkeit von prob=0.5 keinen einzigen Erfolg zu erzielen."
+  CorrectAnswer: dbinom(0, 6, 0.5)
+  AnswerTests: omnitest(correctVal=dbinom(0, 6, 0.5))
+  Hint: "Tippen Sie dbinom(x=0, size=6, prob=0.5)."
+
+- Class: text
+  Output: "Die Wahrscheinlichkeit beträgt etwa 1,5%. Doch halt! Der Einfachheit halber haben wir die Anzahl der Unfälle pro Woche berechnet. Aber wir hätten auch pro Tag rechnen können."
+  
+- Class: cmd_question
+  Output: "Bei 365 Arbeitstagen beträgt die Trefferwahrscheinlichkeit prob=26/365. Sechs Wochen entspricht 6*7=42 Versuchen. Berechnen Sie mit Hilfe der Binomialverteilung die Wahrscheinlichkeit, bei 42 Versuchen und einer Trefferwahrscheinlichkeit von prob=26/365 keinen Erfolg zu erzielen."
+  CorrectAnswer: dbinom(0, 42, 26/365)
+  AnswerTests: omnitest(correctVal=dbinom(0, 42, 26/365))
+  Hint: "Tippen Sie dbinom(x=0, size=42, prob=26/365)."
+
+- Class: text
+  Output: "Oh, jetzt beträgt die Wahrscheinlichkeit plötzlich knapp 4,5%. Wie kann das sein?"
+  
+- Class: mult_question
+  Output: 'Tatsächlich darf man die Binomialverteilung hier nicht anwenden, weil eine Voraussetzung nicht erfüllt ist. Welche ist das?' 
+  AnswerChoices: 'es handelt sich nicht um Trefferwahrscheinlichkeiten, sondern Trefferraten;es handelt sich nicht um unabhängige Ereignisse;die handelt sich nicht um Ziehen mit Zurücklegen, so dass sich die Trefferwahrscheinlichkeit von Tag zu Tag verändert'
+  CorrectAnswer: 'es handelt sich nicht um Trefferwahrscheinlichkeiten, sondern Trefferraten'
+  AnswerTests: omnitest(correctVal='es handelt sich nicht um Trefferwahrscheinlichkeiten, sondern Trefferraten')
+  Hint: "An jedem einzelnen Tag könnte kein, ein oder sogar mehrere Unfälle passieren." 
+
+- Class: text
+  Output: "Es ist falsch anzunehmen, dass an einem Tag oder in einer Woche ein Unfall passieren kann oder nicht. Es könnten auch mehrere Unfälle in einer Woche passieren."
+
+- Class: text
+  Output: "Besonders offensichtlich wird diese Problematik, wenn wir pro Monat rechnen. Im letzten Jahr sind 26/12 Unfälle pro Monat passiert, also etwas mehr als zwei Unfälle. Dies kann aber keine Trefferwahrscheinlichkeit darstellen."
+
+- Class: mult_question
+  Output: 'Wir könnten nun das Zeitintervall immer weiter verkürzen z. B. statt Tagen mit Stunden, Minuten oder gar Sekunden rechnen. So wird die Annahme, dass es sich um eine dichotomes Ergebnis (Erfolg/Misserfolg) handelt immer plausibler, weil in einem sehr kurzen Zeitraum nur ein Unfall passieren wird. Was passiert aber, wenn wir das Zeitintervall verkürzen?' 
+  AnswerChoices: 'die Anzahl der Versuche erhöht sich, die Trefferwahrscheinlichkeit wird immer kleiner;die Anzahl der Versuche wird geringer, die Trefferwahrscheinlichkeit wird immer kleiner;die Anzahl der Versuche wird geringer, die Trefferwahrscheinlichkeit wird immer größer;die Anzahl der Versuche erhöht sich, die Trefferwahrscheinlichkeit wird immer größer;'
+  CorrectAnswer: 'die Anzahl der Versuche erhöht sich, die Trefferwahrscheinlichkeit wird immer kleiner'
+  AnswerTests: omnitest(correctVal='die Anzahl der Versuche erhöht sich, die Trefferwahrscheinlichkeit wird immer kleiner')
+  Hint: "Statt mit 7 Tagen könnten wir mit n=7*24=168 Stunden rechnen. Die Trefferwahrscheinlichkeit beträgt prob=26/(365*24)=0,003 Unfälle pro Stunde." 
+
+- Class: text
+  Output: "Je kürzer das Zeitintervall, desto größer die Anzahl der Versuche n und desto kleiner die Wahrscheinlichkeit prob. Die mittlere Rate n*p=26 bleibt dagegen immer gleich."
+
+# Formel  
+- Class: figure
+  Output: "In Ihrer Plotanzeige sollte jetzt die Formel für die Poisson-Verteilung zu sehen sein. Die Verteilung hängt nur von einem einzigen Parameter ab: dem Erwartungswert lambda."
+  Figure: formula.R
+  FigureType: new 
+  
+- Class: text
+  Output: "Das 'e' steht auch hier wieder für die Eulersche Zahl, also die Basis des natürlichen Logarithmus; e=2,718..."
+
+- Class: text
+  Output: "Das 'x' steht für die Anzahl der Treffer. Das Ausrufezeichen steht natürlich für Fakultät: z. B. 5! = 5 * 4 * 3 * 2 * 1 = 120."
+
+- Class: text
+  Output: "Mit Hilfe dieser Formel könnten Sie nun ausrechnen, wie groß die Wahrscheinlichkeit ist, in sechs Wochen y=0 Unfälle zu registrieren, wenn die durchschnittlich zu erwartende Häufigkeit in diesem Zeitraum lambda=6*0.5=3 Unfälle ist."
+
+- Class: mult_question
+  Output: 'Natürlich muss man in R nicht jedes Mal diese Formel eingeben, sondern es gibt einen Befehl. Was vermuten Sie, wie lautet dieser Befehl wohl?' 
+  AnswerChoices: 'dpois();ppois();qpois();rpois()'
+  CorrectAnswer: 'dpois()'
+  AnswerTests: omnitest(correctVal='dpois()')
+  Hint: "Gesucht ist die Dichtefunktion der Poisson-Verteilung und diese ist auch hier mit einem 'd' am Anfang des Befehls gekennzeichnet." 
+
+- Class: cmd_question
+  Output: "dpois(x, lambda) berechnet die Wahrscheinlichkeit, dass in einem Zeitraum oder einem Gebiet x Ereignisse auftreten, wenn lambda Ereignisse erwartet wurden. Berechnen Sie die Wahrscheinlichkeit, dass in den sechs Wochen kein Unfall passiert, obwohl durchschnittlich 3 Arbeitsunfälle in diesem Zeitraum zu erwarten wären."
+  CorrectAnswer: dpois(0, 3)
+  AnswerTests: omnitest(correctVal=dpois(0, 3))
+  Hint: "Tippen Sie dpois(x=0, lambda=3)."
+
+- Class: text
+  Output: "Die Wahrscheinlichkeit beträgt weniger als 5%. Es scheint also nicht sinnvoll anzunehmen, dass das Training keinerlei Auswirkungen hatte, sonst wäre vermutlich mindesten ein Unfall passiert."
+
+- Class: cmd_question
+  Output: "Was wäre die Wahrscheinlichkeit gewesen, dass in dem Zeitraum von sechs Wochen statt der erwarteten lambda=3 Unfälle höchstens ein Unfall passiert? Dafür benötigen wir die Verteilungsfunktion ppois(q, lambda). Diese berechnet die Summe der Wahrscheinlichkeiten für 0<=x<=q, also P(X<=q). Berechnen Sie die Wahrscheinlichkeit, dass höchsten ein Unfall passiert wäre."
+  CorrectAnswer: ppois(1, 3)
+  AnswerTests: omnitest(correctVal=ppois(1, 3))
+  Hint: "Höchstens ein Unfall bedeutet q=1. Innerhalb von sechs Wochen werden nach wie vor lambda=6*0.5=3 Unfälle erwartet. Tippen Sie ppois(q=1, lambda=3)."
+
+- Class: text
+  Output: "Wäre also ein Unfall passiert, hätten wir keine Schlussfolgerung ziehen können. Auch wenn das Training völlig wirkungslos wäre, wäre eine Anzahl von einem Unfall in sechs Wochen durchaus im Bereich des möglichen gewesen."
+  
+# Distribution  
+- Class: figure
+  Output: "Wie sind die Wahrscheinlichkeiten für andere Unfallzahlen? In Ihrer Plotanzeige sollte jetzt die Poisson-Verteilung für lambda=3 zu sehen sein."
+  Figure: poisson.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: 'Lesen Sie aus dem Diagramm ab, wie groß die Wahrscheinlichkeit ist, dass statt der erwarteten drei Unfälle genau sechs Unfälle passieren.' 
+  AnswerChoices: 'etwa 1%;etwa 5%;etwa 15%'
+  CorrectAnswer: 'etwa 5%'
+  AnswerTests: omnitest(correctVal='etwa 5%')
+  Hint: "Lesen Sie im Diagramm die Wahrscheinlichkeit des Balkens für sechs Treffer ab. Mit der Schaltfläche 'Zoom' können Sie das Diagramm vergrößern." 
+
+- Class: text
+  Output: "Das hier verwendete Beispiel von Unfällen ist durchaus typisch für die Anwendung der Poisson-Verteilung. Die Ereignisse müssen unabhängig von einander sein. Das gilt auch für die Anzahl von Tippfehlern auf einer Buchseite oder die Anzahl an Patienten die an einer seltenen Krankheit erkranken. Auch hier kann man mit der Poisson-Verteilung Schlussfolgerungen ziehen."
+  
+- Class: cmd_question
+  Output: "Wir üben das gleich mal. Eine Professorin bewertet einen Kommafehler pro Seite in einer Hausarbeit als gerade noch akzeptabel. Bei der Korrektur einer Hausarbeit findet sie 30 Fehler auf 20 Seiten. Angenommen, der Student hätte das Wissen, Können und die Sorgfältigkeit durchschnittlich höchstens einen Fehler pro Seite zu machen. Wie groß ist dann die Wahrscheinlichkeit, dass er auf 20 Seiten genau 30 Fehler macht?"
+  CorrectAnswer: dpois(30, 20)
+  AnswerTests: omnitest(correctVal=dpois(x=30, lambda=20))
+  Hint: "Die Professorin hat x=30 Fehler gefunden. Zu erwarten gewesen wären lambda=20*1=20 Fehler in der Hausarbeit von 20 Seiten. Tippen Sie dpois(x=30, lambda=20)."
+
+- Class: cmd_question
+  Output: "Mit 0,8% ist diese Wahrscheinlichkeit sehr klein. Von Interesse ist aber eigentlich die Wahrscheinlichkeit von 30 oder mehr Fehlern. Dafür berechnen wir zunächst die Wahrscheinlichkeit von weniger (!) als 30 Fehlern in der Hausarbeit."
+  CorrectAnswer: ppois(29, 20)
+  AnswerTests: omnitest(correctVal=ppois(q=29, lambda=20))
+  Hint: "Weniger als 30 Fehler bedeutet höchstens 29 Fehler. Damit können wir die Verteilungsfunktion anwenden. Tippen Sie ppois(q=29, lambda=20)."
+
+- Class: cmd_question
+  Output: "Damit ist es nun leicht die Wahrscheinlichkeit von 30 oder mehr Fehlern zu berechnen. Besonders elegant geht das mit dem zusätzlichen Argument lower.tail=FALSE. Statt P(X<=q) wird dann die Gegenwahrscheinlichkeit 1-P(X<0q)=P(X>q) ausgegeben."
+  CorrectAnswer: ppois(29, 20, lower.tail=FALSE)
+  AnswerTests: omnitest(correctVal=ppois(q=29, lambda=20, lower.tail=FALSE))
+  Hint: "Verwenden Sie den gleichen Befehl wie in der vorherigen Aufgabe nur mit dem zusätzlichen Argument 'lower.tail=FALSE'. Tippen Sie ppois(q=29, lambda=20, lower.tail=FALSE)."
+  
+- Class: text
+  Output: "Dass der Student die geforderte Kompetenz hat, aber dennoch 30 oder mehr Fehler macht, ist also sehr klein."
+  
+# Zusammenfassung des Kapitels:
+- Class: text
+  Output: "In diesem Kapitel haben Sie die Poisson-Verteilung kennengelernt. Diese Verteilung ist hilfreich, wenn die Auftretenswahrscheinlichkeit eines Ereignisses sehr gering ist und die Anzahl der Versuche sehr groß oder unbekannt ist."

@@ -1,0 +1,311 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: Binomialverteilung
+  Author: PFH
+  Type: Standard
+  Organization: PFH Private Hochschule Göttingen
+  Version: 0.1
+  
+  
+# Begrüßung  
+- Class: text
+  Output: "In diesem Kapitel lernen Sie die Binomialverteilung kennen."
+
+- Class: text
+  Output: "Beim Finale eines Fußballturniers kommt es zum Elfmeterschießen. Im Tor steht Manuel Neuer. Die Spieler der anderen Mannschaft schießen insgesamt 10 Mal aufs Tor."
+
+  
+- Class: mult_question
+  Output: 'Wir nehmen an, dass die Trefferwahrscheinlichkeit bei jedem Schuss 60% beträgt. Wie groß ist die Wahrscheinlichkeit P(Treffer)?' 
+  AnswerChoices: 0.6;0.4;60;40
+  CorrectAnswer: 0.6
+  AnswerTests: omnitest(correctVal='0.6')
+  Hint: "Wie vorgeben ist die Wahrscheinlichkeit einen Treffer zu erzielen 60%, also 0.6." 
+
+- Class: text
+  Output: "Man kann sich die 10 Schüsse in einem großen Wahrscheinlichkeitsbaum vorstellen. Beim ersten Schuss kommt es zu einem Treffer oder nicht. Wenn ein Treffer erzielt wurde, kann es beim zweiten Schuss wiederum zu einem Treffer kommen oder nicht, usw."
+  
+  
+- Class: mult_question
+  Output: 'Wie groß ist die Wahrscheinlichkeit, dass die Spieler bei den 10 Schüssen auch 10 Treffer erzielen?' 
+  AnswerChoices: 0.6^10;0.6;0.4^10;0.4;10^0.6;10^0.4
+  CorrectAnswer: 0.6^10
+  AnswerTests: omnitest(correctVal='0.6^10')
+  Hint: "Die Ereignisse sind unabhängig von einander. Daher kann man die Wahrscheinlichkeiten für jeden Versuch miteinander multiplizieren. P(10 Treffer) = 0.6 * 0.6 * 0.6 *... * 0.6 = 0.6^10" 
+
+- Class: mult_question
+  Output: 'Wie groß ist die Wahrscheinlichkeit, dass die Spieler bei den 10 Schüssen keinen einzigen Treffer erzielen?' 
+  AnswerChoices: 0.6^10;0.6;0.4^10;0.4;10^0.6;10^0.4
+  CorrectAnswer: 0.4^10
+  AnswerTests: omnitest(correctVal='0.4^10')
+  Hint: "Die Wahrscheinlichkeit bei einem Schuss keinen Treffer zu erzielen ist die Gegenwahrscheinlichkeit zur Trefferwahrscheinlichkeit, also P(kein Treffer) = 1 - 0.6 = 0.4. Die Ereignisse sind unabhängig von einander. Daher kann man die Wahrscheinlichkeiten für jeden Versuch miteinander multiplizieren. P(0 Treffer) = 0.4 * 0.4 * 0.4 *... * 0.4 = 0.4^10" 
+
+- Class: mult_question
+  Output: 'Wie groß ist die Wahrscheinlichkeit, dass beim ersten Schuss ein Treffer fällt und bei allen nachfolgenden Schüssen kein Treffer fällt?' 
+  AnswerChoices: 0.6*0.4^9;0.6^9;0.4^9
+  CorrectAnswer: 0.6*0.4^9
+  AnswerTests: omnitest(correctVal='0.6*0.4^9')
+  Hint: "Die Wahrscheinlichkeit des ersten Treffers ist 0.6. Bei allen nachfolgenden Schüssen ist die Wahrscheinlichkeit jeweils 0.4. So ergibt sich insgesamt: P(X) = 0.6 * 0.4 * 0.4 *... * 0.4 = 0.6 * 0.4^9" 
+
+- Class: cmd_question
+  Output: "Wie viele Varianten gibt es, dass bei den 10 Schüssen genau ein Treffer fällt."
+  CorrectAnswer: 10
+  AnswerTests: omnitest(correctVal=10)
+  Hint: "Der Treffer könnte beim ersten Schuss, beim zweiten Schuss, beim dritten Schuss, ... . Es gibt also genau 10 Kombinationen. Tippen Sie einfach '10' ein."
+
+- Class: mult_question
+  Output: 'Wie groß ist die Wahrscheinlichkeit, dass nur beim zweiten Schuss ein Treffer fällt?' 
+  AnswerChoices: 0.6*0.4^9;0.6^9;0.4^9
+  CorrectAnswer: 0.6*0.4^9
+  AnswerTests: omnitest(correctVal='0.6*0.4^9')
+  Hint: "Genauso wie die Wahrscheinlichkeit bei einem Treffer beim ersten Schuss: Die Wahrscheinlichkeit des Treffers ist 0.6. Bei allen anderen Schüssen ist die Wahrscheinlichkeit jeweils 0.4. So ergibt sich insgesamt: P(X) = 0.4 * 0.6 * 0.4 *... * 0.4 = 0.6 * 0.4^9" 
+  
+- Class: mult_question
+  Output: 'Wir haben also bereits ermittelt, wie groß die Wahrscheinlichkeit für genau 10 und genau 0 Treffer ist. Wie groß ist aber die Wahrscheinlichkeit, dass bei den 10 Schüssen genau ein Treffer fällt?' 
+  AnswerChoices: 0.6*0.4^9*10;0.6^10*10;0.4^9*10
+  CorrectAnswer: 0.6*0.4^9*10
+  AnswerTests: omnitest(correctVal='0.6*0.4^9*10')
+  Hint: "Die Antwort lässt sich aus den beiden vorherigen Antworten ableiten. Es gibt 10 Kombinationen wann der Treffer bei 10 Schüssen auftreten kann. Jede dieser Kombinationen hat die gleiche Wahrscheinlichkeit: P(X) = 0.6 * 0.4^9. " 
+
+- Class: text
+  Output: "Die Wahrscheinlichkeiten für 0, 1 und 10 Treffer waren relativ einfach zu ermitteln. Für die Wahrscheinlichkeit von genau zwei Treffer bei 10 Schüssen gehen wir nach genau dem gleichen Prinzip vor, es wird nur etwas aufwändiger."
+
+- Class: text
+  Output: "Als erstes ermitteln wir, wie viele Kombinationen auftreten können, so dass sich die gesuchte Anzahl an Treffern ergibt. Dann überlegen wir, wie groß die Wahrscheinlichkeit jeder dieser Kombinationen ist."
+  
+- Class: mult_question
+  Output: 'Also, wie viele Kombinationen gibt es, zwei Treffer auf 10 Schüsse zu verteilen?' 
+  AnswerChoices: "2 aus 10;10 aus 2;2;10"
+  CorrectAnswer: "2 aus 10"
+  AnswerTests: omnitest(correctVal="2 aus 10")
+  Hint: "Die entsprechende Formel aus der Kombinatorik lautet 2 aus 10 (oder manchmal auch 10 über 2). Wir werden gleich sehen, wie sich dies berechnet." 
+
+- Class: text
+  Output: "Allgemeiner lässt sich dies so ausdrücken: Um k Treffer auf n Schüsse zu verteilen (ohne Berücksichtigung der Reihenfolge, da wir die Treffer ja nicht unterscheiden können), gibt es 'k aus n' Möglichkeiten. Die Berechnungsformel lautet: 'k aus n' = n! / (k! * (n-k)!). Dabei steht das Ausrufezeichen für Fakultät, also z. B. 4! = 4 * 3 * 2 * 1"
+
+- Class: cmd_question
+  Output: "In R gibt es einen eigenen Befehl für 'k aus n'. Er lautet choose(n, k). Berechnen Sie die Anzahl der Kombinationen, zwei Treffer auf 10 Schüsse zu verteilen, also '2 aus 10'."
+  CorrectAnswer: choose(10, 2)
+  AnswerTests: omnitest(correctVal=choose(10, 2))
+  Hint: "Es gilt n=10 und k=2. Tippen Sie den Befehl choose(10, 2) ein."
+
+- Class: mult_question
+  Output: 'Wir wissen also, dass es 45 Pfade in unserem Wahrscheinlichkeitsbaum gibt, die zu genau zwei Treffern führen. Wie groß ist die Wahrscheinlichkeit jedes dieser Pfade, also z. B. zwei Treffer gefolgt von 8 Fehlschüssen?' 
+  AnswerChoices: 0.6^2*0.4^8;0.6^8*0.4^2;0.4*0.6;1;0
+  CorrectAnswer: 0.6^2*0.4^8
+  AnswerTests: omnitest(correctVal='0.6^2*0.4^8')
+  Hint: "Die Wahrscheinlichkeit der beiden Treffer ist 0.6^2. Bei allen anderen Schüssen ist die Wahrscheinlichkeit jeweils 0.4. So ergibt sich insgesamt: P(X) = 0.6 * 0.6 * 0.4 *... * 0.4 = 0.6^2 * 0.4^8" 
+
+- Class: mult_question
+  Output: 'Nehmen wir diese beiden Ergebnisse zusammen. Wie groß ist die Wahrscheinlichkeit, bei 10 Schüssen genau zwei Treffer zu landen?' 
+  AnswerChoices: 0.6^2*0.4^8*45;0.6^8*0.4^2*45;0.4*0.6*45;1/45;0
+  CorrectAnswer: 0.6^2*0.4^8*45
+  AnswerTests: omnitest(correctVal='0.6^2*0.4^8*45')
+  Hint: "Die Wahrscheinlichkeit jedes Pfades ist 0.6^2*0.4^8. Es gibt 45 Pfade, die jeweils diese Wahrscheinlichkeit besitzen." 
+
+- Class: text
+  Output: "Für genau drei Treffer können wir genau die gleiche Formel verwenden. Und genauso für vier, fünf, sechs Treffer usw. Wir haben das mal ausgerechnet."
+
+- Class: figure
+  Output: "Sie sollten jetzt ein Balkendiagramm sehen können, in dem die Wahrscheinlichkeiten aller möglichen Trefferanzahlen abgetragen sind."
+  Figure: barplot.R
+  FigureType: new
+  
+- Class: text
+  Output: "Es handelt sich um eine sogenannte Binomialverteilung für n=10 Versuche und eine Trefferwahrscheinlichkeit p=0.6. Die Binomialverteilung zeigt also die Wahrscheinlichkeit bei n Versuchen und einer Erfolgswahrscheinlichkeit von p eine bestimmt Anzahl von Treffern zu erzielen."
+  
+- Class: cmd_question
+  Output: "Von wie vielen Parametern hängt die Binomialverteilung ab?"
+  CorrectAnswer: 2
+  AnswerTests: omnitest(correctVal=2)
+  Hint: "Die Binomialverteilung hängt von der Anzahl der Versuche (n) und der Erfolgswahrscheinlichkeit (p) ab. Also zwei Parameter. Tippen Sie einfach '2'."
+  
+- Class: cmd_question
+  Output: "Welche Anzahl von Treffern hat in unserem Beispiel die höchste Wahrscheinlichkeit?"
+  CorrectAnswer: 6
+  AnswerTests: omnitest(correctVal=6)
+  Hint: "Sie können die Antwort im Diagramm ablesen. Am wahrscheinlichsten sind sechs Treffer."
+
+# Formel  
+- Class: figure
+  Output: "Die Berechnung für unser Beispiel mit den Torschüssen lässt sich auch als allgemeine Formel darstellen. In Ihrer Plotanzeige sollte jetzt die Formel für die Binomialverteilung zu sehen sein."
+  Figure: binomialverteilung.R
+  FigureType: new 
+  
+- Class: mult_question
+  Output: 'Wir gehen Schritt für Schritt vor, um diese Formel zu verstehen. Wofür steht der erste Ausdruck P(X=k)?' 
+  AnswerChoices: "Die Wahrscheinlichkeit, dass die Zufallsvariable X den Wert k annimmt.;Die Wahrscheinlichkeit, bei X Versuchen k Treffer zu erzielen.;Die Wahrscheinlichkeit, bei k Versuchen X Treffer zu erzielen."
+  CorrectAnswer: "Die Wahrscheinlichkeit, dass die Zufallsvariable X den Wert k annimmt."
+  AnswerTests: omnitest(correctVal='Die Wahrscheinlichkeit, dass die Zufallsvariable X den Wert k annimmt.')
+  Hint: "X steht für die Zufallsvariable, die hier binomial-verteilt sein soll. k steht für die Anzahl der Treffer." 
+
+- Class: mult_question
+  Output: 'Die beiden Parameter n und p haben wir bereits kennengelernt. Wofür steht n in der Formel?' 
+  AnswerChoices: "Anzahl der Versuche;Anzahl der Treffer;Erfolgswahrscheinlichkeit"
+  CorrectAnswer: "Anzahl der Versuche"
+  AnswerTests: omnitest(correctVal='Anzahl der Versuche')
+  Hint: "n steht für die Anzahl der Versuche (in unserem Beispiel also die Anzahl der Schüsse insgesamt)." 
+  
+- Class: mult_question
+  Output: 'Wofür steht p in der Formel?' 
+  AnswerChoices: "Anzahl der Versuche;Anzahl der Treffer;Erfolgswahrscheinlichkeit"
+  CorrectAnswer: "Anzahl der Versuche"
+  AnswerTests: omnitest(correctVal='Erfolgswahrscheinlichkeit')
+  Hint: "p steht für die Erfolgswahrscheinlichkeit bei einem jedem einzelnen Versuch. Merkhilfe: p wie probability." 
+
+- Class: text
+  Output: "Hier wurde der lateinische Buchstabe p für die Erfolgswahrscheinlichkeit verwendet. Manchmal findet sich aber auch der griechische Buchstabe pi (wie die Kreiszahl) in der Formel. Dies soll zeigen, dass die Erfolgswahrscheinlichkeit sich auf die Population bezieht. Die Erfolgswahrscheinlichkeit gilt bei allen möglichen Versuchen und verändert sich nicht."
+
+- Class: text
+  Output: "Dieses Prinzip für die Notation findet sich in der Statistik an vielen Stellen: griechische Buchstaben beziehen sich auf die Population, lateinische Buchstaben beziehen sich auf die Stichprobe. So wird der Mittelwert der Population meist mit dem griechischen mü bezeichnet, der Mittelwert einer Stichprobe dagegen mit x-quer (einem x mit einem Querbalken darüber)."
+  
+- Class: mult_question
+  Output: 'p steht also für die Erfolgswahrscheinlichkeit; k steht für die Anzahl der Treffer. Was bedeutet dann der Term p^k in der Formel?' 
+  AnswerChoices: "die Wahrscheinlichkeit von k Treffern;die Wahrscheinlichkeit von p Treffern;die Wahrscheinlichkeit von k Fehlversuchen"
+  CorrectAnswer: "die Wahrscheinlichkeit von k Treffern"
+  AnswerTests: omnitest(correctVal='die Wahrscheinlichkeit von k Treffern')
+  Hint: "p steht für die Erfolgswahrscheinlichkeit bei jedem einzelnen Versuch. Das die Versuche unabhängig voneinander sind, werden die Wahrscheinlichkeiten miteinander multipliziert. Für k Treffer also p^k." 
+  
+- Class: text
+  Output: "Der erste Term nach dem Gleichheitszeichen steht also einfach für die Wahrscheinlichkeit, k Treffer zu erzielen."
+
+- Class: mult_question
+  Output: 'Weiter in der Formel: als nächstes steht da 1-p. Wofür steht das?' 
+  AnswerChoices: "Die Wahrscheinlichkeit keinen Treffer zu erzielen;Die Wahrscheinlichkeit von p Treffern"
+  CorrectAnswer: "Die Wahrscheinlichkeit keinen Treffer zu erzielen"
+  AnswerTests: omnitest(correctVal='Die Wahrscheinlichkeit keinen Treffer zu erzielen')
+  Hint: "1-p ist die Gegenwahrscheinlichkeit der Erfolgswahrscheinlichkeit, also die Wahrscheinlichkeit bei einem Versuch keinen Treffer zu erzielen." 
+
+- Class: mult_question
+  Output: 'Der Term 1-p erhält nun die Potenz n-k. Wir hatten festgehalten, dass n für die Anzahl der Versuche steht und k für die Anzahl der Treffer. Was bedeutet dann n-k?' 
+  AnswerChoices: "Die Anzahl der Fehlversuche;Die Anzahl der Versuche;Die Anzahl der Treffer"
+  CorrectAnswer: "Die Anzahl der Fehlversuche"
+  AnswerTests: omnitest(correctVal='Die Anzahl der Fehlversuche')
+  Hint: "Bei n Versuchen und k Treffern bleiben n-k Fehlversuche." 
+
+- Class: mult_question
+  Output: 'Wofür steht dann also (1-p)^(n-k)?' 
+  AnswerChoices: "Die Wahrscheinlichkeit der Fehlversuche;Die Wahrscheinlichkeit der Treffer;Ich bin verwirrt."
+  CorrectAnswer: "Die Wahrscheinlichkeit der Fehlversuche"
+  AnswerTests: omnitest(correctVal='Die Wahrscheinlichkeit der Fehlversuche')
+  Hint: "1-p ist die Wahrscheinlichkeit eines Fehlversuchs. n-k steht für die Anzahl der Fehlversuche. Damit steht der gesamte Term für die Wahrscheinlichkeit der Fehlversuche insgesamt." 
+
+- Class: mult_question
+  Output: "Bleibt noch der letzte Teil der Formel. Nein, hier wurde nicht der Bruchstrich vergessen. 'n über k' oder 'k aus n' steht für ..." 
+  AnswerChoices: "die Anzahl der Kombinationen mit k Treffern bei n Versuchen;die Anzahl der Kombinationen mit n Treffern bei k Versuchen;den Anteil der Treffer an der Anzahl der Versuche"
+  CorrectAnswer: "die Anzahl der Kombinationen mit k Treffern bei n Versuchen"
+  AnswerTests: omnitest(correctVal='die Anzahl der Kombinationen mit k Treffern bei n Versuchen')
+  Hint: "Das hatten wir bereits gesehen: 'k aus n' berechnet die Anzahl der Kombinationen, also die Anzahl von Pfaden im Wahrscheinlichkeitsbaum." 
+  
+- Class: text
+  Output: "Insgesamt kann man die Formel also so lesen: Die Wahrscheinlichkeit, genau k Treffer bei n Versuchen zu erzielen setzt sich zusammen aus: (a) der Wahrscheinlichkeit k Treffer zu erzielen, (b) der Wahrscheinlichkeit n-k Fehlversuche zu erzielen und (c) der Anzahl von Kombinationen an welcher Stelle die Treffer aufgetreten sind."
+
+- Class: text
+  Output: "Mit Hilfe dieser Formel könnten wir also die Wahrscheinlichkeiten berechnen. Leider ist das aber bei einer so langen Formel etwas umständlich. Glücklicherweise ist die gesamte Formel in R zu einem Befehl zusammengefasst: dbinom(k, n, prob)."
+
+- Class: cmd_question
+  Output: "Die Parameter k, n und prob stehen natürlich für die Anzahl der Treffer, die Anzahl der Versuche und die Erfolgswahrscheinlichkeit. Berechnen Sie nun die Wahrscheinlichkeit, dass die Spieler bei 10 Schüssen und einer Trefferwahrscheinlichkeit von 60% genau vier Treffer erzielen."
+  CorrectAnswer: dbinom(4, 10, 0.6)
+  AnswerTests: omnitest(correctVal=dbinom(4, 10, 0.6))
+  Hint: "Der Befehl lautet: dbinom(4, 10, 0.6)"
+
+- Class: text
+  Output: "Das d am Anfang des Befehls steht für die Dichtefunktion (density function). In diesem Fall also die Wahrscheinlichkeit genau k Treffer zu erzielen. "
+
+- Class: mult_question
+  Output: 'Wie könnten wir vorgehen, um die Wahrscheinlichkeit von höchstens vier Treffern zu berechnen?' 
+  AnswerChoices: "Summe der Wahrscheinlichkeiten von k=0 bis k=4;Die Gegenwahrscheinlichkeit von k=4;Die vierfache Wahrscheinlichkeit von k=1"
+  CorrectAnswer: "Summe der Wahrscheinlichkeiten von k=0 bis k=4"
+  AnswerTests: omnitest(correctVal='Summe der Wahrscheinlichkeiten von k=0 bis k=4')
+  Hint: "Höchstens 4 Treffer bedeutet kein Treffer oder ein Treffer oder zwei Treffer oder drei Treffer oder vier Treffer, also die Summe dieser Einzelwahrscheinlichkeiten." 
+
+- Class: text
+  Output: "Fragestellungen wie 'höchstens k Treffer' oder 'mehr als k Treffer' treten relativ häufig auf. Deswegen gibt es auch hierfür einen eingebauten Befehl in R: pbinom(k, n, prob). Dieser Befehl beschreibt die Verteilungsfunktion, also P(X<=k)."
+
+- Class: cmd_question
+  Output: "So können wir nun auch leicht berechnen, wie groß die Wahrscheinlichkeit ist, dass die Spieler höchstens vier Treffer erzielen. Verwenden Sie den Befehl pbinom()."
+  CorrectAnswer: pbinom(4, 10, 0.6)
+  AnswerTests: omnitest(correctVal=pbinom(4, 10, 0.6))
+  Hint: "Der Befehl lautet: pbinom(4, 10, 0.6)"
+
+# Verteilungsfunktion  
+- Class: figure
+  Output: "Die Verteilungsfunktion für n=10 und p=0.6 sieht übrigens so aus, wie in Ihrer Plotanzeige dargestellt. Je höher die Anzahl der Treffer desto höher die Gesamtwahrscheinlichkeit. Bei k=10 erreicht die Funktion den Wert 1, weil ja nicht mehr als 10 Treffer bei 10 Versuchen fallen können."
+  Figure: verteilungsfunktion.R
+  FigureType: new 
+  
+- Class: text
+  Output: "Für die Berechnung der Wahrscheinlichkeit von 'mehr als k Treffern' hat der pbinom()-Befehl noch ein optionales Argument: lower.tail. Wir hätten in der vorherigen Frage auch schreiben können pbinom(4, 10, 0.6, lower.tail=TRUE), weil wir die Summe der Wahrscheinlichkeiten am unteren Ende der Verteilung berechnen wollen. TRUE ist also die Voreinstellung. Mit lower.tail=FALSE berechnen wir dagegen das obere Ende, also die Gegenwahrscheinlichkeit oder formal geschrieben P(X>k)."
+  
+- Class: cmd_question
+  Output: "Berechnen Sie nun die Wahrscheinlichkeit, dass die Spieler bei 10 Versuchen mehr als sechs Mal treffen. Verwenden Sie den Befehl pbinom()."
+  CorrectAnswer: pbinom(6, 10, 0.6, lower.tail=FALSE)
+  AnswerTests: omnitest(correctVal=pbinom(6, 10, 0.6, lower.tail=FALSE))
+  Hint: "Der Befehl lautet: pbinom(6, 10, 0.6, lower.tail=FALSE)"
+
+- Class: text
+  Output: "Die Wahrscheinlichkeit sieben, acht, neun oder 10 Treffer zu erzielen ist mit mehr als 38% recht hoch."
+
+- Class: text
+  Output: "Bei welcher Trefferzahl ist die Wahrscheinlichkeit, dass mindestens so viele Treffer erzielt werden mehr als 95%? Formal geschrieben: Für welches k gilt P(X<=k)>95%? Um diese Frage zu beantworten könnten wir nacheinander durchprobieren. Wir setzen in den Befehl pbinom(k, 10, 0.95) für k sukzessive höhere Zahlen ein bis wir die gewünschte Mindestwahrscheinlichkeit erreichen."
+
+- Class: text
+  Output: "Doch auch für diese Fragestellung bietet R einen eigenen Befehl: qbinom(p, n, prob). Das q am Anfang des Befehls deutet darauf hin, dass es sich um die Quantil-Funktion handelt, also die Umkehrfunktion der Verteilungsfunktion."
+
+- Class: cmd_question
+  Output: "n und prob stehen auch hier für die Anzahl der Versuche und die Erfolgswahrscheinlichkeit. p steht für die erwünschte Mindestwahrscheinlichkeit, so dass gilt P(X<=k)>=p. Berechnen Sie nun welche Mindestanzahl an Treffern die Spieler bei 10 Versuchen mit mindestens 95% Wahrscheinlichkeit erreichen. Oder anders gefragt: Für welche Trefferzahl gilt, dass die Spieler mit mindestens 95% Wahrscheinlichkeit höchstens so viele Treffer erreichen?"
+  CorrectAnswer: qbinom(0.95, 10, 0.6)
+  AnswerTests: omnitest(correctVal=qbinom(0.95, 10, 0.6))
+  Hint: "Der Befehl lautet: qbinom(0.95, 10, 0.6)"
+
+- Class: mult_question
+  Output: 'Nochmal zum Üben: Wofür steht der Befehl dbinom()?' 
+  AnswerChoices: "die Dichtefunktion der Binomialverteilung;die Verteilungsfunktion der Binomialverteilung;die Quantilfunktion der Binomialverteilung"
+  CorrectAnswer: "die Dichtefunktion der Binomialverteilung"
+  AnswerTests: omnitest(correctVal='die Dichtefunktion der Binomialverteilung')
+  Hint: "dbinom(k, n, prob) berechnet die Dichtefunktion der Binomialverteilung an der Stelle k." 
+
+- Class: mult_question
+  Output: 'Was wird mit dbinom(k, n, prob) berechnet?' 
+  AnswerChoices: "P(X=k) für n Versuche und eine Erfolgswahrscheinlichkeit prob;P(X<=k) für n Versuche und eine Erfolgswahrscheinlichkeit prob;P(X<=k)>=p für n Versuche und eine Erfolgswahrscheinlichkeit prob"
+  CorrectAnswer: "P(X=k) für n Versuche und eine Erfolgswahrscheinlichkeit prob"
+  AnswerTests: omnitest(correctVal='P(X=k) für n Versuche und eine Erfolgswahrscheinlichkeit prob')
+  Hint: "dbinom(k, n, prob) berechnet die Dichtefunktion der Binomialverteilung an der Stelle k, also P(X=k) für n Versuche und eine Erfolgswahrscheinlichkeit prob." 
+  
+- Class: mult_question
+  Output: 'Wofür steht der Befehl pbinom()?' 
+  AnswerChoices: "die Dichtefunktion der Binomialverteilung;die Verteilungsfunktion der Binomialverteilung;die Quantilfunktion der Binomialverteilung"
+  CorrectAnswer: "die Verteilungsfunktion der Binomialverteilung"
+  AnswerTests: omnitest(correctVal='die Verteilungsfunktion der Binomialverteilung')
+  Hint: "pbinom(k, n, prob) berechnet die Verteilungsfunktion der Binomialverteilung an der Stelle k." 
+
+- Class: mult_question
+  Output: 'Was wird mit pbinom(k, n, prob) berechnet?' 
+  AnswerChoices: "P(X=k) für n Versuche und eine Erfolgswahrscheinlichkeit prob;P(X<=k) für n Versuche und eine Erfolgswahrscheinlichkeit prob;P(X<=k)>=p für n Versuche und eine Erfolgswahrscheinlichkeit prob"
+  CorrectAnswer: "P(X<=k) für n Versuche und eine Erfolgswahrscheinlichkeit prob"
+  AnswerTests: omnitest(correctVal='P(X<=k) für n Versuche und eine Erfolgswahrscheinlichkeit prob')
+  Hint: "pbinom(k, n, prob) berechnet die Verteilungsfunktion der Binomialverteilung an der Stelle k, also P(X<=k) für n Versuche und eine Erfolgswahrscheinlichkeit prob." 
+
+- Class: mult_question
+  Output: 'Wofür steht der Befehl qbinom()?' 
+  AnswerChoices: "die Dichtefunktion der Binomialverteilung;die Verteilungsfunktion der Binomialverteilung;die Quantilfunktion der Binomialverteilung"
+  CorrectAnswer: "die Quantilfunktion der Binomialverteilung"
+  AnswerTests: omnitest(correctVal='die Quantilfunktion der Binomialverteilung')
+  Hint: "qbinom(p, n, prob) berechnet die Quantilfunktion der Binomialverteilung für die kumulierte Wahrscheinlichkeit p." 
+
+- Class: mult_question
+  Output: 'Was wird mit qbinom(p, n, prob) berechnet?' 
+  AnswerChoices: "P(X=k) für n Versuche und eine Erfolgswahrscheinlichkeit prob;P(X<=k) für n Versuche und eine Erfolgswahrscheinlichkeit prob;P(X<=k)>=p für n Versuche und eine Erfolgswahrscheinlichkeit prob"
+  CorrectAnswer: "P(X<=k)>=p für n Versuche und eine Erfolgswahrscheinlichkeit prob"
+  AnswerTests: omnitest(correctVal='P(X<=k)>=p für n Versuche und eine Erfolgswahrscheinlichkeit prob')
+  Hint: "qbinom(p, n, prob) berechnet die Quantilfunktion der Binomialverteilung an der Stelle k, also P(X<=k)>=p für n Versuche und eine Erfolgswahrscheinlichkeit prob." 
+
+- Class: cmd_question
+  Output: "Berechnen Sie abschließend die Wahrscheinlichkeit, bei einer Elfmeterserie von fünf Schüssen und einer Erfolgswahrscheinlichkeit von 20% höchstens zwei Treffer zu erzielen."
+  CorrectAnswer: pbinom(2, 5, 0.2)
+  AnswerTests: omnitest(correctVal=pbinom(2, 5, 0.2))
+  Hint: "Es gilt k=2, n=5 und p=0.2. Der Befehl lautet: pbinom(2, 5, 0.2)"
+    
+# Zusammenfassung des Kapitels:
+- Class: text
+  Output: "In diesem Kapitel haben Sie die Binomialverteilung kennengelernt. Diese Verteilung hängt von zwei Parametern ab: die Anzahl der Versuche und die Erfolgswahrscheinlichkeit bei jedem Versuch."

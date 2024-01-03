@@ -1,0 +1,191 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: Matrizen und Data Frames
+  Author: Nick Carchedi
+  Type: Standard
+  Organization: JHU Biostat; Translation by PFH
+  Version: 2.2.1
+
+- Class: text
+  Output: In dieser Übung geht es um Matrizen und sogenannte 'data frames'.
+
+- Class: text
+  Output: Wenn wir Daten erhoben haben, wäre es sehr mühsam, für jede Messung einen eigenen Vektor zu erstellen. Matrizen und 'data frames' sind 'rechteckige' Datenformen, d.h., dass sie tabellarische Daten - mit Zeilen und Spalten - speichern.
+
+
+- Class: text
+  Output: Der hauptsächliche Unterschied ist, dass Matrizen nur Daten einer Kategorie enthalten können, während die Daten in einem 'data frame' verschiedenen Kategorien angehören können.
+
+- Class: cmd_question
+  Output: "Erstellen wir zuerst einen Vektor, der die Zahlen von 1 bis 20 enthält. Nutzen Sie dafür den Operator `:` und speichern Sie das Ergebnis in einer Variable namens my_vector."
+  CorrectAnswer: my_vector <- 1:20
+  AnswerTests: omnitest(correctExpr='my_vector <- 1:20')
+  Hint: "Sie haben den Operator `:` in der Übung über Sequenzen kennen gelernt. Wenn Sie einen Vektor mit den Zahlen 1, 2 und 3 (in dieser Reihenfolge) erstellen wollen, können Sie entweder c(1,2,3) oder 1:3 nutzen. In diesem Fall wollen wir die Zahlen von 1 bis 20 in einer Variable namens my_vector speichern. Erinnern Sie sich daran, dass Sie nicht die Funktion c() brauchen, wenn Sie `:` verwenden."
+
+- Class: cmd_question
+  Output: Schauen Sie sich den Inhalt des Vektors an, den Sie soeben erstellt haben.
+  CorrectAnswer: my_vector
+  AnswerTests: omnitest(correctExpr='my_vector')
+  Hint: Tippen Sie my_vector, um den Inhalt der Variablen zu sehen.
+
+- Class: cmd_question
+  Output: Die Funktion dim() teilt uns die 'Dimensionen' eines Objekts mit. Was passiert, wenn wir den Befehl dim(my_vector) eingeben? Probieren Sie es aus!
+  CorrectAnswer: dim(my_vector)
+  AnswerTests: omnitest(correctExpr='dim(my_vector)')
+  Hint: Tippen Sie einfach dim(my_vector), um zu sehen, was passiert.
+
+- Class: cmd_question
+  Output: Das ist offensichtlich nicht sehr hilfreich! Da my_vector ein Vektor ist, hat my_vector kein `dim`-Attribut (also ist es einfach NULL), aber wir können die Länge des Vektors mit der Funktion length() bestimmen. Versuchen Sie es.
+  CorrectAnswer: length(my_vector)
+  AnswerTests: omnitest(correctExpr='length(my_vector)')
+  Hint: Tippen Sie length(my_vector), um die Länge des Vektors my_vector zu sehen.
+
+- Class: cmd_question
+  Output: Ah! Das ist, was wir gesucht haben. Aber was passiert, wenn wir my_vector ein ´dim´-Attribut zuweisen? Lassen Sie es uns versuchen. Tippen Sie dafür dim(my_vector) <- c(4,5) in das Eingabefeld.
+  CorrectAnswer: dim(my_vector) <- c(4, 5)
+  AnswerTests: omnitest(correctExpr='dim(my_vector) <- c(4, 5)')
+  Hint: Tippen Sie dim(my_vector) <- c(4, 5) um my_vector ein `dim`-Attribut zuzuweisen.
+
+- Class: text
+  Output: Es ist normal, wenn Ihnen der letzte Befehl etwas seltsam vorkommt. Es sollte so sein! Die Funktion dim() erlaubt Ihnen, das `dim`-Attribut eines Objektes in R zu erfahren ODER festzulegen. In diesem Fall haben wir den Wert c(4,5) dem `dim`-Attribut von my_vector zugewiesen.
+
+- Class: cmd_question
+  Output: Nutzen Sie den Befehl dim(my_vector) um sicherzugehen, dass Sie das `dim`-Attribut korrekt festgelegt haben.
+  CorrectAnswer: dim(my_vector)
+  AnswerTests: omnitest(correctExpr='dim(my_vector)')
+  Hint: Tippen Sie einfach dim(my_vector) um sicherzugehen, dass Sie das `dim`-Attribut korrekt festgelegt haben.
+
+- Class: cmd_question
+  Output: Alternativ können Sie die Funktion attributes() auf my_vector anwenden. Versuchen Sie es einmal.
+  CorrectAnswer: attributes(my_vector)
+  AnswerTests: omnitest(correctExpr='attributes(my_vector)')
+  Hint: Der Befehl attributes(my_vector) zeigt Ihnen alle Eigenschaften des Objekts my_vector.
+
+- Class: text
+  Output: Wie im Matheunterricht, wenn wir es mit zweidimensionalen Objekten (z. B. einer rechtwinkligen Tabelle) zu tun haben, bezeichnet die erste Ziffer die Anzahl der Reihen, die zweite die der Spalten. Deswegen hat my_vector vier Zeilen und fünf Spalten gegeben.
+
+- Class: cmd_question
+  Output: Moment! Das klingt nicht mehr nach einem Vektor. Nun, es ist kein Vektor mehr. Jetzt haben wir eine Matrix. Schauen Sie sich den Inhalt von my_vector an, um zu sehen, wie die Variable jetzt aussieht.
+  CorrectAnswer: my_vector
+  AnswerTests: omnitest(correctExpr='my_vector')
+  Hint: Tippen Sie my_vector, um zu sehen, wie die Variable jetzt aussieht.
+
+- Class: cmd_question
+  Output: Lassen Sie uns sichergehen, dass es sich nun tatsächlich um eine Matrix handelt. Tippen Sie dafür class(my_vector) in die Konsole.
+  CorrectAnswer: class(my_vector)
+  AnswerTests: omnitest(correctExpr='class(my_vector)')
+  Hint: Tippen Sie class(my_vector) in das Eingabefeld.
+
+- Class: cmd_question
+  Output: my_vector ist jetzt also tatsächlich eine Matrix. Wir sollten sie in einer neuen Variable speichern, die uns hilft, uns an die Kategorie von my_vector zu erinnern. Speichern Sie my_vector in einer neuen Variable namens my_matrix.
+  CorrectAnswer: my_matrix <- my_vector
+  AnswerTests: omnitest(correctExpr='my_matrix <- my_vector')
+  Hint: "Da wir nicht einfach den Namen unserer Variablen my_vector ändern können, weisen wir den dessen Wert einer neuen Variablen zu: my_matrix <- my_vector"
+
+- Class: text
+  Output: Das Beispiel, das wir bisher genutzt haben, sollte die Tatsache verdeutlichen, dass eine Matrix einfach ein Vektor mit einem Dimensionsattribut ist. Eine direktere Methode, um eine Matrix zu erstellen, ist die Verwendung der Funktion matrix().
+
+- Class: cmd_question
+  Output: Rufen Sie die Hilfeseite der Funktion matrix() auf, indem Sie die Funktion `?` nutzen.
+  CorrectAnswer: ?matrix
+  AnswerTests: omnitest(correctExpr='?matrix')
+  Hint: "Der gesuchte Befehl ist: ?matrix"
+
+- Class: cmd_question
+  Output: "Schauen Sie sich die Dokumentation an und versuchen Sie, eine Matrix mit denselben Zahlen (1-20) und Dimensionen (4 Zeilen, 5 Spalten) mit der Funktion matrix() zu erstellen. Speichern Sie das Ergebnis in einer Variablen namens my_matrix2. Hinweis: Sie benötigen drei Argumente - das erste spezifiziert den Inhalt der Matrix, das zweite die Anzahl der Zeilen, das dritte die Anzahl der Spalten."
+  CorrectAnswer: my_matrix2 <- matrix(1:20, nrow=4, ncol=5)
+  AnswerTests: calculates_same_value('matrix(1:20, nrow=4, ncol=5)'); expr_creates_var('my_matrix2')
+  Hint: "Der gesuchte Befehl lautet: my_matrix2 <- matrix(1:20, nrow=4, ncol=5)"
+
+- Class: cmd_question
+  Output: Lassen Sie uns schließlich bestätigen, dass my_matrix und my_matrix2 tatsächlich identisch sind. Die Funktion identical() sagt uns, ob ihre ersten beiden Argumente gleich sind. Versuchen Sie es!
+  CorrectAnswer: identical(my_matrix, my_matrix2)
+  AnswerTests: any_of_exprs('identical(my_matrix, my_matrix2)', 'identical(my_matrix2, my_matrix)')
+  Hint: Tippen Sie identical(my_matrix, my_matrix2) in die Konsole.
+
+- Class: text
+  Output: Stellen Sie sich vor, dass die Zahlen in unserer Tabelle Messungen eines klinischen Experiments repräsentieren. Jede Zeile steht für einen Patienten und jede Spalte für eine Variable, die erhoben wurde.
+
+- Class: text
+  Output: Wir wollen nun die Zeilen beschriften, sodass wir wissen, welche Nummern zu welchen Patienten gehören. Eine Möglichkeit ist, der Matrix eine Spalte hinzuzufügen, die die Namen aller vier Personen enthält.
+
+- Class: cmd_question
+  Output: Beginnen wir damit, einen Vektor mit den Namen unserer Patienten - Bill, Gina, Kelly und Sean - zu erstellen. Denken Sie daran, dass (doppelte) Anführungszeichen in R bedeuten, dass etwas eine Zeichenfolge ist. Speichern Sie das Ergebnis in einer Variablen namens 'patients'.
+  CorrectAnswer: patients <- c("Bill", "Gina", "Kelly", "Sean")
+  AnswerTests: omnitest(correctExpr='patients <- c("Bill", "Gina", "Kelly", "Sean")')
+  Hint: Achten Sie darauf, dass jeder Name mit einem Großbuchstaben beginnt und speichern Sie das Ergebnis in einer Variablen namens 'patients'. Und vertauschen Sie nicht die Reihenfolge der Patienten! Das wäre eine Katastrophe!
+
+- Class: cmd_question
+  Output: Jetzt werden wir die Funktion cbind() nutzen, um Spalten zu verbinden ('column bind'). Kümmern Sie sich nicht darum, das Ergebnis in einer neuen Variable zu speichern. Geben Sie einfach den Befehl cbind() mit zwei Argumenten ein - dem Vektor patients und my_matrix.
+  CorrectAnswer: cbind(patients, my_matrix)
+  AnswerTests: omnitest(correctExpr='cbind(patients, my_matrix)')
+  Hint: Tippen Sie cbind(patients, my_matrix), um die Namen der Patienten der Matrix hinzuzufügen.
+
+- Class: text
+  Output: Etwas ist faul an unserem Ergebnis! Es scheint so, dass das Verbinden eines Vektors aus Zeichen mit einer Matrix aus Zahlen dazu führt, dass alles in Anführungszeichen gesetzt wird. Das heißt, dass wir nun eine Matrix von Zeichenketten haben, was nicht gut ist.
+
+- Class: text
+  Output: Wie am Anfang dieser Übung bereits erwähnt, enthalten Matrizen nur Daten EINER Kategorie. Wenn wir einen Vektor aus Zeichen mit einer numerischen Matrix verbinden, ist R deswegen gezwungen, die Zahlen in Zeichen zu 'zwingen' bzw. zu verwandeln - von daher die Anführungszeichen.
+
+- Class: text
+  Output: Dieser Prozess geschieht automatisch ('implicit coercion') - ohne dass wir R den Befehl dazu geben.
+
+- Class: cmd_question
+  Output: "Es bleibt also immer noch die Frage, wie wir die Namen unserer Patienten in eine Tabelle einfügen können, ohne unsere numerischen Daten zu zerstören. Versuchen Sie folgenden Befehl: my_data <- data.frame(patients, my_matrix)"
+  CorrectAnswer: my_data <- data.frame(patients, my_matrix)
+  AnswerTests: omnitest(correctExpr='my_data <- data.frame(patients, my_matrix)')
+  Hint: Geben Sie my_data <- data.frame(patients, my_matrix) ein, sodass wir untersuchen können, was passiert.
+
+- Class: cmd_question
+  Output: Schauen Sie sich den Inhalt von my_data an, um zu sehen, was wir erreicht haben.
+  CorrectAnswer: my_data
+  AnswerTests: omnitest(correctExpr='my_data')
+  Hint: Geben Sie my_data ein, um den Inhalt der Variablen zu sehen.
+
+- Class: text
+  Output: Es scheint so, als ob die Funktion data.frame() uns erlaubt, den Vektor der Namen und die Matrix der Zahlen zusammen in einer Variablen zu speichern. Also genau das, worauf wir gehofft haben!
+
+- Class: text
+  Output: Die Funktion data.frame() nimmt jede Anzahl von Argumenten an und erstellt aus ihnen ein einziges Objekt, einen sogenannten 'data frame', der aus den ursprünglichen Objekten besteht.
+
+- Class: cmd_question
+  Output: Überprüfen Sie mit der Funktion class(), ob es sich wirklich um einen 'data frame' handelt. 
+  CorrectAnswer: class(my_data)
+  AnswerTests: omnitest(correctExpr='class(my_data)')
+  Hint: Die Funktion class() nimmt ein Argument an - das Objekt, dessen Kategorie Sie wissen wollen.
+
+- Class: text
+  Output: Es ist auch möglich, den einzelnen Zeilen und Spalten eines 'data frame' Namen zuzuweisen. Das ist eine weitere Alternative, um zu bestimmen, welche Zeile in unserer Tabelle zu welchem Patienten gehört.
+
+- Class: text
+  Output: Da wir dieses Problem aber schon gelöst haben, lassen Sie uns ein anderes Problem lösen, indem wir den Spalten Namen zuweisen, sodass wir wissen, was für Messwerte in der jeweiligen Spalte stehen. 
+
+- Class: cmd_question
+  Output: 'Da wir sechs Spalten haben (die Patientennamen eingeschlossen), müssen wir zuerst einen Vektor erstellen, der ein Element für jede Spalte enthält. Erstellen Sie den Vektor cnames, der die folgenden Werte (in genannter Reihenfolge) enthält: "patient", "age", "weight", "bp", "rating", "test".'
+  CorrectAnswer: cnames <- c("patient", "age", "weight", "bp", "rating", "test")
+  AnswerTests: omnitest(correctExpr='cnames <- c("patient", "age", "weight", "bp", "rating", "test")')
+  Hint: Achten Sie darauf, dass alle Namen kleingeschrieben sind, in Anführungszeichen stehen und mit Kommata getrennt sind. Vergessen Sie nicht die Funktion c() zu verwenden.
+
+- Class: cmd_question
+  Output: Benutzen Sie nun die Funktion colnames(), um das `colnames`-Attribut (also die Spaltennamen) festzulegen. Dies funktioniert genauso wie bei der Funktion dim() am Anfang dieser Übung.
+  CorrectAnswer: colnames(my_data) <- cnames
+  AnswerTests: omnitest(correctExpr='colnames(my_data) <- cnames')
+  Hint: 'Der richtige Befehl lautet: colnames(my_data) <- cnames.'
+
+- Class: cmd_question
+  Output: Lassen Sie uns sehen, ob das funktioniert hat. Schauen Sie sich den Inhalt von my_data an.
+  CorrectAnswer: my_data
+  AnswerTests: omnitest(correctExpr='my_data')
+  Hint: Schauen Sie sich den Inhalt von my_data an.
+
+- Class: cmd_question
+  Output: Um auf einzelne Variablen in einem data.frame zuzugreifen verwenden wir die Notation mit $-Zeichen. my_data$age fragt nach der Variable age im Datensatz my_data. Probieren Sie aus, was passiert, wenn Sie diesen Befehl eingeben.
+  CorrectAnswer: my_data$age
+  AnswerTests: omnitest(correctExpr='my_data$age')
+  Hint: Tippen Sie my_data$age, um sich die Variable age im Datensatz my_data ausgeben zu lassen.
+
+- Class: text
+  Output: In dieser Übung haben Sie die Grundlagen der Arbeit mit zwei sehr wichtigen und häufig verwendeten Datenstrukturen - Matrizen und 'data frames' - gelernt. Es gibt noch sehr viel mehr zu lernen und wir werden fortgeschrittenere Themen, vor allem im Bereich der 'data frames', in zukünftigen Übungen behandeln.
+
+- Class: text
+  Output: 'Und schon wieder eine Lektion abgeschlossen, Sie sind ein echter `KönneR`.'

@@ -1,0 +1,124 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: Daten sichten
+  Author: Nick Carchedi
+  Type: Standard
+  Organization: JHU Biostat; Translation by PFH
+  Version: 2.2.12
+
+- Class: text
+  Output: Immer wenn Sie mit einem neuen Datensatz arbeiten, sollten Sie sich zuerst die Daten genau ansehen! Welches Format haben die Daten? Was sind die Dimensionen? Was sind die Variablennamen? Wie sind die Variablen gespeichert? Gibt es fehlende Werte? Haben die Daten irgendwelche Mängel?
+
+- Class: text
+  Output: Diese Übung wird Ihnen beibringen, diese und weitere Fragen mit Hilfe der in R integrierten Funktionen zu beantworten. Wir werden einen Datensatz benutzen, der der "United States Department of Agriculture's PLANTS Database" (http://plants.usda.gov/adv_search.html) entstammt.
+
+- Class: cmd_question
+  Output: Die Daten sind in einer Variable namens "plants" gespeichert. Tippen Sie ls() um die Variablen in Ihrem Arbeitsbereich aufgelistet zu bekommen. Unter diesen sollte die Variable plants vorhanden sein.
+  CorrectAnswer: ls()
+  AnswerTests: omnitest(correctExpr='ls()')
+  Hint: Benutzen Sie den Befehl ls() um eine Liste der Variablen in Ihrem Arbeitsbereich zu erhalten.
+
+- Class: cmd_question
+  Output: Beginnen wir damit zu prüfen, in welche Kategorie die Variable plants gehört. Dafür benötigen wir den Befehl class(plants). Dies wird uns einen Hinweis auf die Gesamtstruktur der Daten geben.
+  CorrectAnswer: class(plants)
+  AnswerTests: omnitest(correctExpr='class(plants)')
+  Hint: Tippen Sie class(plants) in die Konsole.
+
+- Class: text
+  Output: Es ist sehr verbreitet, dass Daten in einem 'data frame' gespeichert sind. Dies ist die voreingestellte Kategorie für Daten, die von R bspw. über die Funktionen read.csv() und read.table() eingelesen werden.
+
+- Class: cmd_question
+  Output: "Da der Datensatz in einem 'data frame' gespeichert ist, wissen wir, dass er rechteckig ist. In anderen Worten: Der Datensatz hat zwei Dimensionen (Zeilen und Spalten) und passt somit immer in eine Tabelle bzw. eine Tabellenkalkulation. Nutzen Sie den Befehl dim(plants) um zu sehen, mit wie vielen Reihen und Spalten wir es zu tun haben."
+  CorrectAnswer: dim(plants)
+  AnswerTests: omnitest(correctExpr='dim(plants)')
+  Hint: Nutzen Sie den Befehl dim(plants) um die exakten Dimensionen des plants-Datensatzes zu sehen.
+
+- Class: text
+  Output: Die erste Zahl, die Sie sehen (5166), ist die Anzahl der Zeilen (Beobachtungen) und die zweite Zahl (10) ist die Anzahl der Spalten (Variablen). 
+
+- Class: cmd_question
+  Output: Sie können auch den Befehl nrow(plants) nutzen, um nur die Anzahl der Reihen zu sehen. Probieren Sie dies jetzt aus.
+  CorrectAnswer: nrow(plants)
+  AnswerTests: omnitest(correctExpr='nrow(plants)')
+  Hint: Nutzen Sie nrow(plants) um nur die Anzahl der Zeilen zu sehen.
+
+- Class: cmd_question
+  Output: ... und ncol(plants) um nur die Anzahl der Spalten zu sehen.
+  CorrectAnswer: ncol(plants)
+  AnswerTests: omnitest(correctExpr='ncol(plants)')
+  Hint: Nutzen Sie den Befehl ncol(plants) um die Anzahl der Spalten zu sehen.
+
+- Class: cmd_question
+  Output: Es handelt sich also um einen größeren Datensatz. Wenn Sie neugierig sind, wieviel Speicherplatz der Datensatz benötigt, können Sie den Befehl object.size(plants) nutzen. Probieren Sie es aus!
+  CorrectAnswer: object.size(plants)
+  AnswerTests: omnitest(correctExpr='object.size(plants)')
+  Hint: object.size(plants) sagt Ihnen, wie viel Speicherplatz der Datensatz benötigt.
+
+- Class: cmd_question
+  Output: "Nun, da wir ein Gefühl für die Form und Größe des Datensatzes haben, wollen wir uns anschauen, welche Informationen der Datensatz enthält. names(plants) gibt Ihnen einen Vektor von Zeichenketten der Spalten-/Variablennamen. Versuchen Sie es!"
+  CorrectAnswer: names(plants)
+  AnswerTests: omnitest(correctExpr='names(plants)')
+  Hint: names(plants) erstellt Ihnen einen Vektor der Spaltennamen.
+
+- Class: text
+  Output: Die Variablennamen dieses Datensatzes sind sehr aussagekräftig, aber das wird nicht immer der Fall sein. Der logisch nächste Schritt ist, die eigentlichen Daten anzusehen. Unser Datensatz enthält allerdings über 5000 Beobachtungen (Zeilen), sodass es unpraktisch ist, alle Daten auf einmal anzusehen.
+  
+- Class: cmd_question
+  Output: Die Funktion head() erlaubt Ihnen, den Anfang des Datensatzes anzuschauen. Versuchen Sie es mit nur einem Argument.
+  CorrectAnswer: head(plants)
+  AnswerTests: omnitest(correctExpr='head(plants)')
+  Hint: head(plants) zeigt Ihnen den Anfang des Datensatzes.
+
+- Class: text
+  Output: Nehmen Sie sich eine Minute um den soeben erhaltenen Output durchzusehen und zu verstehen. Jede Reihe ist mit der Nummer der Beobachtung beschriftet sowie jede Spalte mit dem Variablennamen. Ihr Bildschirm ist wahrscheinlich nicht breit genug um alle zehn Spalten nebeneinander zu sehen. In diesem Fall zeigt R in jeder Reihe so viele Spalten wie möglich an, bevor es in der nächsten Reihe weitermacht.
+
+- Class: cmd_question
+  Output: Die Funktion head() zeigt Ihnen automatisch die ersten sechs Zeilen der Daten. Sie können dies ändern, indem Sie die Anzahl der Zeilen, die Sie zu sehen wünschen, als ein zweites Argument eingeben. Nutzen Sie den Befehl head() um die ersten zehn Reihen des Datensatzes anzuschauen.
+  CorrectAnswer: head(plants, 10)
+  AnswerTests: omnitest(correctExpr='head(plants, 10)')
+  Hint: head(plants, 10) zeigt Ihnen die ersten 10 Zeilen des Datensatzes.
+
+- Class: cmd_question
+  Output: Dasselbe gilt für die Funktion tail(), mit der Sie das Ende des Datensatzes ansehen können. Nutzen Sie den Befehl, um die letzten 15 Zeilen anzuschauen.
+  CorrectAnswer: tail(plants, 15)
+  AnswerTests: omnitest(correctExpr='tail(plants, 15)')
+  Hint: tail(plants, 15) zeigt Ihnen die letzten 15 Zeilen des Datensatzes.
+
+- Class: cmd_question
+  Output: Nachdem Sie sich den Anfang und das Ende der Daten angesehen haben, haben Sie wahrscheinlich eine Menge an NAs bemerkt, die R's Platzhalter für fehlende Werte sind. Nutzen Sie den Befehl summary(plants) um ein besseres Gefühl dafür zu bekommen, wie jede Variable verteilt ist und wie viele Werte des Datensatzes fehlen.
+  CorrectAnswer: summary(plants)
+  AnswerTests: omnitest(correctExpr='summary(plants)')
+  Hint: Tippen Sie summary(plants) in das Eingabefeld.
+
+- Class: text
+  Output: summary() liefert für jede Variable einen anderen Output, der von der Kategorie der Variablen abhängig ist. Für numerische Daten wie Precip_Min zeigt summary() das Minimum, das untere Quartil, den Median, das arithmetische Mittel, das obere Quartil und das Maximum an. Diese Werte helfen uns zu verstehen, wie die Daten verteilt sind.
+
+- Class: text
+  Output: Für kategoriale Variablen (in R 'factor variables') zeigt summary() die absolute Häufigkeit jeder Ausprägung (in R 'level'). Zum Beispiel kommt jede Ausprägung der Variable "Sientific_Name" nur einmal vor, da der wissenschaftliche Name jeder Pflanze einmalig ist. Im Gegensatz dazu sagt uns die Zusammenfassung für die Variable "Duration" (Dauer), dass der Datensatz 3031 "Perennial plants" (mehrjährige Pflanzen), 682 "Annual plant" (einjährige Pflanzen) usw. enthält.
+
+- Class: cmd_question
+  Output: Sie können sehen, dass R die Zusammenfassung für Active_Growth_Period (aktive Wachstumsperiode) verkürzt hat, indem es eine Restkategorie namens "Other" (Sonstige) eingefügt hat. Da wir hier eine kategoriale Variable haben, können wir mit dem Befehl table(plants$Active_Growth_Period) sehen, wie oft jede Ausprägung tatsächlich in den Daten vorkommt. Erstellen Sie die diese Häufigkeitstabelle.
+  CorrectAnswer: table(plants$Active_Growth_Period)
+  AnswerTests: omnitest(correctExpr='table(plants$Active_Growth_Period)')
+  Hint: table(plants$Active_Growth_Period) zeigt die absoluten Häufigkeiten für jede Ausprägung der kategorialen Variable ('factor variable' in R).
+
+- Class: text
+  Output: Jede der vorgestellten Funktionen hat ihren Platz, wenn Sie die Struktur der Daten besser verstehen wollen. Trotzdem haben wir uns die beste Funktion bis zum Schluss aufgespart ...
+
+- Class: cmd_question
+  Output: Die vielleicht nützlichste Funktion, um die Struktur Ihrer Daten zu verstehen, ist str(). Probieren Sie es aus!
+  CorrectAnswer: str(plants)
+  AnswerTests: omnitest(correctExpr='str(plants)')
+  Hint: Nutzen Sie str(plants), um sich die Struktur Ihrer Daten anzusehen.
+
+- Class: text
+  Output: Die Schönheit von str() ist, dass es die vielen Eigenschaften der zuvor dargestellten Funktionen vereint und die relevanten Informationen in knapper und lesbarer Form präsentiert. Am Anfang erfahren wir, dass 'plants' der Kategorie 'data frame' angehört und dass 'plants' aus 5166 Beobachtungen und 10 Variablen besteht. Dann gibt str() uns die Namen und Kategorien sowie die ersten Werte jeder Variablen.
+
+- Class: text
+  Output: str() ist tatsächlich eine sehr allgemeine Funktion, die auf die meisten Objekte in R angewendet werden kann. Immer wenn Sie die Struktur von etwas (einem Datensatz, einer Funktion, etc.) verstehen wollen, ist str() ein guter Anfang.
+
+- Class: text
+  Output: In dieser Übung haben Sie gelernt, wie Sie ein Gefühl für die Struktur und den Inhalt eines neuen Datensatzes gewinnen, indem Sie eine Sammlung einfacher und nützlicher Funktionen verwenden. Wenn Sie sich zu Beginn die Zeit für diese Sichtung Ihrer Daten nehmen, kann Ihnen das später bei der Datenanalyse viel Zeit und Frustration sparen!
+
+- Class: text
+  Output: 'Herzlichen Glückwunsch, Sie haben soeben diese Lektion abgeschlossen. Weiterhin viel Spaß mit swirl!'

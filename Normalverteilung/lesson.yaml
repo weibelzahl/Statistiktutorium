@@ -1,0 +1,242 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: Normalverteilung
+  Author: PFH
+  Type: Standard
+  Organization: PFH Private Hochschule Göttingen
+  Version: 0.1
+
+# Begrüßung  
+- Class: text
+  Output: "In diesem Kapitel lernen Sie die Normalverteilung kennen."
+
+- Class: text
+  Output: "Nun, eigentlich lernen Sie nicht die eine Normalverteilung kennen, sondern eine ganze Familie an Verteilungen, die alle gleiche Eigenschaften haben. Aber fangen wir mit einer einzelnen Normalverteilung an, der Standardnormalverteilung."
+
+# Formel  
+- Class: figure
+  Output: "Die Standardnormalverteilung wird auch die Gaußsche Glockenkurve genannt. Sie ist nach Carl Friedrich Gauß benannt, obwohl er gar nicht der erste war, der diese Verteilung beschrieb. Aber im Jahr 1810 bewies er den zentralen Grenzwertsatz, welcher der Normalverteilung eine entscheidende Rolle in der Wahrscheinlichkeitstheorie und der Statistik gab, wie wir noch sehen werden. Gauß war übrigens eine Zeit lang Professor und Sternwartendirektor in Göttingen."
+  Figure: glockenkurve.R
+  FigureType: new 
+
+  
+- Class: mult_question
+  Output: 'In Ihrer Plotanzeige sehen Sie jetzt drei unterschiedliche Verteilungen. Welche ist wohl die Standardnormalverteilung?' 
+  AnswerChoices: 'die rote Verteilung;die blaue Verteilung;die grüne Verteilung'
+  CorrectAnswer: 'die blaue Verteilung'
+  AnswerTests: omnitest(correctVal='die blaue Verteilung')
+  Hint: "Der Name Gaußsche Glockenkurve verweist auf deren Form." 
+
+- Class: figure
+  Output: "Die Standardnormalverteilung sieht also aus wie eine Glocke."
+  Figure: standardnormalverteilung.R
+  FigureType: new 
+
+- Class: text
+  Output: "Normalverteilungen lassen sich mit der dargestellten Funktionsgleichung berechnen. Das sieht zunächst sehr wild aus, ist aber kein Grund sich zu fürchten. Wir werden die Bestandteile erklären."
+
+- Class: mult_question
+  Output: 'Die Bedeutung einiger Bestandteile der Funktionsgleichung können Sie bestimmt erraten: In der Gleichung kommt zweimal der griechische Buchstabe sigma vor. Wofür steht dieser Parameter?' 
+  AnswerChoices: 'die Varianz der Verteilung;die Standardabweichung der Verteilung;den Mittelwert der Verteilung'
+  CorrectAnswer: 'die Standardabweichung der Verteilung'
+  AnswerTests: omnitest(correctVal='die Standardabweichung der Verteilung')
+  Hint: "Die Wurzel aus der Varianz ist die Standardabweichung. Sigma selbst steht also für die Standardabweichung." 
+
+- Class: mult_question
+  Output: 'In der Funktionsgleichung kommt außerdem der griechische Buchstabe mü vor. Wofür steht dieser Parameter?' 
+  AnswerChoices: 'die Varianz der Verteilung;die Standardabweichung der Verteilung;den Mittelwert der Verteilung'
+  CorrectAnswer: 'den Mittelwert der Verteilung'
+  AnswerTests: omnitest(correctVal='den Mittelwert der Verteilung')
+  Hint: "Der Buchstabe mü verweist in der Statistik immer auf den Mittelwert." 
+  
+- Class: mult_question
+  Output: 'Das Diagramm zeigt eine Standardnormalverteilung. Wo liegt das Maximum dieser Verteilung?' 
+  AnswerChoices: x=0;x=1;x=-1
+  CorrectAnswer: x=0
+  AnswerTests: omnitest(correctVal='x=0')
+  Hint: "Schätzen Sie den Wert nach dem Aussehen der Kurve." 
+
+ #10
+- Class: figure
+  Output: "Die Standardnormalverteilung ist eine Normalverteilung mit dem Mittelwert 0 und einer Standardabweichung von 1. Die Funktionsgleichung vereinfacht sich dann wie dargestellt."
+  Figure: standardnormalverteilungformel.R
+  FigureType: new 
+
+- Class: text
+  Output: "In der Formel sind noch zwei weitere ungewöhnliche Buchstaben zu finden. Der griechische Buchstabe pi steht hier einfach für die Kreiszahl pi, also ungefähr 3,14. Das e steht für die Eulersche Zahl, also die Basis des natürlichen Logarithmus, also ungefähr 2,71."
+  
+- Class: text
+  Output: "Alle anderen Normalverteilungen lassen sich nun aus der Standardnormalverteilung ableiten, indem die Kurve zuerst nach links oder rechts verschoben wird, und dann die Verteilung gestreckt oder gestaucht wird."
+  
+- Class: figure
+  Output: "Wir könnten z. B. in der Formel für mü den Wert 2 einsetzen."
+  Figure: standardnormalverteilung.R
+  FigureType: new 
+  
+- Class: mult_question
+  Output: 'Wie wird sich die Verteilung dann verändern?' 
+  AnswerChoices: 'die Kurve wird nach rechts verschoben;die Kurve wird nach links verschoben;die Kurve wird gestreckt;die Kurve wird gestaucht'
+  CorrectAnswer: 'die Kurve wird nach rechts verschoben'
+  AnswerTests: omnitest(correctVal='die Kurve wird nach rechts verschoben')
+  Hint: "In der Formel wird dann, im Vergleich zur Standardnormalverteilung von jedem x-Wert der Wert 2 abgezogen." 
+
+- Class: figure
+  Output: "Die rote Kurve zeigt eine Normalverteilung mit Mittelwert 2. Die graue Kurve ist die Standardnormalverteilung (also mit Mittelwert 0 und Standardabweichung 1) zum Vergleich."
+  Figure: normalverteilung_m2s1.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: 'Wie wird sich die Verteilung verändern, wenn wir die Standardabweichung von 1 auf 2 erhöhen?' 
+  AnswerChoices: 'die Kurve wird nach rechts verschoben;die Kurve wird nach links verschoben;die Kurve wird gestreckt;die Kurve wird gestaucht'
+  CorrectAnswer: 'die Kurve wird gestreckt'
+  AnswerTests: omnitest(correctVal='die Kurve wird gestreckt')
+  Hint: "Eine größere Standardabweichung bedeutet, die Kurve wird breiter." 
+
+- Class: mult_question
+  Output: 'Richtig, eine Normalverteilung mit einer Standardabweichung von 2 ist breiter als die Standardnormalverteilung. Und wie verhält es sich dann wohl mit dem Maximum?' 
+  AnswerChoices: 'die Kurve ist breiter, aber flacher als die Standardnormalverteilung;die Kurve ist breiter und höher als die Standardnormalverteilung;die Kurve hat die gleiche Höhe wie die Standardnormalverteilung'
+  CorrectAnswer: 'die Kurve ist breiter, aber flacher als die Standardnormalverteilung'
+  AnswerTests: omnitest(correctVal='die Kurve ist breiter, aber flacher als die Standardnormalverteilung')
+  Hint: "Die Werte verteilen sich breiter. Damit ist die Kurve flacher als die Standardnormalverteilung." 
+
+- Class: figure
+  Output: "Die rote Kurve zeigt eine Normalverteilung mit Standardabweichung 2. Die graue Kurve ist weiterhin die Standardnormalverteilung (mit Mittelwert 0 und Standardabweichung 1). Die rote Kurve ist deutlich niedriger."
+  Figure: normalverteilung_m0s2.R
+  FigureType: new 
+
+- Class: text
+  Output: "Mit der Formel sind die Funktionswerte der Normalverteilung relativ einfach zu berechnen. Damit wir nicht jedes Mal die komplizierte Formel aufschreiben und ausrechnen müssen, gibt es in R einen eigenen Befehl für die Normalverteilung: dnorm(x) berechnet den Wert der Standardnormalverteilung an der Stelle x. Das 'd' am Anfang des Befehl steht dabei für Dichte (engl.: density), da wir die Funktion auch als Wahrscheinlichkeitsdichten auffassen können, wie wir gleich noch sehen werden."
+
+#20  
+- Class: cmd_question
+  Output: "Die Standardnormalverteilung hat ihr Maximum an der Stelle 0. Berechnen Sie die Wahrscheinlichkeitsdichte der Standardnormalverteilung an der Stelle 0."
+  CorrectAnswer: dnorm(0)
+  AnswerTests: omnitest(correctVal=dnorm(0))
+  Hint: "Der Befehl für die Dichte der Standardnormalverteilung lautet dnorm(x). Setzen Sie für x die Zahl 0 ein."
+
+- Class: text
+  Output: "Von Hand hätten wir auch rechnen können: (1/(sqrt(2*pi)))*2.71^(-0/2). Probieren Sie das mit dem Taschenrechner aus, wenn Sie es nicht glauben, es ergibt sich das gleiche Ergebnis."
+   
+- Class: text
+  Output: "Mit dem gleichen Befehl kann man aber auch die Funktionswerte aller anderen Normalverteilungen berechnen. Dazu übergeben wird dem Befehl einfach zwei zusätzliche Argumente für den gewünschten Mittelwert und die gewünschte Standardabweichung: dnorm(x, mean=0, sd=1)."
+   
+- Class: cmd_question
+  Output: "Berechnen Sie den Dichtewert einer Normalverteilung mit dem Mittelwert 1 und der Standardabweichung 2 an der Stelle 0."
+  CorrectAnswer: dnorm(0, mean=1, sd=2)
+  AnswerTests: omnitest(correctVal=dnorm(0, mean=1, sd=2))
+  Hint: "Der Befehl für die Dichte der Normalverteilung lautet dnorm(x, mean=0, sd=1). Setzen Sie für x die Zahl 0, für den Mittelwert 1 und für die Standardabweichung 2 ein."
+
+# noch eine Besonderheit: Fläche = 1  
+- Class: text
+  Output: "Normalverteilungen haben noch eine Besonderheit: die Fläche unter der Kurve beträgt 1. Etwas formaler: das Integral der Funktion f(x) wie oben beschrieben von minus Unendlich bis Unendlich beträgt 1. "
+  
+# Verteilungsfunktion
+- Class: text
+  Output: "Mit der Verteilungsfunktion wird genau dieses Intervall beschrieben. Die Verteilungsfunktion beschreibt also die Fläche unter der Kurve für das Intervall von minus Unendlich bis x der Normalverteilung."
+
+- Class: figure
+  Output: "Die Verteilungsfunktion wird meist mit dem großen griechischen Buchstaben Phi bezeichnet. In der Plotanzeige sehen Sie beispielhaft Phi von 1, dargestellt als die Fläche unter der Standardnormalverteilung bis zum Wert x=1."
+  Figure: standardnormalverteilung_phi.R
+  FigureType: new 
+  
+- Class: mult_question
+  Output: 'Die Standardnormalverteilung ist glockenförmig. Welche Form wird dann die Verteilungsfunktion der Standardnormalverteilung haben?' 
+  AnswerChoices: 'erst geringer Anstieg, dann stärkerer Anstieg, dann wieder geringer Anstieg;gleichmäßiger Anstieg von minus Unendlich bis plus Unendlich;auch glockenförmig'
+  CorrectAnswer: 'erst geringer Anstieg, dann stärkerer Anstieg, dann wieder geringer Anstieg'
+  AnswerTests: omnitest(correctVal='erst geringer Anstieg, dann stärkerer Anstieg, dann wieder geringer Anstieg')
+  Hint: "Von links nach rechts kann das Integral nur größerer werden. Um den Punkt x=0 herum wächst es am meisten, hat also die größte Steigung, weil die Ausgangsfunktion ihr Maximum erreicht."
+
+# Aussehen der Verteilungsfunktion
+- Class: figure
+  Output: "Richtig, in der Mitte ist die Steigung am größten. In der Plotanzeige sehen Sie den Kurvenverlauf. Bei x=-4 ist der Wert noch nahe 0. Bei x=4 ist der Wert bereits nahe 1. Im weiteren Verlauf nähert sich die Kurve immer näher an 1 an."
+  Figure: verteilungsfunktionformel.R
+  FigureType: new 
+
+# weil symmetrisch sollte qnorm(0) = 0.5 sein  
+- Class: mult_question
+  Output: 'Die Standardnormalverteilung ist symmetrisch um x=0. Welchen Wert wird dann die Verteilungsfunktion bei x=0 annehmen?' 
+  AnswerChoices: '0.5;0;1;2'
+  CorrectAnswer: '0.5'
+  AnswerTests: omnitest(correctVal='0.5')
+  Hint: "Die gesamte Fläche unter der Kurve beträgt 1. Weil die Standardnormalverteilung symmetrisch ist, liegen 50% links und 50% rechts von x=0."
+  
+- Class: cmd_question
+  Output: "Der Befehl für die Verteilungsfunktion lautet pnorm(q). Das p am Anfang des Befehls steht für probability. Das q steht für das Quantil. Der Befehl berechnet also die Wahrscheinlichkeit des Quantils q in der Standardnormalverteilung. Überprüfen Sie Ihre Antwort auf die vorherige Frage, indem Sie den Wert der Verteilungsfunktion an der Stelle q=0 berechnen."
+  CorrectAnswer: pnorm(0)
+  AnswerTests: omnitest(correctVal=pnorm(0))
+  Hint: "Der Befehl lautet pnorm(0)."
+
+#30
+# was ist qnorm(-1)
+- Class: cmd_question
+  Output: "Berechnen wir noch zwei weitere Werte der Verteilungsfunktion. Als erstes brauchen wir den Wert der Verteilungsfunktion an der Stelle x=-1. Weisen Sie das Ergebnis einer neuen Variable mit dem Namen 'unten' zu."
+  CorrectAnswer: unten <- pnorm(-1)
+  AnswerTests: any_of_exprs('unten <- pnorm(-1)', 'unten = pnorm(-1)')
+  Hint: "Der Befehl lautet unten <- pnorm(-1)."
+
+# was ist qnorm(1)
+- Class: cmd_question
+  Output: "Als zweites brauchen wir noch den Wert der Verteilungsfunktion an der Stelle x=1. Weisen Sie das Ergebnis einer neuen Variable mit dem Namen 'oben' zu."
+  CorrectAnswer: oben <- pnorm(1)
+  AnswerTests: any_of_exprs('oben <- pnorm(1)', 'oben = pnorm(1)')
+  Hint: "Der Befehl lautet oben <- pnorm(1)."
+
+# jetzt ein Intervall: -1;1 durch Differenz
+- Class: cmd_question
+  Output: "Die Fläche unter der Kurve zwischen -1 und 1 ergibt sich nun aus der Differenz zwischen den Variablen oben und unten. Berechnen Sie diese Differenz."
+  CorrectAnswer: oben-unten
+  AnswerTests: any_of_exprs('oben-unten', '-unten+oben')
+  Hint: "Der Befehl lautet oben-unten."
+
+# 68% liegen also innerhalb von +- 1 Standardabweichung
+- Class: figure
+  Output: "Exakt. In der Standardnormalverteilung liegen also etwa 68% der Fläche zwischen -1 und 1, also innerhalb einer Standardabweichung vom Mittelwert."
+  Figure: standardnormalverteilung_68.R
+  FigureType: new 
+  
+# wie viel % liegen zwischen +-2 Standardabweichungen?
+- Class: cmd_question
+  Output: "Berechnen Sie nun die Fläche, die innerhalb von zwei Standardabweichungen des Mittelwerts liegt. Ziehen Sie dazu pnorm(-2) von pnorm(2) ab."
+  CorrectAnswer: pnorm(2)-pnorm(-2)
+  AnswerTests: omnitest(correctVal=pnorm(2)-pnorm(-2))
+  Hint: "pnorm(2) steht für die Wahrscheinlichkeit bis x=2. Davon müssen wir alles abziehen, was links von x=-2 liegt, also pnorm(-2). So ergibt sich pnorm(2)-pnorm(-2)."
+
+# wie viel % liegen zwischen +-3 Standardabweichungen?
+- Class: figure
+  Output: "Etwa 95% der Fläche liegen innerhalb von nur zwei Standardabweichungen um den Mittelwert herum. Und etwa 99% der Fläche liegen innerhalb von drei Standardabweichungen."
+  Figure: standardnormalverteilung_95.R
+  FigureType: new 
+  
+# 68-95-99 Regel  
+- Class: text
+  Output: "Diese drei Angaben braucht man immer mal wieder. Deswegen wurden sie zur sogenannten 68-95-99-Regel zusammengefasst: Etwa 68% der Fläche liegen innerhalb von einer Standardabweichung um den Mittelwert. Etwa 95% der Fläche liegen innerhalb von nur zwei Standardabweichungen. Etwa 99% der Fläche liegen innerhalb von drei Standardabweichungen."
+  
+# Nutzen der Regel
+- Class: mult_question
+  Output: 'IQ-Werte sind normalverteilt, haben einen Mittelwert von 100 und eine Standardabweichung von 15. Welche Schlussfolgerung kann man beispielsweise ziehen, wenn eine getestete Person den Testwert 130 erreicht?' 
+  AnswerChoices: 'nur 2,5 Prozent der Bevölkerung haben einen noch höheren IQ-Wert;nur 2,5 Prozent der Bevölkerung haben einen niedrigeren IQ-Wert;nur 5 Prozent der Bevölkerung haben einen noch höheren IQ-Wert;nur 5 Prozent der Bevölkerung haben einen niedrigeren IQ-Wert'
+  CorrectAnswer: 'nur 2,5 Prozent der Bevölkerung haben einen noch höheren IQ-Wert'
+  AnswerTests: omnitest(correctVal='nur 2,5 Prozent der Bevölkerung haben einen noch höheren IQ-Wert')
+  Hint: "130 liegt zwei Standardabweichungen oberhalb des Mittelwerts. 95% der Werte liegen innerhalb von zwei Standardabweichungen. Also liegen 5% außerhalb von zwei Standardabweichungen. Die eine Hälfte am oberen Ende, die andere Hälfte am unteren Ende."
+
+- Class: figure
+  Output: "95% der Verteilung liegen zwischen -3 und 3. Die verbleibenden 5% teilen sich auf: 2,5% oberhalb von x=3 (rot schraffierte Fläche) und 2,5% unterhalb von x=-3."
+  Figure: standardnormalverteilung_25.R
+  FigureType: new 
+  
+# 68-95-99 Regel  
+- Class: text
+  Output: "Die 68-95-99-Regel kann also dabei helfen, eine schnelle Abschätzung zu machen, wie ungewöhnlich ein Wert ist oder wie wahrscheinlich ein bestimmtes Ereignis ist."
+
+# hier gehst weiter  
+- Class: mult_question
+  Output: 'Fassen wir zusammen. Die Standardnormalverteilung hat viele charakteristische Eigenschaften. Welche gehört NICHT dazu?' 
+  AnswerChoices: 'der Mittelwert beträgt 1;die Standardabweichung betraegt 1;sie ist glockenförmig;die Fläche unter der Kurve beträgt 1;68% der Verteilung liegen innerhalb von einer Standardabweichung um den Mittelwert'
+  CorrectAnswer: 'der Mittelwert beträgt 1'
+  AnswerTests: omnitest(correctVal='der Mittelwert beträgt 1')
+  Hint: "Der Mittelwert der Standardnormalverteilung beträgt 0. Die Verteilung liegt symmetrisch um 0."
+
+  
+# Zusammenfassung des Kapitels:
+- Class: text
+  Output: "In diesem Kapitel haben Sie die Familie der Normalverteilungen kennengelernt. Die Standardnormalverteilung ist eine Normalverteilung mit Mittelwert 0 und Standardabweichung 1. Alle anderen Normalverteilungen lassen sich daraus ableiten. Die Normalverteilungen lassen sich mathematisch beschreiben. Viele Ereignisse und Messwerte sind zumindest annähernd normalverteilt. Warum das so ist, werden Sie im Kapitel Stichprobenverteilung sehen."

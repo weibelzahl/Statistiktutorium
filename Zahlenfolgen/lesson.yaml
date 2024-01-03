@@ -1,0 +1,121 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: Zahlenfolgen
+  Author: Nick Carchedi
+  Type: Standard
+  Organization: JHU Biostat; Translation by PFH
+  Version: 2.2.1
+
+- Class: text
+  Output: In dieser Übung lernen Sie eine Zahlenfolge in R zu erstellen.
+
+- Class: cmd_question
+  Output: Am einfachsten geht das mit dem Operator ':'. Tippen Sie '1:20', um das auszuprobieren.
+  CorrectAnswer: '1:20'
+  AnswerTests: omnitest(correctExpr='1:20')
+  Hint: Tippen Sie einfach '1:20' ohne Leerzeichen und ohne Anführungszeichen. Achtung, das Zeichen in der Mitte ist ein Doppelpunkt und kein Strichpunkt.
+
+- Class: cmd_question
+  Output: Wir erhalten eine Folge ganzer Zahlen zwischen 1 (eingeschlossen) und 20 (eingeschlossen). Mit dem gleichen Befehl kann man aber auch eine Folge von reellen Zahlen erstellen. Probieren Sie z. B. mal pi:10.
+  CorrectAnswer: pi:10
+  AnswerTests: omnitest(correctExpr='pi:10')
+  Hint: Geben Sie pi:10 ein und schauen Sie einfach mal was passiert. pi ist eine vordefinierte Konstante und hat wie zu erwarten den Wert 3.1415... .
+
+- Class: text
+  Output: Das Ergebnis ist ein Vektor reeller Zahlen. Am Anfang steht die Zahl pi. Danach folgen Zahlen die um jeweils 1 erhöht sind. Die obere Grenze von 10 wird nie erreicht, weil die nächste Zahl in der Folge schon größer als 10 wäre.
+
+- Class: cmd_question
+  Output: 'Und was passiert, wenn wir 15:1 eingeben? Probieren Sie es aus.'
+  CorrectAnswer: '15:1'
+  AnswerTests: omnitest(correctExpr='15:1')
+  Hint: Tippen Sie 15:1 ein und drücken Sie die Eingabetaste.
+
+- Class: text
+  Output: R hat in Einerschritten rückwärts gezählt! Dieses Verhalten wird eher selten gebraucht, aber es schadet nicht, das mal gesehen zu haben.
+
+- Class: text
+  Output: 'Zur Erinnerung: Sollten Sie eine Frage zu einer Funktion haben, können Sie die Dokumentation dieser Funktion mit einem Fragezeichen gefolgt vom Namen der Funktion öffnen: ?name_der_funktion. Hier haben wir allerdings einen Sonderfall, weil der Doppelpunkt ein Sonderzeichen ist. Dieses muss in Anführungszeichen gesetzt werden, also z.B. so: ?":".'
+
+- Class: cmd_question
+  Output: Öffnen Sie nun die Dokumentation des ':' Operators.
+  CorrectAnswer: ?`:`
+  AnswerTests: any_of_exprs('?`:`', "?':'", '?":"')
+  Hint: 'Zum Öffnen der Dokumentation eines Sonderzeichens muss dieses in Anführungszeichen gesetzt werden. Das ist notwendig, um R klar zu machen, dass Sie das Symbol nicht als Befehl verwenden. Die Eingabe sollte also so aussehen: ?":" (auch einfache Anführungszeichen wären erlaubt). Vergessen Sie das Fragezeichen am Anfang nicht.'
+
+- Class: text
+  Output: "Regelmäßig brauchen wir aber noch mehr Kontrolle über die Zahlenfolge als der ':' Operator bietet. Dafür gibt es die Funktion seq() (abgeleitet vom englischen 'sequence')."
+
+- Class: cmd_question
+  Output: "In der einfachsten Variante macht seq() genau das Gleiche wie der ':' Operator. Probieren Sie das mit der Eingabe seq(1, 20)."
+  CorrectAnswer: seq(1, 20)
+  AnswerTests: omnitest(correctExpr='seq(1, 20)')
+  Hint: Tippen Sie seq(1, 20) und drücken Sie die Eingabetaste. Das Leerzeichen nach dem Komma ist nicht erforderlich, macht den Code aber besser lesbar.
+
+- Class: cmd_question
+  Output: Wir erhalten die gleiche Ausgabe wie bei 1:20. Wenn wir aber eine Zahlenfolge brauchen, die von 0 bis 10 in Schritten von 0.5 aufsteigt, können wir den Befehl seq(0, 10, by=0.5) verwenden. Versuchen Sie es mal.
+  CorrectAnswer: seq(0, 10, by=0.5)
+  AnswerTests: omnitest(correctExpr='seq(0, 10, by=0.5)')
+  Hint: Es geht hier immer noch um die Funktion seq(), nur dass Sie diesmal ein zusätzliches Argument verwenden, mit dem Sie R mitteilen, dass die Zahlenfolge in Schritten von 0.5 aufsteigen soll. Achten Sie auch darauf, dass in R (wie im Englischen üblich) das Trennzeichen der Nachkommastellen nicht ein Komma, sondern ein Punkt ist (also 0.5 statt 0,5). Geben Sie seq(0, 10, by=0.5) ein.
+
+- Class: cmd_question
+  Output: Manchmal ist die Schrittgröße egal und es ist nur wichtig, dass z. B. genau 30 Zahlen zwischen 5 und 10 vorliegen. Das geht mit seq(5, 10, length=30). Testen Sie dies und speichern Sie das Ergebnis in einer Variablen mit dem Namen my_seq.
+  CorrectAnswer: my_seq <- seq(5, 10, length=30)
+  AnswerTests: omnitest(correctExpr='my_seq <- seq(5, 10, length=30)')
+  Hint: 'Auch hier verwenden wir wieder die gleiche Funktion seq(), aber mit dem neuen Argument length. Vergessen Sie nicht das Ergebnis der neuen Variable my_seq zuzuweisen: my_seq <- seq(5, 10, length=30).'
+
+- Class: cmd_question
+  Output: Um zu überprüfen, dass my_seq auch wirklich 30 Werte enthält, verwenden wir die Funktion length(). Probieren Sie das aus.
+  CorrectAnswer: length(my_seq)
+  AnswerTests: omnitest(correctExpr='length(my_seq)')
+  Hint: Geben Sie length(my_seq) ein, um die Länge der Variable my_seq zu erhalten.
+
+- Class: text
+  Output: Nehmen wir nun an, wir wüssten nicht, wie viele Elemente die Zahlenfolge my_seq hat. Nun wollen wir eine neue Zahlenfolge von 1 bis N generieren, wobei N für die Anzahl von Elementen in my_seq steht. Wir wollen also einen neuen Vektor (1, 2, 3, ...) mit der gleichen Länge wie my_seq.
+
+- Class: cmd_question
+  Output: 'Es gibt mehrere Möglichkeiten, eine solche Folge zu erzeugen. Eine davon ist es, den ":" Operator mit der Funktion length() zu verknüpfen. Etwa mit 1:length(my_seq). Versuchen Sie das mal.'
+  CorrectAnswer: 1:length(my_seq)
+  AnswerTests: omnitest(correctExpr='1:length(my_seq)')
+  Hint: Geben Sie 1:length(my_seq) ein, ohne das Ergebnis einer neuen Variablen zuzuweisen.
+
+- Class: cmd_question
+  Output: "Es gibt noch eine Möglichkeit, wie die gesuchte Zahlenfolge erzeugt werden kann: seq(along.with = my_seq). Versuchen Sie das."
+  CorrectAnswer: seq(along.with = my_seq)
+  AnswerTests: omnitest(correctExpr='seq(along.with = my_seq)')
+  Hint: "Geben Sie seq(along.with = my_seq) ein. Wir verwenden also noch einmal dieselbe Funktion seq(), allerdings mit einem anderen Argument `along.with`. Damit teilen Sie R mit, dass Sie eine Zahlenfolge benötigen, die genauso viele Elemente wie my_seq besitzt. Wie erwähnt können Sie sich jederzeit mit ?seq die zum Befehl gehörige Dokumentation ansehen."
+
+- Class: cmd_question
+  Output: Weil das häufiger vorkommt, gibt es für diese Aufgabe auch eine eingebaute Funktion mit dem Namen seq_along(). Geben Sie seq_along(my_seq) ein, um zu sehen was passiert.
+  CorrectAnswer: seq_along(my_seq)
+  AnswerTests: omnitest(correctExpr='seq_along(my_seq)')
+  Hint: Die Funktion seq_along() ist aus der Funktion seq() abgeleitet. Geben Sie seq_along(my_seq) ein und Sie sollten das gleiche Ergebnis wie zuvor erhalten.
+
+- Class: text
+  Output: Es gibt oft mehrere Lösungen für das gleiche Problem. Das gilt auch in R. Meist sind einfache und kurze Lösungen besser, weil man sich dann nicht so leicht vertippt. Außerdem sollte Ihr Code gut lesbar sein, so dass auch andere leicht nachvollziehen können, was gemeint ist.
+
+- Class: text
+  Output: Wenn es in R eine eingebaute Funktion für eine bestimmte Aufgabe gibt, ist diese Funktion meist für diesen Zweck optimiert und daher am Besten geeignet. Schon bald werden Sie mehr Erfahrung mit R haben und Ihre eigenen kleinen Funktionen schreiben können, falls es eine solche noch nicht gibt. 
+
+- Class: text
+  Output: Neben der Funktion seq() gibt es noch die Funktion rep(). Der Name leitet sich vom englischen Wort 'replicate', also 'wiederhole' ab. Wir schauen uns mehrer Fälle an, in denen man diese Funktion gut nutzen kann.
+
+- Class: cmd_question
+  Output: "Um einen Vektor mit 40 Nullen zu erzeugen, verwenden Sie rep(0, times = 40). Also etwa: 'Wiederhole 40 mal 0'. Probieren Sie  das."
+  CorrectAnswer: rep(0, times = 40)
+  AnswerTests: omnitest(correctExpr='rep(0, times = 40)')
+  Hint: Geben Sie rep(0, times = 40) ein, um einen Vektor mit 40 Nullen zu erzeugen.
+
+- Class: cmd_question
+  Output: Nun kann man aber auch ganze Zahlenfolgen wiederholen. Wir erhalten einen Vektor mit 10 Wiederholungen der Zahlenfolge (0, 1, 2) mit dem Befehl rep(c(0, 1, 2), times = 10). Und los, probieren Sie das!
+  CorrectAnswer: rep(c(0, 1, 2), times = 10)
+  AnswerTests: omnitest(correctExpr='rep(c(0, 1, 2), times = 10)')
+  Hint: Geben Sie rep(c(0, 1, 2), times = 10) ein. Es ist wichtig, die Funktion c() zum Erzeugen der Sequenz zu verwenden, damit klar wird, dass die drei Zahlen einen Vektor bilden.
+
+- Class: cmd_question
+  Output: "Abschließend noch ein ganz ähnliches Problem. Diesmal wollen wir nicht den Vektor (0, 1, 2) als Ganzes wiederholen, sondern jedes einzelne Element soll für sich zehn mal wiederholt werden, also 10 Nullen, dann 10 Einsen und dann 10 Zweien. Dies kann man mit dem Argument 'each' erreichen. Geben Sie rep(c(0, 1, 2), each = 10) ein."
+  CorrectAnswer: rep(c(0, 1, 2), each = 10)
+  AnswerTests: omnitest(correctExpr='rep(c(0, 1, 2), each = 10)')
+  Hint: Geben Sie rep(c(0, 1, 2), each = 10) ein, um zu sehen wie das Argument 'each' das Verhalten der Funktion rep() verändert.
+
+- Class: text
+  Output: Und schon wieder eine Übung gemeistert. Gut gemacht!

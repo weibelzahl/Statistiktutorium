@@ -1,0 +1,6 @@
+            Studienfach
+Geschlecht  BWL Psychologie Wirtschaftspsychologie gesamt
+  maennlich  60          20                     40    120
+  weiblich   60         100                     20    180
+  gesamt    120         120                     60    300
+  
