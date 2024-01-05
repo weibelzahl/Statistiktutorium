@@ -197,3 +197,19 @@
   CorrectAnswer: my_div
   AnswerTests: omnitest(correctExpr='my_div')
   Hint: Sollte diese Funktion nicht zur Verfügung stehen, tippen Sie my_div und drücken Sie dann die Eingabetaste.
+  
+# Code  
+- Class: figure
+  Output: "Sie haben dieses Kapitel erfolgreich abgeschlossen. Als Nachweis erhalten Sie hier Ihren persönlichen Code:"
+  Figure: code.R
+  FigureType: new   
+
+- Class: text
+  Output: 'Tragen Sie diesen Code in das entsprechende Feld in der Aufgabenstellung swirl-Kurs 01 auf Blackboard ein. Dieser Code ist nur für dieses Kapitel und nur für Sie persönlich gültig. Kopieren Sie den Code jetzt, damit sie ihn nicht verlieren.'
+
+- Class: mult_question
+  Output: Haben Sie Ihren persönlichen Code gespeichert?
+  CorrectAnswer: ja
+  AnswerChoices: ja;nein;mache ich später
+  AnswerTests: omnitest(correctVal='ja')
+  Hint: "Wenn Sie den Code verlieren, müssen Sie das Kapitel evtl. erneut bearbeiten. Haben Sie ihn jetzt gespeichert?"

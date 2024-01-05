@@ -154,3 +154,13 @@
 # Zusammenfassung des Kapitels:
 - Class: text
   Output: "In diesem Kapitel haben Sie die Poisson-Verteilung kennengelernt. Diese Verteilung ist hilfreich, wenn die Auftretenswahrscheinlichkeit eines Ereignisses sehr gering ist und die Anzahl der Versuche sehr groß oder unbekannt ist."
+
+# Code  
+- Class: figure
+  Output: "Sie haben dieses Kapitel erfolgreich abgeschlossen. Als Nachweis erhalten Sie hier Ihren persönlichen Code:"
+  Figure: code.R
+  FigureType: new   
+
+- Class: text
+  Output: 'Tragen Sie diesen Code in das entsprechende Feld in der Aufgabenstellung swirl-Kurs 01 auf Blackboard ein. Dieser Code ist nur für dieses Kapitel und nur für Sie persönlich gültig. Kopieren Sie den Code jetzt, damit sie ihn nicht verlieren.'
+  

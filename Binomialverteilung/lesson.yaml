@@ -309,3 +309,13 @@
 # Zusammenfassung des Kapitels:
 - Class: text
   Output: "In diesem Kapitel haben Sie die Binomialverteilung kennengelernt. Diese Verteilung hängt von zwei Parametern ab: die Anzahl der Versuche und die Erfolgswahrscheinlichkeit bei jedem Versuch."
+
+# Code  
+- Class: figure
+  Output: "Sie haben dieses Kapitel erfolgreich abgeschlossen. Als Nachweis erhalten Sie hier Ihren persönlichen Code:"
+  Figure: code.R
+  FigureType: new   
+
+- Class: text
+  Output: 'Tragen Sie diesen Code in das entsprechende Feld in der Aufgabenstellung swirl-Kurs 01 auf Blackboard ein. Dieser Code ist nur für dieses Kapitel und nur für Sie persönlich gültig. Kopieren Sie den Code jetzt, damit sie ihn nicht verlieren.'
+

@@ -223,3 +223,19 @@
 # Zusammenfassung des Kapitels:
 - Class: text
   Output: "In diesem Kapitel haben Sie die Stichprobenverteilung kennengelernt, also die Verteilung aller möglicher Stichproben aus einer Population. Das besondere: unabhängig von der Verteilung der Population ist die Stichprobenverteilung des Mittelwertes immer ungefähr normalverteilt. Das kann man sich zu nutze machen, um z. B. abzuschätzen, wie genau die Schätzung auf Grund einer Stichprobe ist."
+
+# Code  
+- Class: figure
+  Output: "Sie haben dieses Kapitel erfolgreich abgeschlossen. Als Nachweis erhalten Sie hier Ihren persönlichen Code:"
+  Figure: code.R
+  FigureType: new   
+
+- Class: text
+  Output: 'Tragen Sie diesen Code in das entsprechende Feld in der Aufgabenstellung swirl-Kurs 01 auf Blackboard ein. Dieser Code ist nur für dieses Kapitel und nur für Sie persönlich gültig. Kopieren Sie den Code jetzt, damit sie ihn nicht verlieren.'
+  
+- Class: text
+  Output: 'Das war das letzte Kapitel dieses Kurses. Wenn Sie swirl hilfreich fanden, teilen Sie das gerne Prof. Weibelzahl mit, vielleicht erstellt er dann weitere Kapitel. Im swirl course network finden Sie weitere swirl Kurse zu fortgeschrittenen Statistikthemen.'
+
+- Class: text
+  Output: 'THE END'
+  

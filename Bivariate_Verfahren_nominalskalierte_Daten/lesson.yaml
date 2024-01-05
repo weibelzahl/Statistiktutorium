@@ -1,0 +1,275 @@
+- Class: meta
+  Course: Statistiktutorium
+  Lesson: Bivariate Verfahren nominalskalierte Daten
+  Author: Stephan Weibelzahl
+  Type: Standard
+  Organization: PFH Göttingen
+  Version: 2.4.5
+
+# Begrüßung  
+- Class: text
+  Output: "In diesem Kapitel lernen Sie den Zusammenhang zwischen zwei Variablen zu bestimmen."
+
+# Daten
+- Class: figure
+  Output: "In Ihrem Arbeitsbereich finden Sie nun einen Datensatz mit dem Namen stress."
+  Figure: stress.R
+  FigureType: new
+
+# str()
+- Class: cmd_question
+  Output: "Verschaffen wir uns zunächst einen Überblick. Wenden Sie den Befehl str() auf den Daten Satz stress an, um die Struktur der Daten zu sehen."
+  CorrectAnswer: str(stress)
+  AnswerTests: omnitest(correctExpr='str(stress)')
+  Hint: 'Tippen Sie einfach str(stress).'
+
+- Class: mult_question
+  Output: 'Wie viele Variablen sind in dem Datensatz enthalten?' 
+  AnswerChoices: 1;5;7;1100
+  CorrectAnswer: 7
+  AnswerTests: omnitest(correctVal='7')
+  Hint: "Zählen Sie die Variablen in der Ausgabe des Befehls str()." 
+
+- Class: mult_question
+  Output: 'Wie viele Zeilen sind in dem Datensatz enthalten?' 
+  AnswerChoices: 1;5;7;1100
+  CorrectAnswer: 1100
+  AnswerTests: omnitest(correctVal='1100')
+  Hint: "In der Ausgabe des Befehls str() kann man das Layout des Datensatzes erkennen: 1,100 x 7." 
+
+- Class: text
+  Output: "Der Datensatz enthält die Beschreibung von 1100 Schüler*innen in Bezug auf deren psychische Gesundheit."
+
+- Class: figure
+  Output: "Hier nochmal die Ausgabe des Befehls str():"
+  Figure: str.R
+  FigureType: new
+
+- Class: mult_question
+  Output: 'Die Variable vorerkrankung_psy erfragt, ob in der Vergangenheit eine psychische Erkrankung diagnostiziert wurde. Welches Skalenniveau hat diese Variable?' 
+  AnswerChoices: Nominalskala;Ordinalskala;Intervallskala;Verhältnisskala
+  CorrectAnswer: Nominalskala
+  AnswerTests: omnitest(correctVal='Nominalskala')
+  Hint: "In der Ausgabe des Befehls str() kann man erkennen, dass die Variable ein Factor mit zwei Ausprägungen ist." 
+
+# summary
+- Class: cmd_question
+  Output: "Schauen wir uns die Variablen genauer an. Erstellen Sie mit dem Befehl summary() eine Zusammenfassung des Datensatzes."
+  CorrectAnswer: summary(stress)
+  AnswerTests: omnitest(correctExpr='summary(stress)')
+  Hint: 'Tippen Sie einfach summary(stress).'
+
+- Class: mult_question
+  Output: 'Die Variable angst wurde mit einem standadisierten Fragebogen (GAD-7) erhoben. Höhere Werte stehen für mehr Angstsymptome. Welche der folgenden Aussagen zur Variable angst ist richtig?' 
+  AnswerChoices: der höchste gemessene Wert ist 21;der Mittelwert beträgt 11;die Standardabweichung beträgt 10
+  CorrectAnswer: der höchste gemessene Wert ist 21
+  AnswerTests: omnitest(correctVal='der höchste gemessene Wert ist 21')
+  Hint: "Unter der Überschrift angst in der Ausgabe des Befehls summary() finden Sie Angaben zu Minimum, Maximum, Mittelwert, Median und den Quartilen." 
+
+- Class: mult_question
+  Output: 'Die Variable depression wurde ebenfalls mit einem standadisierten Fragebogen (PHQ-9) erhoben und zeigt die Stärke von Symptomen von Depression. Höhere Werte stehen für mehr Symptome. Welche der folgenden Aussagen zur Variable depression ist richtig?' 
+  AnswerChoices: der höchste gemessene Wert ist 19;der Mittelwert beträgt 12.56;die ist deutlich linksschief
+  CorrectAnswer: der Mittelwert beträgt 12.56
+  AnswerTests: omnitest(correctVal='der Mittelwert beträgt 12.56')
+  Hint: "Unter der Überschrift depression in der Ausgabe des Befehls summary() finden Sie Angaben zu Minimum, Maximum, Mittelwert, Median und den Quartilen. Eine schiefe Verteilung könnte man an der Lage des Medians relativ zu den Quartilen erkennen." 
+
+- Class: figure
+  Output: "Hier nochmal die Zusammenfassung der Variablen kopfschmerz, schlafqualitaet und schulleistung:"
+  Figure: summaryordinal.R
+  FigureType: new
+
+- Class: mult_question
+  Output: "Was bedeutet der Eintrag NA's: 28?" 
+  AnswerChoices: 28 fehlende Werte;28 Personen haben auf die Frage mit NA geantwortet;das arithmetische Mittel beträgt 28;die Verteilung ist rechtsschief
+  CorrectAnswer: 28 fehlende Werte
+  AnswerTests: omnitest(correctVal='28 fehlende Werte')
+  Hint: "NA steht für not available." 
+
+# chi2
+- Class: mult_question
+  Output: "Wir wollen prüfen, ob die Schulleistung mit den Vorerkrankungen zusammenhängen. Wir hatten bereits festgestellt, dass die Variable vorerkrankung_psy nominalskaliert ist. Die Variable schulleistung ist ordinalskaliert. Was wäre ein geeignetes Zusammenhangsmaß?" 
+  AnswerChoices: Produkt-Moment-Korrelation;Chi2-Unabhängigkeitstest;Spearman Rangkorrelation
+  CorrectAnswer: Chi2-Unabhängigkeitstest
+  AnswerTests: omnitest(correctVal='Chi2-Unabhängigkeitstest')
+  Hint: "Es gibt kein spezielles Maß für den Zusammenhang nominal vs. ordinal. Weil die Schulleistung aber nur fünf Ausprägungen hat, können wir sie auch als nominalskaliert behandeln." 
+
+# table
+- Class: mult_question
+  Output: "Für den Chi2-Unabhängigkeitstest brauchen wir eine sogenannte Kontingenztabelle, also eine Häufigkeitstabelle, die die beiden Variablen gegenüberstellt. Welche Befehl ist geeignet uns eine solche Tabelle zu erstellen?" 
+  AnswerChoices: table();mean();var();sd()
+  CorrectAnswer: table()
+  AnswerTests: omnitest(correctVal='table()')
+  Hint: "Das englische Wort für Tabelle ist table." 
+
+- Class: cmd_question
+  Output: "Wenn man dem Befehl table() nur eine Variable übergibt, entsteht eine einfache Häufigkeitstabelle. Probieren Sie das mit der Variable vorerkrankung_psy aus."
+  CorrectAnswer: table(stress$vorerkrankung_psy)
+  AnswerTests: omnitest(correctExpr='table(stress$vorerkrankung_psy)')
+  Hint: 'Auf die Variable können Sie mit der Dollar-Notation zugreifen. Tippen Sie einfach table(stress$vorerkrankung_psy).'
+
+- Class: cmd_question
+  Output: "Wenn man dem Befehl table() zwei Variablen übergibt, entsteht eine Kontingenztabelle. Probieren Sie das mit den Variablen vorerkrankung_psy und schulleistung aus. Die Vorerkrankung soll in den Zeilen stehen."
+  CorrectAnswer: table(stress$vorerkrankung_psy, stress$schulleistung)
+  AnswerTests: omnitest(correctExpr='table(stress$vorerkrankung_psy, stress$schulleistung)')
+  Hint: 'Auf die Variablen können Sie mit der Dollar-Notation zugreifen. Die erste Variable wird in Zeilen dargestellt, die zweite in Spalten. Tippen Sie einfach table(stress$vorerkrankung_psy, stress$schulleistung).'
+
+- Class: mult_question
+  Output: "Schauen Sie sich die Kontingenztabelle an. Deuten die Zahlen auf einen Zusammenhang hin?" 
+  AnswerChoices: ja;nein
+  CorrectAnswer: ja
+  AnswerTests: omnitest(correctVal='ja')
+  Hint: "Sind die Schulleistungen von Schüler*innen ohne Vorerkrankung ähnlich zu den Schüler*innen mit Vorerkrankung? Deuten die Zahlen also auf einen Zusammenhang hin?" 
+
+- Class: text
+  Output: "Schüler*innen ohne Vorerkrankung (Kategorie: nein) haben meist gute Schulleistungen (4-5), während Schüler*innen mit Vorerkrankung (Kategorie: ja) häufig schlechte Leistungen zeigen. Das deutet eindeutig auf einen Zusammenhang hin."
+
+- Class: cmd_question
+  Output: "Der Befehl für den Chi2-Unabhängigkeitstest lautet: chisq.test(). Auch diesem Befehl übergibt man einfach die beiden Variablen, so wie wir das gerade bei table() gesehen haben. Berechnen Sie den Chi2-Unabhängigkeitstest für die Variablen vorerkrankung_psy und schulleistung."
+  CorrectAnswer: chisq.test(stress$vorerkrankung_psy, stress$schulleistung)
+  AnswerTests: omnitest(correctExpr='chisq.test(stress$vorerkrankung_psy, stress$schulleistung)')
+  Hint: 'Verwenden Sie den vorherigen Befehl wieder, indem Sie die Pfeil nach oben Taste drücken. Ändern Sie den Befehl so ab, dass der Unabhängigkeitstest berechnet wird: chisq.test(stress$vorerkrankung_psy, stress$schulleistung).'
+
+- Class: mult_question
+  Output: "Betrachten Sie die Ausgabe. Wie hoch ist der chi2-Wert?" 
+  AnswerChoices: 454.79;4;2.2e-16
+  CorrectAnswer: 454.79
+  AnswerTests: omnitest(correctVal='454.79')
+  Hint: "Der griechische Buchstabe chi ähnelt optisch einem X. Darum wird der chi2-Wert in Ausgaben manchmal als X-squared bezeichnet." 
+
+- Class: text
+  Output: "Dieser chi2-Wert ist ein Maß dafür, wie sehr die Kontingenztabelle von der Indifferenztabelle abweicht. Die Indifferenztabelle zeigt, wie die Schüler*innen verteilt sein müssten, wenn die Schulleistung unabhängig von der Vorerkrankung wäre."
+
+- Class: mult_question
+  Output: "Wofür steht die Abkürzung df in der Ausgabe?" 
+  AnswerChoices: Freiheitsgrade;Doofheit;duration frequency
+  CorrectAnswer: Freiheitsgrade
+  AnswerTests: omnitest(correctVal='Freiheitsgrade')
+  Hint: "df steht für degrees of freedom." 
+
+- Class: mult_question
+  Output: "df wie degrees of freedom. Wofür steht 2.2e-16 in der Ausgabe?" 
+  AnswerChoices: ein Wert nahe Null;ein sehr großer Wert;ein Wert gegen minus Unendlich
+  CorrectAnswer: ein Wert nahe Null
+  AnswerTests: omnitest(correctVal='ein Wert nahe Null')
+  Hint: "Ausgeschrieben: 2.2 * 10^-16, also das Komma um 16 Stellen nach links geschoben." 
+
+- Class: mult_question
+  Output: "Der p-value ist also fast Null. Was bedeutet das?" 
+  AnswerChoices: es gibt einen Zusammenhang; es gibt keinen Zusammenhang
+  CorrectAnswer: es gibt einen Zusammenhang
+  AnswerTests: omnitest(correctVal='es gibt einen Zusammenhang')
+  Hint: "Die Kontigenztabelle weicht überzufällig von der Indifferenztabelle ab."
+  
+- Class: text
+  Output: "Die Idee ist: Wir stellen uns ein Population vor, in der Vorerkrankung und Schulleistung voneinander unabhängig sind. Auf jeder Leistungstufe wäre dann das Verhältnis von Schüler*innen mit Vorerkrankung zu ohne Vorerkrankung gleich. Also beispielsweise bei sehr leistungsstarken 1:3 und bei leistungsschwachen ebenfalls 1:3."
+
+- Class: text
+  Output: "Aus dieser Population ziehen wir nun ganz viele Stichproben. Manche Stichproben werden sehr genau der Population entsprechen, also der Indifferenztabelle ähnlich sein. Andere Stichproben weichen stärker ab, wie der Zufall eben spielt."
+
+
+- Class: mult_question
+  Output: "Für jede dieser vielen Stichproben berechnen wir den chi2-Wert, also die Abweichung zwischen Kontingenztabelle und Indifferenztabelle. Wie nennt sich die Gesamtheit dieser vielen chi2-Werte?" 
+  AnswerChoices: Stichprobenverteilung;Populationsverteilung;Gesamtverteilung
+  CorrectAnswer: Stichprobenverteilung
+  AnswerTests: omnitest(correctVal='Stichprobenverteilung')
+  Hint: "Die vielen Werte stammen aus sehr vielen Stichproben."
+
+- Class: mult_question
+  Output: "Diese Stichprobenverteilung hat eine charakteristische Form. Welche könnte das sein?" 
+  AnswerChoices: chi2-Verteilung;t-Verteilung;Binomialverteilung
+  CorrectAnswer: chi2-Verteilung
+  AnswerTests: omnitest(correctVal='chi2-Verteilung')
+  Hint: "Muss man nicht wissen, aber diesmal hilft schon einfaches Raten."
+
+- Class: text
+  Output: "Genau die Stichprobenverteilung hat die Form einer chi2-Verteilung. In diesem Fall, die Verteilung mit df = 4 Freiheitsgraden."
+
+- Class: figure
+  Output: "In der Plotanzeige sehen Sie diese chi2-Verteilung."
+  Figure: chi2.R
+  FigureType: new
+
+- Class: text
+  Output: "Wenn in der Population kein Zusammenhang besteht, dann hätten wir chi2-Werte zwischen 0 und etwa 10 erwartet. Und wenn der Zufall es schlecht meint, vielleicht auch mal einen höheren Wert."
+
+- Class: figure
+  Output: "Man kann ausrechnen, dass 95% der erwarteten Werte zwischen 0 und 9.48 liegen. Die verbleibenden 5% liegen oberhalb von 9.48 liegen. Siehe Plot."
+  Figure: chi2pvalue.R
+  FigureType: new
+
+- Class: text
+  Output: "In unserer Stichprobe war der chi2-Wert, wie wir herausgefunden haben, X-squared = 454.79. Also viel höher als wir erwartet hätten."
+
+- Class: mult_question
+  Output: "Woran kann man ablesen, wie wahrscheinlich es ist, durch Zufall einen chi2-Wert von 454.79 zu erhalten, wenn in der Population kein Zusammenhang zwischen den Variablen besteht?" 
+  AnswerChoices: am p-value;an den Freiheitsgraden;am Vorzeichen des chi2-Werts
+  CorrectAnswer: am p-value
+  AnswerTests: omnitest(correctVal='am p-value')
+  Hint: "Die Lösung muss wohl etwas mit Wahrscheinlichkeit (probability) zu tun haben."
+
+- Class: text
+  Output: "In unserer Stichprobe betrug der p-value 2.2e-16, also nahezu Null."
+
+- Class: figure
+  Output: "Jetzt ergibt die Ausgabe des chisq.test()-Befehls Sinn."
+  Figure: chi2output.R
+  FigureType: new
+
+- Class: text
+  Output: "X-squared: Die Abweichung der Kontingenztabelle in unserer Stichprobe von der Indifferenztabelle ist sehr groß."
+
+- Class: text
+  Output: "df: Die zugehörige Stichprobenverteilung hat die Form einer chi2-Verteilung. Die Freiheitsgrade dieser Verteilung berechnen sich aus der Größe der Kontingenztabelle: (Spaltenzahl - 1) * (Zeilenzahl - 1) = (5 - 1) * (2 - 1) = 4."
+
+- Class: text
+  Output: "p-value: Die Wahrscheinlichkeit einen chi2-Wert von mindestens X-squared = 454.79 in einer chi2-Verteilung mit df = 4 zu erhalten ist nahezu Null."
+
+- Class: text
+  Output: "Daraus schließen wir: Die Annahme, dass unsere Stichprobe aus einer Population stammt, in der es keinen Zusammenhang zwischen Vorerkrankung und Schulleistung gibt, scheint nicht plausibel. Wir verwerfen diese Annahme und gehen davon aus, dass es in der Population einen Zusammenhang gibt."
+
+# Interpretation
+- Class: figure
+  Output: "Wie genau dieser Zusammenhang beschaffen ist, lässt sich aus dem Test nicht ablesen. Für eine inhaltliche Interpretation muss man sich die Kontingentabelle ansehen."
+  Figure: contingency.R
+  FigureType: new
+
+- Class: text
+  Output: "Wie wir am Anfang bereits vermutet hatten: Schüler*innen ohne Vorerkrankung zeigen bessere Schulleistungen als Schüler*innen mit Vorerkrankung. Während bei Schüler*innen mit schlechten Leistungen der Anteil von Vorerkrankungen sehr hoch ist (172/13), ist der Anteil bei Schüler*innen mit guten Leistungen sehr gering (12/170). Entsprechendes gilt für die Leistungsstufen dazwischen."
+
+- Class: text
+  Output: "In diesem Fall können wir also eine Art Richtung des Effekts über die Stufen hinweg erkennen. Manchmal weicht aber einfach nur eine Kategorie deutlich von den anderen ab."
+
+- Class: mult_question
+  Output: "Wir wissen nun also, dass die Variablen nicht unabhängig sind. Aber wie stark ist der Zusammenhang? Auch dafür gibt es ein statistisches Maß. Wie heißt dieses?" 
+  AnswerChoices: Produkt-Moment-Korrelation;Cramers V;Kendalls tau
+  CorrectAnswer: Cramers V
+  AnswerTests: omnitest(correctVal='Cramers V')
+  Hint: "Für Kendalls tau müssten beide Variablen mindestens ordinalskaliert sein. Für die Pearson Produkt-Moment-Korrelation müssten beide Variablen mindestens intervallskaliert sein."
+
+- Class: text
+  Output: "Um die Stärke des Zusammenhangs zu bestimmen, kann der chi2-Wert weiterverarbeitet werden zum Kennwert Cramers V. Bei der Berechnung wird die Größe der Kontingenztabelle und die Stichprobengröße berücksichtigt."
+
+- Class: text
+  Output: "Der Befehl findet sich in einem Paket namens DescTools. Normalerweise müssten Sie dieses Paket mit library() zunächst laden. Aber das haben wir bereits erledigt."
+
+- Class: cmd_question
+  Output: "Der Befehl lautet (wenig überraschend) CramerV(). Genauso wie table() und chisq.test() erwartet dieser Befehl die Angabe der beiden Variablen. Probieren Sie das mal aus."
+  CorrectAnswer: CramerV(stress$vorerkrankung_psy, stress$schulleistung)
+  AnswerTests: omnitest(correctExpr='CramerV(stress$vorerkrankung_psy, stress$schulleistung)')
+  Hint: 'Ersetzen Sie einfach chisq.test() durch CramerV(): CramerV(stress$vorerkrankung_psy, stress$schulleistung).'
+
+- Class: mult_question
+  Output: "Die Werte von Cramers V liegen zwischen 0 und 1. Was bedeutet vermutlich ein Wert von V = 0." 
+  AnswerChoices: es gibt keinen Zusammenhang;es gibt einen sehr starken Zusammenhang
+  CorrectAnswer: es gibt keinen Zusammenhang
+  AnswerTests: omnitest(correctVal='es gibt keinen Zusammenhang')
+  Hint: "Cramer V = 0 würde entstehen, wenn X-squared = 0, also wenn Kontingenztabelle und Indifferenztabelle gleich sind."
+
+- Class: text
+  Output: "Je näher der Wert an 1 liegt, desto stärker der Zusammenhang. V = .65 deutet auf einen starken Zusammenhang hin."
+
+- Class: text
+  Output: "Wir nehmen mit: Der Zusammenhang zwischen zwei (mindestens) nominalskalierten Variablen kann mit dem chi2-Unabhängigkeitstest und mit Cramers V bestimmt werden. Die Befehle lauten chisq.test() und CramerV()."
+
+- Class: text
+  Output: "Damit haben Sie diese Lektion erfolgreich abgeschlossen."

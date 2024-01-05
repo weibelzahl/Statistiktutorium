@@ -240,3 +240,12 @@
 # Zusammenfassung des Kapitels:
 - Class: text
   Output: "In diesem Kapitel haben Sie die Familie der Normalverteilungen kennengelernt. Die Standardnormalverteilung ist eine Normalverteilung mit Mittelwert 0 und Standardabweichung 1. Alle anderen Normalverteilungen lassen sich daraus ableiten. Die Normalverteilungen lassen sich mathematisch beschreiben. Viele Ereignisse und Messwerte sind zumindest annähernd normalverteilt. Warum das so ist, werden Sie im Kapitel Stichprobenverteilung sehen."
+  
+# Code  
+- Class: figure
+  Output: "Sie haben dieses Kapitel erfolgreich abgeschlossen. Als Nachweis erhalten Sie hier Ihren persönlichen Code:"
+  Figure: code.R
+  FigureType: new   
+
+- Class: text
+  Output: 'Tragen Sie diesen Code in das entsprechende Feld in der Aufgabenstellung swirl-Kurs 01 auf Blackboard ein. Dieser Code ist nur für dieses Kapitel und nur für Sie persönlich gültig. Kopieren Sie den Code jetzt, damit sie ihn nicht verlieren.'
