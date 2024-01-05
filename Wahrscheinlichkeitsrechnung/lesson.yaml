@@ -196,5 +196,14 @@
   Output: "Beim Würfeln sind die Ereignisse unabhängig. Daher ist die bedingte Wahrscheinlichkeit P('Zahl 3 im zweiten Wurf'|'Zahl 6 im ersten Wurf') gleich der einfachen Wahrscheinlichkeit P('Zahl 3 im zweiten Wurf')."
 
 - Class: text
-  Output: "Sie haben das Ende des Kapitels Wahrscheinlichkeitsrechnung erreicht. Sie haben einige einfache Berechnungen von Wahrscheinlichkeiten und bedingten Wahrscheinlichkeiten kennen gelernt. Außerdem haben Sie die Darstellungsformen Wahrscheinlichkeitsbaum und Häufigkeitsdiagramm gesehen. Mit diesen einfachen Mitteln lassen sich bereits viele Fragestellungen der Wahrscheinlichkeitstheorie beantworten."
+  Output: "Sie haben in diesem Kapitel einige einfache Berechnungen von Wahrscheinlichkeiten und bedingten Wahrscheinlichkeiten kennen gelernt. Außerdem haben Sie die Darstellungsformen Wahrscheinlichkeitsbaum und Häufigkeitsdiagramm gesehen. Mit diesen einfachen Mitteln lassen sich bereits viele Fragestellungen der Wahrscheinlichkeitstheorie beantworten."
+
+# Code  
+- Class: figure
+  Output: "Sie haben dieses Kapitel erfolgreich abgeschlossen. Als Nachweis erhalten Sie hier Ihren persönlichen Code:"
+  Figure: code.R
+  FigureType: new   
+
+- Class: text
+  Output: 'Tragen Sie diesen Code in das entsprechende Feld in der Aufgabenstellung swirl-Kurs 01 auf Blackboard ein. Dieser Code ist nur für dieses Kapitel und nur für Sie persönlich gültig. Kopieren Sie den Code jetzt, damit sie ihn nicht verlieren.'
 

@@ -151,3 +151,12 @@
 - Class: text
   Output: "In diesem Kapitel haben Sie Zufallsvariablen kennen gelernt. In den folgenden Kapiteln, werden wir aus diesen verschiedene Wahrscheinlichkeitsverteilungen ableiten, die sich bei der Analyse von Stichproben als nützlich erwiesen haben."
 
+# Code  
+- Class: figure
+  Output: "Sie haben dieses Kapitel erfolgreich abgeschlossen. Als Nachweis erhalten Sie hier Ihren persönlichen Code:"
+  Figure: code.R
+  FigureType: new   
+
+- Class: text
+  Output: 'Tragen Sie diesen Code in das entsprechende Feld in der Aufgabenstellung swirl-Kurs 01 auf Blackboard ein. Dieser Code ist nur für dieses Kapitel und nur für Sie persönlich gültig. Kopieren Sie den Code jetzt, damit sie ihn nicht verlieren.'
+

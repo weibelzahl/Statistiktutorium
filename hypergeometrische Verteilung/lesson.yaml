@@ -276,3 +276,12 @@
   # Zusammenfassung des Kapitels:
 - Class: text
   Output: "In diesem Kapitel haben Sie die hypergeometrische Verteilung kennengelernt. Diese Verteilung ist hilfreich, wenn man bei relativ kleinen Populationen die Wahrscheinlichkeit für das Ziehen ohne Zurücklegen berechnen möchte. Der Befehl für die Dichtefunktion lautet dhyper(x, m, n, k). Der Befehl für die Verteilungsfunktion lautet phyper(q, m, n, k)."
+
+# Code  
+- Class: figure
+  Output: "Sie haben dieses Kapitel erfolgreich abgeschlossen. Als Nachweis erhalten Sie hier Ihren persönlichen Code:"
+  Figure: code.R
+  FigureType: new   
+
+- Class: text
+  Output: 'Tragen Sie diesen Code in das entsprechende Feld in der Aufgabenstellung swirl-Kurs 01 auf Blackboard ein. Dieser Code ist nur für dieses Kapitel und nur für Sie persönlich gültig. Kopieren Sie den Code jetzt, damit sie ihn nicht verlieren.'

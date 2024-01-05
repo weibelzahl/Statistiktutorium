@@ -165,4 +165,14 @@
 
 # Zusammenfassung des Kapitels:
 - Class: text
-  Output: "In diesem Kapitel haben Sie einige grundlegende Konzepte der Wahrscheinlichkeitsrechnung kennen gelernt: Zufallsvorgang, Ergebnis, Ereignis und Wahrscheinlichkeit. Sie haben dieses Kapitel nun erfolgreich abgeschlossen."
+  Output: "In diesem Kapitel haben Sie einige grundlegende Konzepte der Wahrscheinlichkeitsrechnung kennen gelernt: Zufallsvorgang, Ergebnis, Ereignis und Wahrscheinlichkeit."
+
+  
+# Code  
+- Class: figure
+  Output: "Sie haben dieses Kapitel erfolgreich abgeschlossen. Als Nachweis erhalten Sie hier Ihren persönlichen Code:"
+  Figure: code.R
+  FigureType: new   
+
+- Class: text
+  Output: 'Tragen Sie diesen Code in das entsprechende Feld in der Aufgabenstellung swirl-Kurs 01 auf Blackboard ein. Dieser Code ist nur für dieses Kapitel und nur für Sie persönlich gültig. Kopieren Sie den Code jetzt, damit sie ihn nicht verlieren.'
